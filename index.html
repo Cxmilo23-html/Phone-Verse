@@ -1,30 +1,22 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta name="google-site-verification" content="2RmmFrhWbdoTV1Ix3jL-WXTw0UvKFfSx46hAovqcdXU" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>PHONEVERSE ⚡ | Ranking de celulares 2026</title>
-
-<link rel="icon" href="data:image/svg+xml,
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
-<rect width='100' height='100' rx='22' fill='%23070914'/>
-<text x='50' y='67' font-size='55' text-anchor='middle'>⚡</text>
-</svg>">
+<title>PHONEVERSE ⚡ | Celulares, rankings y noticias</title>
 
 <style>
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 *{
 box-sizing:border-box;
 margin:0;
-padding:0
+padding:0;
 }
 
 html{
-scroll-behavior:smooth
+scroll-behavior:smooth;
 }
 
 body{
@@ -50,22 +42,15 @@ content:"";
 position:fixed;
 inset:0;
 z-index:-2;
-opacity:.18;
+opacity:.15;
 background-image:
 linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
 linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
 background-size:45px 45px;
-animation:gridMove 16s linear infinite;
-}
-
-@keyframes gridMove{
-to{
-background-position:45px 45px
-}
 }
 
 header{
-min-height:680px;
+min-height:650px;
 padding:30px 7% 80px;
 display:flex;
 flex-direction:column;
@@ -84,18 +69,19 @@ letter-spacing:2px;
 }
 
 .logo span{
-color:#00e5ff
+color:#00e5ff;
 }
 
 nav a{
 color:#b9c0d5;
 text-decoration:none;
-margin-left:24px;
-font-size:14px;
+margin-left:20px;
+font-size:13px;
+transition:.2s;
 }
 
 nav a:hover{
-color:#00e5ff
+color:#00e5ff;
 }
 
 .hero{
@@ -145,12 +131,11 @@ color:#061018;
 text-decoration:none;
 font-weight:800;
 background:linear-gradient(100deg,#00e5ff,#66ffca);
-box-shadow:0 10px 35px rgba(0,229,255,.18);
 transition:.3s;
 }
 
 .cta:hover{
-transform:translateY(-4px) scale(1.03);
+transform:translateY(-4px);
 }
 
 .container{
@@ -172,6 +157,8 @@ margin-bottom:10px;
 color:#8791aa;
 }
 
+/* RANKING */
+
 .controls{
 display:flex;
 gap:12px;
@@ -181,8 +168,7 @@ margin-bottom:30px;
 }
 
 input,
-.filter,
-.select-phone{
+select{
 background:#0e1221;
 border:1px solid #242b40;
 color:white;
@@ -196,13 +182,8 @@ width:min(360px,100%);
 }
 
 input:focus,
-.select-phone:focus{
+select:focus{
 border-color:#00e5ff;
-}
-
-.filter,
-.select-phone{
-cursor:pointer;
 }
 
 .grid{
@@ -213,20 +194,22 @@ padding-bottom:80px;
 }
 
 .card{
-position:relative;
-overflow:hidden;
 background:rgba(15,19,34,.76);
 border:1px solid #252c42;
 border-radius:22px;
 padding:24px;
-backdrop-filter:blur(12px);
-transition:.4s;
+transition:.3s;
 }
 
 .card:hover{
-transform:translateY(-8px);
+transform:translateY(-7px);
 border-color:rgba(0,229,255,.55);
 box-shadow:0 18px 50px rgba(0,0,0,.35);
+}
+
+.feature{
+grid-column:1/-1;
+border-color:rgba(168,76,255,.35);
 }
 
 .top{
@@ -248,17 +231,17 @@ color:#b9c4dc;
 flex:none;
 }
 
-.rank.gold{
+.gold{
 background:linear-gradient(135deg,#ffd66b,#a66b00);
 color:#111;
 }
 
-.rank.silver{
+.silver{
 background:linear-gradient(135deg,#e9efff,#737c95);
 color:#111;
 }
 
-.rank.bronze{
+.bronze{
 background:linear-gradient(135deg,#e9a56c,#743a14);
 color:#111;
 }
@@ -285,7 +268,7 @@ border-radius:9px;
 background:#05070d;
 }
 
-.phone-art .cam{
+.cam{
 position:absolute;
 top:14px;
 left:10px;
@@ -296,16 +279,16 @@ background:#05070d;
 box-shadow:25px 0 #05070d,0 25px #05070d;
 }
 
-.info h3{
-font-size:21px;
-margin-bottom:5px;
-}
-
 .brand{
 color:#77829d;
 font-size:12px;
 text-transform:uppercase;
 letter-spacing:1px;
+}
+
+.info h3{
+font-size:21px;
+margin:5px 0;
 }
 
 .score{
@@ -316,7 +299,7 @@ gap:20px;
 }
 
 .score strong{
-font-size:29px;
+font-size:25px;
 }
 
 .score small{
@@ -341,7 +324,6 @@ overflow:hidden;
 .fill{
 height:100%;
 width:var(--w);
-border-radius:99px;
 background:linear-gradient(90deg,#00e5ff,#a84cff);
 }
 
@@ -382,35 +364,17 @@ background:#161c2d;
 color:#9da8bf;
 }
 
-.note{
-margin-top:15px;
-font-size:11px;
-color:#68738d;
-line-height:1.5;
-}
+/* SECCIONES */
 
-.feature{
-grid-column:1/-1;
-border-color:rgba(168,76,255,.35);
-background:linear-gradient(
-135deg,
-rgba(28,18,55,.8),
-rgba(10,19,34,.82)
-);
-}
-
-/* =========================
-   COMPARADOR
-========================= */
-
-.comparator{
-margin:30px 0 90px;
+.panel{
+margin:30px 0 80px;
 padding:35px;
-border:1px solid rgba(0,229,255,.25);
+border:1px solid #252c42;
 border-radius:25px;
 background:rgba(12,16,28,.82);
-box-shadow:0 0 50px rgba(0,229,255,.04);
 }
+
+/* COMPARADOR */
 
 .compare-selects{
 display:grid;
@@ -434,7 +398,6 @@ color:#00e5ff;
 
 .select-phone{
 width:100%;
-font-size:14px;
 }
 
 .vs{
@@ -443,7 +406,7 @@ font-weight:900;
 color:#a84cff;
 }
 
-.compare-button{
+.button{
 display:block;
 margin:25px auto 0;
 padding:14px 28px;
@@ -453,12 +416,6 @@ font-weight:900;
 cursor:pointer;
 color:#061018;
 background:linear-gradient(100deg,#00e5ff,#66ffca);
-transition:.3s;
-}
-
-.compare-button:hover{
-transform:scale(1.05);
-box-shadow:0 10px 35px rgba(0,229,255,.2);
 }
 
 .result{
@@ -470,16 +427,11 @@ margin-top:30px;
 display:block;
 }
 
-.battle-title{
-text-align:center;
-font-size:27px;
-margin-bottom:25px;
-}
-
 .battle-grid{
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:15px;
+margin-top:20px;
 }
 
 .battle-row{
@@ -489,7 +441,7 @@ border-radius:14px;
 padding:16px;
 }
 
-.battle-row .label{
+.label{
 text-align:center;
 color:#8791aa;
 font-size:12px;
@@ -499,61 +451,16 @@ margin-bottom:10px;
 .battle-values{
 display:grid;
 grid-template-columns:1fr auto 1fr;
-align-items:center;
-gap:10px;
 text-align:center;
-}
-
-.battle-values div{
-font-weight:800;
+gap:10px;
 }
 
 .winner{
 color:#00e5ff;
+font-weight:900;
 }
 
-.draw{
-color:#aab2c9;
-}
-
-.final-winner{
-margin-top:25px;
-padding:22px;
-text-align:center;
-border-radius:18px;
-border:1px solid rgba(168,76,255,.35);
-background:linear-gradient(
-135deg,
-rgba(28,18,55,.8),
-rgba(10,19,34,.8)
-);
-}
-
-.final-winner span{
-display:block;
-color:#8791aa;
-font-size:12px;
-margin-bottom:8px;
-}
-
-.final-winner strong{
-font-size:30px;
-color:#00e5ff;
-}
-
-
-/* =========================
-   PHONEVERSE FINDER
-========================= */
-
-.finder{
-margin:30px 0 90px;
-padding:35px;
-border:1px solid rgba(168,76,255,.3);
-border-radius:25px;
-background:rgba(12,16,28,.82);
-box-shadow:0 0 50px rgba(168,76,255,.05);
-}
+/* FINDER */
 
 .finder-question{
 margin:25px 0;
@@ -577,38 +484,12 @@ background:#0b0f1b;
 color:#b9c0d5;
 border-radius:12px;
 cursor:pointer;
-transition:.25s;
-}
-
-.finder-option:hover{
-border-color:#00e5ff;
-color:#00e5ff;
-transform:translateY(-2px);
 }
 
 .finder-option.selected{
 background:rgba(0,229,255,.1);
 border-color:#00e5ff;
 color:#00e5ff;
-box-shadow:0 0 20px rgba(0,229,255,.08);
-}
-
-.finder-button{
-display:block;
-margin:30px auto 0;
-padding:15px 28px;
-border:0;
-border-radius:12px;
-font-weight:900;
-cursor:pointer;
-color:#061018;
-background:linear-gradient(100deg,#00e5ff,#66ffca);
-transition:.3s;
-}
-
-.finder-button:hover{
-transform:scale(1.05);
-box-shadow:0 10px 35px rgba(0,229,255,.2);
 }
 
 .finder-result{
@@ -631,26 +512,10 @@ font-size:27px;
 margin:8px 0;
 }
 
-.finder-score{
-color:#00e5ff;
-font-size:22px;
-font-weight:900;
-margin:12px 0;
-}
-
-.finder-reason{
-color:#8791aa;
-line-height:1.6;
-font-size:13px;
-}
-
-
-/* =========================
-   TABLA
-========================= */
+/* TABLA */
 
 .compare-table{
-margin:20px 0 90px;
+margin-bottom:90px;
 padding:28px;
 border:1px solid #252c42;
 border-radius:22px;
@@ -661,7 +526,7 @@ overflow:auto;
 table{
 width:100%;
 border-collapse:collapse;
-min-width:760px;
+min-width:700px;
 }
 
 th,td{
@@ -673,7 +538,6 @@ border-bottom:1px solid #20263a;
 th{
 color:#00e5ff;
 font-size:12px;
-text-transform:uppercase;
 }
 
 td{
@@ -681,9 +545,105 @@ color:#c5cbda;
 font-size:13px;
 }
 
-tr:hover td{
-background:rgba(0,229,255,.025);
+/* =========================
+   📰 NOTICIAS
+========================= */
+
+.news-section{
+margin:30px 0 90px;
 }
+
+.news-header{
+text-align:center;
+margin-bottom:35px;
+}
+
+.news-header h2{
+font-size:40px;
+margin-bottom:10px;
+}
+
+.news-header h2 span{
+color:#00e5ff;
+}
+
+.news-header p{
+color:#8791aa;
+}
+
+.news-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+}
+
+.news-card{
+background:rgba(15,19,34,.82);
+border:1px solid #252c42;
+border-radius:22px;
+overflow:hidden;
+transition:.35s;
+}
+
+.news-card:hover{
+transform:translateY(-8px);
+border-color:#00e5ff;
+box-shadow:0 20px 50px rgba(0,229,255,.08);
+}
+
+.news-image{
+height:180px;
+display:grid;
+place-items:center;
+font-size:65px;
+background:
+radial-gradient(circle at 30% 30%,rgba(0,229,255,.25),transparent 35%),
+linear-gradient(135deg,#10182d,#21143b);
+}
+
+.news-content{
+padding:22px;
+}
+
+.news-date{
+font-size:11px;
+color:#00e5ff;
+font-weight:800;
+text-transform:uppercase;
+letter-spacing:1px;
+}
+
+.news-content h3{
+font-size:20px;
+line-height:1.3;
+margin:10px 0;
+}
+
+.news-content p{
+font-size:13px;
+color:#8f99b1;
+line-height:1.6;
+}
+
+.news-button{
+display:inline-block;
+margin-top:17px;
+padding:9px 13px;
+border:1px solid #29334c;
+border-radius:9px;
+color:#cdd5e7;
+text-decoration:none;
+font-size:12px;
+font-weight:700;
+transition:.2s;
+}
+
+.news-button:hover{
+border-color:#00e5ff;
+color:#00e5ff;
+}
+
+/* FOOTER */
 
 footer{
 border-top:1px solid #1d2435;
@@ -698,37 +658,10 @@ footer b{
 color:#9da8bf;
 }
 
-.toast{
-position:fixed;
-bottom:25px;
-right:25px;
-padding:13px 17px;
-background:#111729;
-border:1px solid #303a55;
-border-radius:12px;
-color:#cdd4e3;
-font-size:12px;
-opacity:0;
-transform:translateY(20px);
-transition:.3s;
-pointer-events:none;
-z-index:20;
-}
-
-.toast.show{
-opacity:1;
-transform:none;
-}
-
-
-/* =========================
-   RESPONSIVE
-========================= */
-
 @media(max-width:800px){
 
 header{
-min-height:620px;
+min-height:600px;
 padding-left:5%;
 padding-right:5%;
 }
@@ -757,14 +690,20 @@ text-align:center;
 grid-template-columns:1fr;
 }
 
+.news-grid{
+grid-template-columns:1fr;
+}
+
+.specs{
+grid-template-columns:1fr;
+}
+
 }
 
 </style>
 </head>
 
-
 <body>
-
 
 <header>
 
@@ -775,16 +714,14 @@ PHONE<span>VERSE</span> ⚡
 </div>
 
 <div>
-
 <a href="#ranking">Ranking</a>
 <a href="#comparar">Comparar</a>
 <a href="#finder">Finder</a>
+<a href="#noticias">Noticias</a>
 <a href="#info">Info</a>
-
 </div>
 
 </nav>
-
 
 <div class="hero">
 
@@ -798,8 +735,9 @@ DEL MÓVIL.
 </h1>
 
 <p>
-Descubre algunos de los smartphones con mayor rendimiento del momento:
-procesadores, memoria, batería, cámaras y una puntuación AnTuTu aproximada.
+Descubre smartphones, compara su potencia,
+encuentra el celular ideal y mantente al día
+con las últimas novedades del mundo móvil.
 </p>
 
 <a class="cta" href="#ranking">
@@ -813,9 +751,8 @@ VER EL TOP 10 ↓
 
 <main class="container">
 
-
 <!-- =========================
-     RANKING
+     1. RANKING
 ========================= -->
 
 <section id="ranking">
@@ -825,11 +762,10 @@ VER EL TOP 10 ↓
 <h2>🏆 Top 10 de potencia</h2>
 
 <p>
-Datos orientativos para comparar rendimiento, no una medición absoluta.
+Datos orientativos para comparar rendimiento.
 </p>
 
 </div>
-
 
 <div class="controls">
 
@@ -839,8 +775,7 @@ type="text"
 placeholder="🔎 Buscar celular, marca o procesador..."
 >
 
-
-<select id="filter" class="filter">
+<select id="filter">
 
 <option value="all">Todas las marcas</option>
 <option value="RedMagic">RedMagic</option>
@@ -856,19 +791,18 @@ placeholder="🔎 Buscar celular, marca o procesador..."
 
 </div>
 
-
 <section class="grid" id="phoneGrid"></section>
 
 </section>
 
 
 <!-- =========================
-     COMPARADOR
+     2. COMPARADOR
 ========================= -->
 
-<section class="comparator" id="comparar">
+<section class="panel" id="comparar">
 
-<div class="section-title" style="margin-top:0">
+<div class="section-title">
 
 <h2>⚔️ PHONEVERSE COMPARE</h2>
 
@@ -878,9 +812,7 @@ Elige dos celulares y descubre cuál gana.
 
 </div>
 
-
 <div class="compare-selects">
-
 
 <div class="compare-box">
 
@@ -890,11 +822,7 @@ Elige dos celulares y descubre cuál gana.
 
 </div>
 
-
-<div class="vs">
-VS
-</div>
-
+<div class="vs">VS</div>
 
 <div class="compare-box">
 
@@ -906,19 +834,24 @@ VS
 
 </div>
 
-
-<button class="compare-button" onclick="comparePhones()">
+<button class="button" onclick="comparePhones()">
 ⚡ COMPARAR CELULARES
 </button>
 
-
 <div class="result" id="result">
 
-<div class="battle-title" id="battleTitle"></div>
+<h2 id="battleTitle" style="text-align:center"></h2>
 
 <div class="battle-grid" id="battleGrid"></div>
 
-<div class="final-winner" id="finalWinner"></div>
+<div id="finalWinner" style="
+margin-top:25px;
+padding:22px;
+text-align:center;
+border-radius:18px;
+background:#0b0f1b;
+border:1px solid #30384f;
+"></div>
 
 </div>
 
@@ -926,96 +859,64 @@ VS
 
 
 <!-- =========================
-     PHONEVERSE FINDER
+     3. FINDER
 ========================= -->
 
-<section class="finder" id="finder">
+<section class="panel" id="finder">
 
-<div class="section-title" style="margin-top:0">
+<div class="section-title">
 
 <h2>🧠 PHONEVERSE FINDER</h2>
 
 <p>
-Responde unas preguntas y descubre qué celular encaja mejor contigo.
+Responde y descubre qué celular encaja mejor contigo.
 </p>
 
 </div>
 
-
 <div class="finder-question">
 
-<h3>
-🎯 ¿Para qué quieres principalmente el celular?
-</h3>
+<h3>🎯 ¿Para qué quieres principalmente el celular?</h3>
 
 <div class="finder-options">
 
-<button class="finder-option" data-use="gaming">
-🎮 Gaming
-</button>
-
-<button class="finder-option" data-use="camera">
-📸 Cámara
-</button>
-
-<button class="finder-option" data-use="battery">
-🔋 Batería
-</button>
-
-<button class="finder-option" data-use="power">
-⚡ Potencia
-</button>
-
-<button class="finder-option" data-use="value">
-💰 Calidad/precio
-</button>
+<button class="finder-option" data-use="gaming">🎮 Gaming</button>
+<button class="finder-option" data-use="camera">📸 Cámara</button>
+<button class="finder-option" data-use="battery">🔋 Batería</button>
+<button class="finder-option" data-use="power">⚡ Potencia</button>
+<button class="finder-option" data-use="value">💰 Calidad/precio</button>
 
 </div>
 
 </div>
-
 
 <div class="finder-question">
 
-<h3>
-💸 ¿Qué tan importante es el precio?
-</h3>
+<h3>💸 ¿Qué tan importante es el precio?</h3>
 
 <div class="finder-options">
 
-<button class="finder-option" data-price="low">
-💸 Muy importante
-</button>
-
-<button class="finder-option" data-price="medium">
-💰 Importante
-</button>
-
-<button class="finder-option" data-price="high">
-💎 No importa
-</button>
+<button class="finder-option" data-price="low">💸 Muy importante</button>
+<button class="finder-option" data-price="medium">💰 Importante</button>
+<button class="finder-option" data-price="high">💎 No importa</button>
 
 </div>
 
 </div>
 
-
-<button class="finder-button" onclick="findPhone()">
+<button class="button" onclick="findPhone()">
 ⚡ ENCONTRAR MI CELULAR
 </button>
 
-
 <div class="finder-result" id="finderResult">
 
-<span>
-🎯 TU RECOMENDACIÓN
-</span>
+<span>🎯 TU RECOMENDACIÓN</span>
 
 <h3 id="finderName"></h3>
 
-<div class="finder-score" id="finderScore"></div>
+<p id="finderScore"></p>
 
-<p class="finder-reason" id="finderReason"></p>
+<p id="finderReason"></p>
 
 </div>
 
@@ -1023,39 +924,35 @@ Responde unas preguntas y descubre qué celular encaja mejor contigo.
 
 
 <!-- =========================
-     TABLA
+     4. TABLA
 ========================= -->
 
 <section class="compare-table">
 
-<div class="section-title" style="margin-top:0">
+<div class="section-title">
 
 <h2>📊 Comparación rápida</h2>
 
 <p>
-Una vista sencilla para ver qué ofrece cada monstruo.
+Una vista sencilla de los monstruos.
 </p>
 
 </div>
-
 
 <table>
 
 <thead>
 
 <tr>
-
 <th>Celular</th>
 <th>Procesador</th>
 <th>AnTuTu</th>
 <th>PHONEVERSE</th>
 <th>RAM</th>
 <th>Batería</th>
-
 </tr>
 
 </thead>
-
 
 <tbody id="tableBody"></tbody>
 
@@ -1063,6 +960,234 @@ Una vista sencilla para ver qué ofrece cada monstruo.
 
 </section>
 
+
+<!-- =========================
+     5. NOTICIAS
+========================= -->
+
+<section class="news-section" id="noticias">
+
+<div class="news-header">
+
+<span class="badge">
+📰 PHONEVERSE NEWS
+</span>
+
+<h2>
+LAS NOTICIAS DEL <span>MUNDO MÓVIL.</span>
+</h2>
+
+<p>
+Las novedades, lanzamientos y movimientos que están dando
+de qué hablar en el mundo de los smartphones.
+</p>
+
+</div>
+
+
+<div class="news-grid">
+
+
+<!-- NOTICIA 1 -->
+
+<article class="news-card">
+
+<div class="news-image">
+📱
+</div>
+
+<div class="news-content">
+
+<div class="news-date">
+23 AGOSTO · 2026
+</div>
+
+<h3>
+Los nuevos monstruos Android elevan el nivel de rendimiento
+</h3>
+
+<p>
+La nueva generación de procesadores móviles está llevando
+el rendimiento de los smartphones a cifras cada vez más altas.
+</p>
+
+<a href="#" class="news-button"
+onclick="newsMessage(event)">
+LEER NOTICIA →
+</a>
+
+</div>
+
+</article>
+
+
+<!-- NOTICIA 2 -->
+
+<article class="news-card">
+
+<div class="news-image">
+⚡
+</div>
+
+<div class="news-content">
+
+<div class="news-date">
+22 AGOSTO · 2026
+</div>
+
+<h3>
+Los celulares gaming siguen buscando más potencia
+</h3>
+
+<p>
+Las marcas enfocadas en gaming continúan apostando por
+pantallas de alta frecuencia, refrigeración y baterías enormes.
+</p>
+
+<a href="#" class="news-button"
+onclick="newsMessage(event)">
+LEER NOTICIA →
+</a>
+
+</div>
+
+</article>
+
+
+<!-- NOTICIA 3 -->
+
+<article class="news-card">
+
+<div class="news-image">
+📸
+</div>
+
+<div class="news-content">
+
+<div class="news-date">
+21 AGOSTO · 2026
+</div>
+
+<h3>
+La fotografía móvil entra en una nueva generación
+</h3>
+
+<p>
+Los sensores de alta resolución y los teleobjetivos continúan
+ganando protagonismo en los teléfonos premium.
+</p>
+
+<a href="#" class="news-button"
+onclick="newsMessage(event)">
+LEER NOTICIA →
+</a>
+
+</div>
+
+</article>
+
+
+<!-- NOTICIA 4 -->
+
+<article class="news-card">
+
+<div class="news-image">
+🔋
+</div>
+
+<div class="news-content">
+
+<div class="news-date">
+20 AGOSTO · 2026
+</div>
+
+<h3>
+Las baterías de gran capacidad llegan a más smartphones
+</h3>
+
+<p>
+Los fabricantes están aumentando la capacidad de sus baterías
+sin abandonar diseños delgados y cargas rápidas.
+</p>
+
+<a href="#" class="news-button"
+onclick="newsMessage(event)">
+LEER NOTICIA →
+</a>
+
+</div>
+
+</article>
+
+
+<!-- NOTICIA 5 -->
+
+<article class="news-card">
+
+<div class="news-image">
+🚀
+</div>
+
+<div class="news-content">
+
+<div class="news-date">
+19 AGOSTO · 2026
+</div>
+
+<h3>
+El futuro de los smartphones apunta hacia más inteligencia
+</h3>
+
+<p>
+La inteligencia artificial continúa convirtiéndose en una
+de las características principales de los teléfonos modernos.
+</p>
+
+<a href="#" class="news-button"
+onclick="newsMessage(event)">
+LEER NOTICIA →
+</a>
+
+</div>
+
+</article>
+
+
+<!-- NOTICIA 6 -->
+
+<article class="news-card">
+
+<div class="news-image">
+🌐
+</div>
+
+<div class="news-content">
+
+<div class="news-date">
+18 AGOSTO · 2026
+</div>
+
+<h3>
+La competencia entre fabricantes de Android se intensifica
+</h3>
+
+<p>
+Las principales marcas buscan diferenciarse con cámaras,
+pantallas, rendimiento y nuevas funciones de software.
+</p>
+
+<a href="#" class="news-button"
+onclick="newsMessage(event)">
+LEER NOTICIA →
+</a>
+
+</div>
+
+</article>
+
+</div>
+
+</section>
 
 </main>
 
@@ -1074,29 +1199,21 @@ Una vista sencilla para ver qué ofrece cada monstruo.
 </p>
 
 <p>
-AnTuTu se muestra como <b>aproximación</b>.
-Las puntuaciones pueden cambiar según versión de la prueba,
-temperatura, software, configuración y condiciones del dispositivo.
+Las puntuaciones de rendimiento son aproximadas y pueden variar
+según software, temperatura, versión de la prueba y configuración.
 </p>
 
 <p>
-<b>PHONEVERSE SCORE</b> es una puntuación proporcional basada
-en el rendimiento AnTuTu de los dispositivos incluidos en este ranking.
+© 2026 PHONEVERSE · Tecnología móvil en un solo lugar.
 </p>
 
 </footer>
 
 
-<div class="toast" id="toast">
-⚡ Comparación actualizada
-</div>
-
-
 <script>
 
-
 /* =========================
-   DATOS
+   DATOS DE CELULARES
 ========================= */
 
 const phones=[
@@ -1243,44 +1360,24 @@ tag:"COMPACT POWER"
 
 ];
 
-
 const grid=document.getElementById("phoneGrid");
-
 const tableBody=document.getElementById("tableBody");
-
 const search=document.getElementById("search");
-
 const filter=document.getElementById("filter");
 
 const maxScore=Math.max(...phones.map(p=>p.antutu));
 
-
-/* =========================
-   PHONEVERSE SCORE
-========================= */
-
 function phoneverseScore(p){
-
-return Math.round(
-(p.antutu/maxScore)*100
-);
-
+return Math.round((p.antutu/maxScore)*100);
 }
-
-
-/* =========================
-   FORMATO
-========================= */
 
 function fmt(n){
-
 return n.toLocaleString("es-CO");
-
 }
 
 
 /* =========================
-   TARJETA
+   TARJETAS
 ========================= */
 
 function card(p){
@@ -1290,11 +1387,9 @@ p.rank===1?"gold":
 p.rank===2?"silver":
 p.rank===3?"bronze":"";
 
-const feature=
-p.rank===1?"feature":"";
+const feature=p.rank===1?"feature":"";
 
-const width=
-Math.round((p.antutu/maxScore)*100);
+const width=Math.round((p.antutu/maxScore)*100);
 
 return `
 
@@ -1312,13 +1407,9 @@ ${p.rank===1?"👑":p.rank}
 
 <div class="info">
 
-<div class="brand">
-${p.brand}
-</div>
+<div class="brand">${p.brand}</div>
 
-<h3>
-${p.name}
-</h3>
+<h3>${p.name}</h3>
 
 <span style="color:#7f8aa4;font-size:12px">
 ${p.tag}
@@ -1328,46 +1419,25 @@ ${p.tag}
 
 </div>
 
-
 <div class="score">
 
 <div>
-
-<small>
-AnTuTu aprox.
-</small>
-
-<strong>
-${fmt(p.antutu)}
-</strong>
-
+<small>AnTuTu aprox.</small>
+<strong>${fmt(p.antutu)}</strong>
 </div>
 
-
 <div style="text-align:right">
-
-<small>
-PHONEVERSE SCORE
-</small>
-
+<small>PHONEVERSE SCORE</small>
 <strong class="score-pv">
 ${phoneverseScore(p)}/100
 </strong>
-
 </div>
 
 </div>
-
 
 <div class="bar">
-
-<div
-class="fill"
-style="--w:${width}%"
-></div>
-
+<div class="fill" style="--w:${width}%"></div>
 </div>
-
 
 <div class="specs">
 
@@ -1403,28 +1473,11 @@ style="--w:${width}%"
 
 </div>
 
-
 <div class="tags">
 
-<span class="tag">
-⚡ Alto rendimiento
-</span>
-
-<span class="tag">
-📊 AnTuTu v11
-</span>
-
-<span class="tag">
-📱 2026
-</span>
-
-</div>
-
-
-<div class="note">
-
-* La puntuación es orientativa y puede variar
-según versión, temperatura, software y configuración.
+<span class="tag">⚡ Alto rendimiento</span>
+<span class="tag">📊 AnTuTu</span>
+<span class="tag">📱 2026</span>
 
 </div>
 
@@ -1436,75 +1489,40 @@ según versión, temperatura, software y configuración.
 
 
 /* =========================
-   RANKING
+   RENDER
 ========================= */
 
 function render(){
 
-const q=
-search.value
-.toLowerCase()
-.trim();
+const q=search.value.toLowerCase().trim();
+const f=filter.value;
 
-const f=
-filter.value;
-
-const list=
-phones.filter(p=>
-
+const list=phones.filter(p=>
 (f==="all"||p.brand===f)&&
-
-(
-p.name+" "+
-p.brand+" "+
-p.cpu
-)
+(p.name+" "+p.brand+" "+p.cpu)
 .toLowerCase()
 .includes(q)
-
 );
 
-
-grid.innerHTML=
-
-list.length
-
+grid.innerHTML=list.length
 ?list.map(card).join("")
-
 :`
-
 <div style="
 grid-column:1/-1;
 text-align:center;
 padding:60px;
-color:#7f8aa4
-">
-
+color:#7f8aa4">
 😵 No encontramos ese celular.
-
 </div>
-
 `;
 
-
-tableBody.innerHTML=
-list.map(p=>`
+tableBody.innerHTML=list.map(p=>`
 
 <tr>
 
-<td>
-<b>
-#${p.rank} ${p.name}
-</b>
-</td>
-
-<td>
-${p.cpu}
-</td>
-
-<td>
-${fmt(p.antutu)}
-</td>
+<td><b>#${p.rank} ${p.name}</b></td>
+<td>${p.cpu}</td>
+<td>${fmt(p.antutu)}</td>
 
 <td>
 <b style="color:#00e5ff">
@@ -1512,13 +1530,8 @@ ${phoneverseScore(p)}/100
 </b>
 </td>
 
-<td>
-${p.ram}
-</td>
-
-<td>
-${p.battery}
-</td>
+<td>${p.ram}</td>
+<td>${p.battery}</td>
 
 </tr>
 
@@ -1526,59 +1539,32 @@ ${p.battery}
 
 }
 
-
-search.addEventListener(
-"input",
-render
-);
-
-
-filter.addEventListener(
-"change",
-()=>{
-
-render();
-
-showToast();
-
-}
-);
+search.addEventListener("input",render);
+filter.addEventListener("change",render);
 
 
 /* =========================
-   SELECTORES COMPARADOR
+   SELECTORES
 ========================= */
 
 function loadSelectors(){
 
-const p1=
-document.getElementById("phone1");
-
-const p2=
-document.getElementById("phone2");
-
+const p1=document.getElementById("phone1");
+const p2=document.getElementById("phone2");
 
 phones.forEach((p,index)=>{
 
-const option1=
-document.createElement("option");
+const option1=document.createElement("option");
 
 option1.value=index;
+option1.textContent="#"+p.rank+" "+p.name;
 
-option1.textContent=
-"#"+p.rank+" "+p.name;
-
-
-const option2=
-option1.cloneNode(true);
-
+const option2=option1.cloneNode(true);
 
 p1.appendChild(option1);
-
 p2.appendChild(option2);
 
 });
-
 
 p2.value="1";
 
@@ -1591,159 +1577,68 @@ p2.value="1";
 
 function comparePhones(){
 
-const p1=
-phones[
+const p1=phones[
 document.getElementById("phone1").value
 ];
 
-const p2=
-phones[
+const p2=phones[
 document.getElementById("phone2").value
 ];
 
-
-const result=
-document.getElementById("result");
-
-const battleTitle=
-document.getElementById("battleTitle");
-
-const battleGrid=
-document.getElementById("battleGrid");
-
-const finalWinner=
-document.getElementById("finalWinner");
-
-
-if(p1===p2){
-
-showToast();
-
-battleTitle.textContent=
-"😂 Elige dos celulares diferentes";
-
-battleGrid.innerHTML="";
-
-finalWinner.innerHTML=`
-
-<span>
-PHONEVERSE
-</span>
-
-<strong>
-¡No puedes pelear contra ti mismo! ⚔️
-</strong>
-
-`;
-
-result.classList.add("show");
-
-return;
-
-}
-
+const result=document.getElementById("result");
+const battleTitle=document.getElementById("battleTitle");
+const battleGrid=document.getElementById("battleGrid");
+const finalWinner=document.getElementById("finalWinner");
 
 battleTitle.innerHTML=
 `${p1.name}
-<span style="color:#8791aa">
-VS
-</span>
+<span style="color:#8791aa"> VS </span>
 ${p2.name}`;
-
 
 const stats=[
 
-[
-"⚡ AnTuTu",
-p1.antutu,
-p2.antutu,
-v=>fmt(v)
-],
+["⚡ AnTuTu",p1.antutu,p2.antutu,v=>fmt(v)],
 
-[
-"🏆 PHONEVERSE SCORE",
-phoneverseScore(p1),
-phoneverseScore(p2),
-v=>v+"/100"
-],
+["🏆 PHONEVERSE",phoneverseScore(p1),phoneverseScore(p2),v=>v+"/100"],
 
-[
-"🧠 RAM",
-parseInt(p1.ram),
-parseInt(p2.ram),
-v=>v+" GB"
-],
+["🧠 RAM",parseInt(p1.ram),parseInt(p2.ram),v=>v+" GB"],
 
-[
-"🔋 Batería",
-parseInt(p1.battery.replace(".","")),
-parseInt(p2.battery.replace(".","")),
-v=>v.toLocaleString("es-CO")+" mAh"
-],
+["🔋 Batería",
+parseInt(p1.battery.replace(/\./g,"")),
+parseInt(p2.battery.replace(/\./g,"")),
+v=>v.toLocaleString("es-CO")+" mAh"],
 
-[
-"💾 Almacenamiento",
+["💾 Almacenamiento",
 parseInt(p1.storage),
 parseInt(p2.storage),
-v=>v+" GB"
-]
+v=>v+" GB"]
 
 ];
 
-
-battleGrid.innerHTML=
-stats.map(s=>{
-
-const a=s[1];
-
-const b=s[2];
+battleGrid.innerHTML=stats.map(s=>{
 
 let ca="";
-
 let cb="";
 
-
-if(a>b){
-
-ca="winner";
-
-}
-
-else if(b>a){
-
-cb="winner";
-
-}
-
-else{
-
-ca="draw";
-
-cb="draw";
-
-}
-
+if(s[1]>s[2]) ca="winner";
+else if(s[2]>s[1]) cb="winner";
 
 return `
 
 <div class="battle-row">
 
-<div class="label">
-${s[0]}
-</div>
+<div class="label">${s[0]}</div>
 
 <div class="battle-values">
 
 <div class="${ca}">
-${s[3](a)}
+${s[3](s[1])}
 </div>
 
-<div>
-VS
-</div>
+<div>VS</div>
 
 <div class="${cb}">
-${s[3](b)}
+${s[3](s[2])}
 </div>
 
 </div>
@@ -1754,91 +1649,55 @@ ${s[3](b)}
 
 }).join("");
 
-
-const winner=
-p1.antutu>p2.antutu
-?p1
-:p2;
-
+const winner=p1.antutu>p2.antutu?p1:p2;
 
 finalWinner.innerHTML=`
 
-<span>
-🏆 GANADOR SEGÚN PHONEVERSE SCORE
+<span style="color:#8791aa">
+🏆 GANADOR
 </span>
 
-<strong>
+<h2 style="color:#00e5ff;margin:8px">
 ${winner.name} ⚡
-</strong>
+</h2>
 
-<br>
-
-<span style="margin-top:8px">
 ${phoneverseScore(winner)}/100 PHONEVERSE SCORE
-</span>
 
 `;
 
-
 result.classList.add("show");
-
-showToast();
 
 }
 
 
 /* =========================
-   PHONEVERSE FINDER
+   FINDER
 ========================= */
 
 let finderUse="";
-
 let finderPrice="";
 
+document.querySelectorAll(".finder-option").forEach(button=>{
 
-document
-.querySelectorAll(".finder-option")
-.forEach(button=>{
+button.addEventListener("click",()=>{
 
-button.addEventListener(
-"click",
-()=>{
+if(button.dataset.use){
 
-const use=
-button.dataset.use;
+finderUse=button.dataset.use;
 
-const price=
-button.dataset.price;
-
-
-if(use){
-
-finderUse=use;
-
-
-document
-.querySelectorAll("[data-use]")
-.forEach(b=>
-b.classList.remove("selected")
-);
-
+document.querySelectorAll("[data-use]")
+.forEach(b=>b.classList.remove("selected"));
 
 button.classList.add("selected");
 
 }
 
+if(button.dataset.price){
 
-if(price){
+finderPrice=button.dataset.price;
 
-finderPrice=price;
-
-
-document
-.querySelectorAll("[data-price]")
-.forEach(b=>
-b.classList.remove("selected")
-);
-
+document.querySelectorAll("[data-price]")
+.forEach(b=>b.classList.remove("selected"));
 
 button.classList.add("selected");
 
@@ -1848,108 +1707,65 @@ button.classList.add("selected");
 
 });
 
-
-/* =========================
-   BUSCAR RECOMENDACIÓN
-========================= */
 
 function findPhone(){
 
 if(!finderUse||!finderPrice){
 
-alert(
-"⚠️ Responde las dos preguntas primero."
-);
+alert("⚠️ Responde las dos preguntas primero.");
 
 return;
 
 }
 
+let scores=phones.map(phone=>{
 
-let scores=
-phones.map(phone=>{
-
-let score=
-phoneverseScore(phone);
-
-
-/* USO */
+let score=phoneverseScore(phone);
 
 if(finderUse==="gaming"){
 
-if(phone.brand==="RedMagic")
-score+=15;
-
-if(phone.brand==="iQOO")
-score+=10;
-
-if(phone.brand==="POCO")
-score+=8;
+if(phone.brand==="RedMagic")score+=15;
+if(phone.brand==="iQOO")score+=10;
+if(phone.brand==="POCO")score+=8;
 
 }
-
 
 if(finderUse==="camera"){
 
-if(phone.brand==="OPPO")
-score+=15;
-
-if(phone.brand==="vivo")
-score+=15;
-
-if(phone.name.includes("Ultra"))
-score+=10;
+if(phone.brand==="OPPO")score+=15;
+if(phone.brand==="vivo")score+=15;
+if(phone.name.includes("Ultra"))score+=10;
 
 }
-
 
 if(finderUse==="battery"){
 
-const battery=
-parseInt(
+const battery=parseInt(
 phone.battery.replace(/\./g,"")
 );
 
-if(battery>=7000)
-score+=15;
-
-else if(battery>=6500)
-score+=10;
+if(battery>=7000)score+=15;
+else if(battery>=6500)score+=10;
 
 }
-
 
 if(finderUse==="power"){
-
-score+=
-phoneverseScore(phone)*0.15;
-
+score+=phoneverseScore(phone)*.15;
 }
-
 
 if(finderUse==="value"){
 
-if(phone.brand==="POCO")
-score+=18;
-
-if(phone.brand==="Xiaomi")
-score+=10;
+if(phone.brand==="POCO")score+=18;
+if(phone.brand==="Xiaomi")score+=10;
 
 }
-
-
-/* PRECIO */
 
 if(finderPrice==="low"){
 
-if(phone.brand==="POCO")
-score+=15;
-
-if(phone.brand==="Xiaomi")
-score+=10;
+if(phone.brand==="POCO")score+=15;
+if(phone.brand==="Xiaomi")score+=10;
 
 }
-
 
 if(finderPrice==="medium"){
 
@@ -1957,136 +1773,62 @@ if(
 phone.brand==="POCO"||
 phone.brand==="Xiaomi"||
 phone.brand==="OnePlus"
-){
-
-score+=8;
+)score+=8;
 
 }
 
-}
-
-
-if(finderPrice==="high"){
-
-score+=5;
-
-}
-
-
-return{
-
-phone:phone,
-
-score:score
-
+return {
+phone,
+score
 };
 
 });
 
+scores.sort((a,b)=>b.score-a.score);
 
-scores.sort(
-(a,b)=>b.score-a.score
-);
-
-
-const winner=
-scores[0].phone;
-
+const winner=scores[0].phone;
 
 let reason="";
 
+if(finderUse==="gaming")
+reason="🎮 Excelente rendimiento para juegos y cargas pesadas.";
 
-if(finderUse==="gaming"){
+else if(finderUse==="camera")
+reason="📸 Una gran opción para quienes priorizan fotografía.";
 
-reason=
-"🎮 Tiene un rendimiento excelente y está especialmente orientado a juegos y altas cargas de trabajo.";
+else if(finderUse==="battery")
+reason="🔋 Su gran batería lo hace ideal para largas jornadas.";
 
-}
+else if(finderUse==="power")
+reason="⚡ Su rendimiento lo coloca entre los monstruos de PHONEVERSE.";
 
-else if(finderUse==="camera"){
+else
+reason="💰 Tiene una combinación equilibrada de rendimiento y características.";
 
-reason=
-"📸 Destaca especialmente por su sistema de cámaras y está pensado para quienes priorizan la fotografía.";
+document.getElementById("finderName").textContent=winner.name;
 
-}
+document.getElementById("finderScore").textContent=
+phoneverseScore(winner)+"/100 PHONEVERSE SCORE";
 
-else if(finderUse==="battery"){
+document.getElementById("finderReason").textContent=reason;
 
-reason=
-"🔋 Su batería de gran capacidad lo convierte en una excelente opción para largas jornadas.";
-
-}
-
-else if(finderUse==="power"){
-
-reason=
-"⚡ Su enorme rendimiento lo coloca entre los monstruos de PHONEVERSE.";
-
-}
-
-else{
-
-reason=
-"💰 Ofrece una combinación equilibrada de rendimiento y características por su categoría.";
-
-}
-
-
-document
-.getElementById("finderName")
-.textContent=
-winner.name;
-
-
-document
-.getElementById("finderScore")
-.textContent=
-phoneverseScore(winner)+
-"/100 PHONEVERSE SCORE";
-
-
-document
-.getElementById("finderReason")
-.textContent=
-reason;
-
-
-document
-.getElementById("finderResult")
+document.getElementById("finderResult")
 .classList.add("show");
-
-
-document
-.getElementById("finderResult")
-.scrollIntoView({
-
-behavior:"smooth",
-
-block:"center"
-
-});
 
 }
 
 
 /* =========================
-   TOAST
+   NOTICIAS
 ========================= */
 
-function showToast(){
+function newsMessage(event){
 
-const t=
-document.getElementById("toast");
+event.preventDefault();
 
-
-t.classList.add("show");
-
-
-setTimeout(
-()=>{
-t.classList.remove("show");
-},
-1300
+alert(
+"📰 Esta noticia es una demostración de PHONEVERSE NEWS.\n\n" +
+"Más adelante podemos conectar esta sección con noticias reales."
 );
 
 }
@@ -2097,7 +1839,6 @@ t.classList.remove("show");
 ========================= */
 
 render();
-
 loadSelectors();
 
 </script>

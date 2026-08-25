@@ -1,477 +1,399 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="dark">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PHONEVERSE - Comparador de Celulares</title>
-  <style>
-   /*
-  
-       1. VARIABLES DE TEMA Y ESTILOS BASE */
-    :root {
-      --bg-primary: #0f172a;
-      --bg-card: #1e293b;
-      --text-primary: #f8fafc;
-      --text-secondary: #94a3b8;
-      --accent: #38bdf8; /* Cian */
-      --gold: #f59e0b;
-      --border-color: #334155;
-    }
+<meta name="google-site-verification" content="2RmmFrhWbdoTV1Ix3jL-WXTw0UvKFfSx46hAovqcdXU">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHONEVERSE ⚡ | Celulares, rankings y noticias</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23070914'/><text x='50' y='70' font-size='58' text-anchor='middle'>⚡</text></svg>">
+<meta name="description" content="Descubre los celulares más potentes de 2026, compáralos entre sí, encuentra el ideal para ti y mantente al día con noticias reales del mundo móvil.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PHONEVERSE ⚡ | Los monstruos del móvil">
+<meta property="og:description" content="Ranking, comparador y finder de smartphones 2026 + noticias tecnológicas en vivo.">
+<meta property="og:image" content="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 630'><rect width='1200' height='630' fill='%23070914'/><text x='600' y='330' font-size='140' font-weight='900' fill='%2300e5ff' text-anchor='middle' font-family='Arial'>PHONEVERSE ⚡</text></svg>">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PHONEVERSE ⚡ | Los monstruos del móvil">
+<meta name="twitter:description" content="Ranking, comparador y finder de smartphones 2026 + noticias tecnológicas en vivo.">
 
-    [data-theme="light"] {
-      --bg-primary: #f8fafc;
-      --bg-card: #ffffff;
-      --text-primary: #0f172a;
-      --text-secondary: #64748b;
-      --accent: #0284c7;
-      --border-color: #e2e8f0;
-    }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      background-color: var(--bg-primary);
-      color: var(--text-primary);
-      transition: background-color 0.3s ease, color 0.3s ease;
-      padding: 2rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,Arial,sans-serif;background:#070914;color:#f5f7ff;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-3;background:radial-gradient(circle at 15% 10%,rgba(0,229,255,.15),transparent 28%),radial-gradient(circle at 85% 20%,rgba(162,70,255,.18),transparent 30%),radial-gradient(circle at 50% 90%,rgba(0,255,153,.08),transparent 30%)}
+body:after{content:"";position:fixed;inset:0;z-index:-2;opacity:.15;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:45px 45px}
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2.5rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--border-color);
-    }
+header{min-height:650px;padding:30px 7% 80px;display:flex;flex-direction:column}
+nav{display:flex;justify-content:space-between;align-items:center;position:relative}
+.menu-toggle{display:none;background:none;border:1px solid #252c42;border-radius:10px;width:42px;height:42px;color:#f5f7ff;font-size:20px;cursor:pointer;transition:.3s;position:relative;z-index:11}
+.menu-toggle.open{transform:rotate(90deg);border-color:#00e5ff;color:#00e5ff}
+.nav-links{display:flex}
+.nav-links.open{display:flex}
+.logo{font-size:24px;font-weight:900;letter-spacing:2px}.logo span{color:#00e5ff}
+nav a{color:#b9c0d5;text-decoration:none;margin-left:20px;font-size:13px;transition:.2s}
+nav a:hover{color:#00e5ff}
+.hero{max-width:1000px;margin:auto;text-align:center}
+.badge{display:inline-block;padding:9px 16px;border:1px solid rgba(0,229,255,.35);border-radius:999px;background:rgba(0,229,255,.06);color:#00e5ff;font-size:12px;font-weight:800;letter-spacing:1.5px}
+h1{font-size:clamp(48px,9vw,105px);line-height:.92;margin:25px 0 22px;font-weight:900;letter-spacing:-5px;background:linear-gradient(100deg,#fff,#00e5ff 45%,#a84cff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{max-width:720px;margin:auto;color:#aab2c9;line-height:1.7;font-size:17px}
+.cta{display:inline-block;margin-top:30px;padding:14px 24px;border-radius:12px;color:#061018;text-decoration:none;font-weight:800;background:linear-gradient(100deg,#00e5ff,#66ffca);transition:.3s}
+.cta:hover{transform:translateY(-4px);box-shadow:0 10px 35px rgba(0,229,255,.18)}
+.container{width:min(1200px,88%);margin:auto}
+.section-title{text-align:center;margin:30px 0 35px}.section-title h2{font-size:38px;margin-bottom:10px}.section-title p{color:#8791aa}
 
-    .header-actions {
-      display: flex;
-      gap: 12px;
-    }
+.controls{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:30px}
+input,select{background:#0e1221;border:1px solid #242b40;color:white;border-radius:12px;padding:13px 16px;outline:none}
+input{width:min(360px,100%)}input:focus,select:focus{border-color:#00e5ff}
 
-    button {
-      background: var(--bg-card);
-      color: var(--text-primary);
-      border: 1px solid var(--border-color);
-      padding: 10px 18px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background 0.2s ease, transform 0.1s ease;
-    }
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;padding-bottom:80px}
+.card{background:rgba(15,19,34,.76);border:1px solid #252c42;border-radius:22px;padding:24px;transition:.35s;animation:cardIn .55s ease both}
+.card:hover{transform:translateY(-7px);border-color:rgba(0,229,255,.55);box-shadow:0 18px 50px rgba(0,0,0,.35)}
+.feature{grid-column:1/-1;border-color:rgba(168,76,255,.35)}
+.top{display:flex;gap:18px;align-items:center}
+.rank{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;font-size:20px;font-weight:900;background:#171d30;color:#b9c4dc;flex:none}
+.gold{background:linear-gradient(135deg,#ffd66b,#a66b00);color:#111}.silver{background:linear-gradient(135deg,#e9efff,#737c95);color:#111}.bronze{background:linear-gradient(135deg,#e9a56c,#743a14);color:#111}
 
-    button:hover {
-      border-color: var(--accent);
-    }
+.phone-art{width:78px;height:108px;border:0;border-radius:16px;background:#0b0f1b;position:relative;flex:none;display:grid;place-items:center;overflow:hidden;box-shadow:0 8px 25px rgba(0,0,0,.35);transition:.45s ease}
+.phone-art img{width:100%;height:100%;object-fit:contain;display:block;transition:.45s ease}
+.card:hover .phone-art{transform:translateY(-5px) rotate(-2deg);box-shadow:0 12px 35px rgba(0,229,255,.2),0 0 25px rgba(168,76,255,.12)}
+.card:hover .phone-art img{transform:scale(1.1);filter:drop-shadow(0 0 12px rgba(0,229,255,.25))}
+.no-image{font-size:30px;animation:phonePulse 2.6s ease-in-out infinite;position:relative;z-index:1}
+.phone-art:before{content:"";position:absolute;inset:0;background:radial-gradient(circle,rgba(0,229,255,.18),transparent 70%);opacity:0;animation:glowPulse 2.6s ease-in-out infinite}
+@keyframes phonePulse{0%,100%{transform:scale(1);opacity:.75}50%{transform:scale(1.12);opacity:1}}
+@keyframes glowPulse{0%,100%{opacity:0}50%{opacity:1}}
+.feature .phone-art{width:90px;height:125px}
 
-    button:active {
-      transform: scale(0.97);
-    }
+.brand{color:#77829d;font-size:12px;text-transform:uppercase;letter-spacing:1px}
+.info h3{font-size:21px;margin:5px 0}
+.score{margin:20px 0 12px;display:flex;justify-content:space-between;gap:20px}
+.score strong{font-size:25px}.score small{color:#7f8aa4;display:block;margin-bottom:4px}.score-pv{color:#00e5ff;font-size:29px;font-weight:900}
+.bar{height:9px;background:#1a2032;border-radius:99px;overflow:hidden}.fill{height:100%;width:var(--w);background:linear-gradient(90deg,#00e5ff,#a84cff)}
+.specs{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:18px}.spec{padding:10px;background:#0b0f1b;border-radius:10px;color:#aeb6c9;font-size:12px}.spec b{display:block;color:#f4f6ff;font-size:13px;margin-top:3px}
+.tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:15px}.tag{font-size:10px;padding:6px 8px;border-radius:7px;background:#161c2d;color:#9da8bf}
 
-    /* ==========================================
-       2. EMOJI 📱: ANIMACIÓN RESPIRACIÓN + GLOW CIAN
-       ========================================== */
-    .emoji-phone-wrapper {
-      position: relative;
-      display: inline-block;
-      font-size: 2.2rem;
-      vertical-align: middle;
-    }
+.panel{margin:30px 0 80px;padding:35px;border:1px solid #252c42;border-radius:25px;background:rgba(12,16,28,.82)}
+.compare-selects{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:center}
+.compare-box{background:#0b0f1b;border:1px solid #252c42;border-radius:18px;padding:22px;text-align:center}.compare-box h3{margin-bottom:15px;color:#00e5ff}.select-phone{width:100%}
+.vs{font-size:28px;font-weight:900;color:#a84cff}
+.button{display:block;margin:25px auto 0;padding:14px 28px;border:0;border-radius:12px;font-weight:900;cursor:pointer;color:#061018;background:linear-gradient(100deg,#00e5ff,#66ffca);transition:.25s}
+.button:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,229,255,.15)}
+.result{display:none;margin-top:30px;opacity:0;transform:translateY(15px);transition:opacity .4s ease,transform .4s ease}.result.show{display:block}.result.show.animate{opacity:1;transform:translateY(0)}
+.battle-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:20px}.battle-row{background:#0b0f1b;border:1px solid #20263a;border-radius:14px;padding:16px}.label{text-align:center;color:#8791aa;font-size:12px;margin-bottom:10px}.battle-values{display:grid;grid-template-columns:1fr auto 1fr;text-align:center;gap:10px}.winner{color:#00e5ff;font-weight:900}
 
-    .emoji-phone-wrapper::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 85%;
-      height: 85%;
-      background: radial-gradient(circle, rgba(56, 189, 248, 0.65) 0%, rgba(56, 189, 248, 0) 75%);
-      border-radius: 50%;
-      transform: translate(-50%, -50%) scale(0.8);
-      z-index: 0;
-      pointer-events: none;
-      animation: phoneGlow 2.6s ease-in-out infinite;
-    }
+.finder-question{margin:25px 0}.finder-question h3{margin-bottom:14px;font-size:16px}.finder-options{display:flex;gap:10px;flex-wrap:wrap}
+.finder-option{padding:12px 16px;border:1px solid #252c42;background:#0b0f1b;color:#b9c0d5;border-radius:12px;cursor:pointer;transition:.2s}
+.finder-option.selected{background:rgba(0,229,255,.1);border-color:#00e5ff;color:#00e5ff}
+.finder-result{display:none;margin-top:30px;padding:25px;border-radius:20px;text-align:center;border:1px solid rgba(0,229,255,.25);background:#0b0f1b;opacity:0;transform:translateY(15px);transition:opacity .4s ease,transform .4s ease}.finder-result.show{display:block}.finder-result.show.animate{opacity:1;transform:translateY(0)}.finder-result h3{color:#00e5ff;font-size:27px;margin:8px 0}
 
-    .emoji-phone {
-      position: relative;
-      z-index: 1;
-      display: inline-block;
-      animation: phonePulse 2.6s ease-in-out infinite;
-    }
+.compare-table{margin-bottom:90px;padding:28px;border:1px solid #252c42;border-radius:22px;background:rgba(12,16,28,.78);overflow:auto}
+table{width:100%;border-collapse:collapse;min-width:700px}th,td{padding:15px;text-align:left;border-bottom:1px solid #20263a}th{color:#00e5ff;font-size:12px}td{color:#c5cbda;font-size:13px}
 
-    @keyframes phonePulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.12); }
-    }
+.news-section{margin:30px 0 90px}.news-header{text-align:center;margin-bottom:35px}.news-header h2{font-size:40px;margin:15px 0 10px}.news-header h2 span{color:#00e5ff}.news-header p{color:#8791aa;line-height:1.6}
+.news-status{width:min(800px,100%);margin:0 auto 25px;padding:14px 18px;border-radius:12px;background:#0b0f1b;border:1px solid #252c42;color:#8791aa;text-align:center;font-size:13px}
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.news-card{background:rgba(15,19,34,.82);border:1px solid #252c42;border-radius:22px;overflow:hidden;transition:.35s}.news-card:hover{transform:translateY(-8px);border-color:#00e5ff;box-shadow:0 20px 50px rgba(0,229,255,.08)}
+.news-image{height:180px;display:grid;place-items:center;font-size:65px;background:radial-gradient(circle at 30% 30%,rgba(0,229,255,.25),transparent 35%),linear-gradient(135deg,#10182d,#21143b)}
+.news-content{padding:22px}.news-source{font-size:11px;color:#00e5ff;font-weight:800;text-transform:uppercase;letter-spacing:1px}.news-date{color:#66718b;font-size:11px;margin-top:5px}.news-content h3{font-size:19px;line-height:1.35;margin:10px 0}.news-content p{font-size:13px;color:#8f99b1;line-height:1.6}
+.news-button{display:inline-block;margin-top:17px;padding:9px 13px;border:1px solid #29334c;border-radius:9px;color:#cdd5e7;text-decoration:none;font-size:12px;font-weight:700;transition:.2s}.news-button:hover{border-color:#00e5ff;color:#00e5ff}
+.loading{grid-column:1/-1;text-align:center;padding:60px;color:#8791aa}.news-error{grid-column:1/-1;text-align:center;padding:50px;border:1px solid #392d45;border-radius:20px;background:#0b0f1b;color:#8791aa}.news-error strong{display:block;color:#f5f7ff;font-size:20px;margin-bottom:10px}
 
-    @keyframes phoneGlow {
-      0%, 100% {
-        opacity: 0.2;
-        transform: translate(-50%, -50%) scale(0.8);
-      }
-      50% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1.35);
-      }
-    }
+.spinner{width:34px;height:34px;border:3px solid #1a2032;border-top-color:#00e5ff;border-radius:50%;margin:0 auto 16px;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.skeleton-card{background:rgba(15,19,34,.82);border:1px solid #252c42;border-radius:22px;overflow:hidden}
+.skeleton-image{height:180px;background:linear-gradient(90deg,#10182d 25%,#1a2338 37%,#10182d 63%);background-size:400% 100%;animation:shimmer 1.6s ease-in-out infinite}
+.skeleton-content{padding:22px}
+.skeleton-line{height:11px;border-radius:6px;background:linear-gradient(90deg,#161c2d 25%,#232c46 37%,#161c2d 63%);background-size:400% 100%;animation:shimmer 1.6s ease-in-out infinite;margin-bottom:10px}
+.skeleton-line.short{width:40%}
+.skeleton-line.title{height:16px;width:85%;margin-top:4px}
+.skeleton-line.title2{height:16px;width:60%}
+.skeleton-line.text{width:100%}
+.skeleton-line.text2{width:75%}
+.skeleton-line.button{height:30px;width:45%;border-radius:9px;margin-top:14px}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 
-    /* ==========================================
-       3. SECCIONES Y CONTENEDORES
-       ========================================== */
-    section {
-      margin-bottom: 3rem;
-    }
 
-    h2 {
-      margin-bottom: 1.2rem;
-      font-size: 1.5rem;
-    }
+footer{border-top:1px solid #1d2435;padding:35px 7%;text-align:center;color:#66718b;font-size:12px;line-height:1.7}footer b{color:#9da8bf}
 
-    .grid-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-
-    /* ==========================================
-       4. ANIMACIONES DE TARJETAS Y COMPARADOR
-       ========================================== */
-    .card-phone {
-      background: var(--bg-card);
-      padding: 1.5rem;
-      border-radius: 12px;
-      border: 1px solid var(--border-color);
-      animation: fadeInUp 0.4s ease-out forwards;
-      opacity: 0;
-      position: relative;
-    }
-
-    .badge {
-      display: inline-block;
-      background: var(--accent);
-      color: #0f172a;
-      font-weight: bold;
-      font-size: 0.75rem;
-      padding: 4px 8px;
-      border-radius: 4px;
-      margin-bottom: 10px;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(15px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Transición en el Comparador */
-    #comparador-wrapper {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      background: var(--bg-card);
-      padding: 1.5rem;
-      border-radius: 12px;
-      border: 1px solid var(--border-color);
-    }
-
-    .animar-cambio {
-      animation: flashPulse 0.35s ease-in-out;
-    }
-
-    .stat-bar-container {
-      background: var(--border-color);
-      height: 10px;
-      border-radius: 5px;
-      overflow: hidden;
-      margin-top: 6px;
-    }
-
-    .bar-stat {
-      background: var(--accent);
-      height: 100%;
-      border-radius: 5px;
-      transition: width 0.4s ease;
-    }
-
-    .animar-cambio .bar-stat {
-      animation: growBar 0.5s ease-out;
-    }
-
-    @keyframes flashPulse {
-      0% { opacity: 0.4; transform: scale(0.99); }
-      100% { opacity: 1; transform: scale(1); }
-    }
-
-    @keyframes growBar {
-      from { width: 0%; }
-    }
-
-    /* Selects del Comparador */
-    .select-box {
-      width: 100%;
-      padding: 10px;
-      border-radius: 6px;
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      border: 1px solid var(--border-color);
-      margin-bottom: 1rem;
-    }
-
-    /* ==========================================
-       5. BOTÓN FAVORITOS (ESTRELLA ANIMADA)
-       ========================================== */
-    .btn-fav {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: var(--text-secondary);
-      transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      padding: 0;
-    }
-
-    .btn-fav:hover {
-      border: none;
-    }
-
-    .btn-fav.active {
-      color: var(--gold);
-      transform: scale(1.2) rotate(8deg);
-      animation: favPop 0.3s ease;
-    }
-
-    @keyframes favPop {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.4) rotate(-15deg); }
-      100% { transform: scale(1.2) rotate(8deg); }
-    }
-  </style>
+@keyframes cardIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:800px){
+header{min-height:600px;padding-left:5%;padding-right:5%}
+.menu-toggle{display:block}
+.nav-links{display:flex;position:absolute;top:56px;right:0;flex-direction:column;background:#0e1221;border:1px solid #252c42;border-radius:14px;padding:10px;gap:2px;min-width:160px;z-index:10;opacity:0;transform:translateY(-10px) scale(.96);pointer-events:none;visibility:hidden;transition:opacity .25s ease,transform .25s ease,visibility .25s}
+.nav-links.open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto;visibility:visible}
+.nav-links a{margin:0;padding:10px 12px;border-radius:8px;transition:.2s}
+.nav-links a:hover{background:#161c2d;padding-left:16px}
+.grid{grid-template-columns:1fr}.feature{grid-column:auto}
+.compare-selects{grid-template-columns:1fr}.vs{text-align:center}.battle-grid{grid-template-columns:1fr}.news-grid{grid-template-columns:1fr}.specs{grid-template-columns:1fr}
+}
+</style>
 </head>
+
 <body>
+<header>
+<nav>
+<div class="logo">PHONE<span>VERSE</span> ⚡</div>
+<div class="nav-links" id="navLinks">
+<a href="#ranking">Ranking</a><a href="#comparar">Comparar</a><a href="#finder">Finder</a><a href="#noticias">Noticias</a><a href="#info">Info</a>
+</div>
+<button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">☰</button>
+</nav>
+<div class="hero">
+<span class="badge">RANKING DE RENDIMIENTO · 2026</span>
+<h1>LOS MONSTRUOS<br>DEL MÓVIL.</h1>
+<p>Descubre smartphones, compara su potencia, encuentra el celular ideal y mantente al día con las últimas noticias del mundo móvil.</p>
+<a class="cta" href="#ranking">VER EL TOP 10 ↓</a>
+</div>
+</header>
 
-  <header>
-    <h1>
-      <span class="emoji-phone-wrapper"><span class="emoji-phone">📱</span></span>
-      PHONEVERSE
-    </h1>
-    <div class="header-actions">
-      <button id="btn-share">Copiar enlace 🔗</button>
-      <button id="theme-toggle">🌓 Tema</button>
-    </div>
-  </header>
+<main class="container">
+<section id="ranking">
+<div class="section-title"><h2>🏆 Top 10 de potencia</h2><p>Datos orientativos para comparar rendimiento. AnTuTu es una aproximación.</p></div>
+<div class="controls">
+<input id="search" type="text" placeholder="🔎 Buscar celular, marca o procesador...">
+<select id="filter">
+<option value="all">Todas las marcas</option><option value="RedMagic">RedMagic</option><option value="OPPO">OPPO</option><option value="iQOO">iQOO</option><option value="POCO">POCO</option><option value="OnePlus">OnePlus</option><option value="Xiaomi">Xiaomi</option><option value="Samsung">Samsung</option><option value="vivo">vivo</option>
+</select>
+</div>
+<section class="grid" id="phoneGrid"></section>
+</section>
 
-  <main>
-    <!-- COMPARADOR -->
-    <section id="comparador-section">
-      <h2>Comparador Directo</h2>
-      
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1rem;">
-        <select id="select-celular-1" class="select-box" onchange="cambiarComparacion()"></select>
-        <select id="select-celular-2" class="select-box" onchange="cambiarComparacion()"></select>
-      </div>
+<section class="panel" id="comparar">
+<div class="section-title"><h2>⚔️ PHONEVERSE COMPARE</h2><p>Elige dos celulares y descubre cuál gana.</p></div>
+<div class="compare-selects">
+<div class="compare-box"><h3>📱 CELULAR 1</h3><select id="phone1" class="select-phone"></select></div>
+<div class="vs">VS</div>
+<div class="compare-box"><h3>📱 CELULAR 2</h3><select id="phone2" class="select-phone"></select></div>
+</div>
+<button class="button" onclick="comparePhones()">⚡ COMPARAR CELULARES</button>
+<div class="result" id="result"><h2 id="battleTitle" style="text-align:center"></h2><div class="battle-grid" id="battleGrid"></div><div id="finalWinner" style="margin-top:25px;padding:22px;text-align:center;border-radius:18px;background:#0b0f1b;border:1px solid #30384f"></div></div>
+</section>
 
-      <div id="comparador-wrapper">
-        <!-- Render dinámico desde JS -->
-      </div>
-    </section>
+<section class="panel" id="finder">
+<div class="section-title"><h2>🧠 PHONEVERSE FINDER</h2><p>Responde y descubre qué celular encaja mejor contigo.</p></div>
+<div class="finder-question"><h3>🎯 ¿Para qué quieres principalmente el celular?</h3><div class="finder-options">
+<button class="finder-option" data-use="gaming">🎮 Gaming</button><button class="finder-option" data-use="camera">📸 Cámara</button><button class="finder-option" data-use="battery">🔋 Batería</button><button class="finder-option" data-use="power">⚡ Potencia</button><button class="finder-option" data-use="value">💰 Calidad/precio</button>
+</div></div>
+<div class="finder-question"><h3>💸 ¿Qué tan importante es el precio?</h3><div class="finder-options">
+<button class="finder-option" data-price="low">💸 Muy importante</button><button class="finder-option" data-price="medium">💰 Importante</button><button class="finder-option" data-price="high">💎 No importa</button>
+</div></div>
+<button class="button" onclick="findPhone()">⚡ ENCONTRAR MI CELULAR</button>
+<div class="finder-result" id="finderResult"><span>🎯 TU RECOMENDACIÓN</span><h3 id="finderName"></h3><p id="finderScore"></p><p id="finderReason"></p></div>
+</section>
 
-    <!-- FINDER / TOP 3 RECOMENDADOS -->
-    <section id="finder-section">
-      <h2>Top 3 Recomendados</h2>
-      <div id="finder-results" class="grid-cards">
-        <!-- Render dinámico desde JS -->
-      </div>
-    </section>
-  </main>
+<section class="compare-table">
+<div class="section-title"><h2>📊 Comparación rápida</h2><p>Una vista sencilla de los monstruos.</p></div>
+<table><thead><tr><th>Celular</th><th>Procesador</th><th>AnTuTu aprox.</th><th>PHONEVERSE</th><th>RAM</th><th>Batería</th></tr></thead><tbody id="tableBody"></tbody></table>
+</section>
 
-  <script>
-    // ==========================================
-    // DATA BASE DE DATOS LOCAL
-    // ==========================================
-    const celulares = [
-      { id: '1', nombre: 'PhoneVerse Pro Max', puntaje: 96, pantalla: 95, camara: 98, bateria: 92 },
-      { id: '2', nombre: 'Galaxy Ultra X', puntaje: 91, pantalla: 94, camara: 90, bateria: 95 },
-      { id: '3', nombre: 'Pixel Super 8', puntaje: 87, pantalla: 88, camara: 93, bateria: 85 },
-      { id: '4', nombre: 'Lite Speed 5G', puntaje: 79, pantalla: 80, camara: 75, bateria: 88 }
-    ];
+<section class="news-section" id="noticias">
+<div class="news-header"><span class="badge">📰 PHONEVERSE NEWS · EN VIVO</span><h2>LAS NOTICIAS DEL <span>MUNDO MÓVIL.</span></h2><p>Noticias tecnológicas obtenidas desde fuentes públicas.</p></div>
+<div class="news-status" id="newsStatus">🔄 Cargando noticias reales...</div>
+<div class="news-grid" id="newsGrid"></div>
+</section>
+</main>
 
-    // ==========================================
-    // INICIALIZACIÓN GENERAL
-    // ==========================================
-    document.addEventListener('DOMContentLoaded', () => {
-      inicializarTema();
-      inicializarCopiarLink();
-      poblarSelects();
-      cambiarComparacion();
-      mostrarTop3(celulares);
-      actualizarIconosFavoritos();
-    });
+<footer id="info">
+<p><b>PHONEVERSE ⚡</b> — Proyecto educativo de HTML, CSS y JavaScript.</p>
+<p>Las puntuaciones de rendimiento son aproximadas y pueden variar según software, temperatura, versión de la prueba y configuración.</p>
+<p>Las noticias pertenecen a sus respectivas fuentes.</p>
+<p>© 2026 PHONEVERSE · Tecnología móvil en un solo lugar.</p>
+</footer>
 
-    // ==========================================
-    // 1. MÓDULO: COPIAR LINK
-    // ==========================================
-    function inicializarCopiarLink() {
-      const btnShare = document.getElementById('btn-share');
-      btnShare?.addEventListener('click', async () => {
-        try {
-          await navigator.clipboard.writeText(window.location.href);
-          const originalText = btnShare.textContent;
-          btnShare.textContent = "¡Copiado! ✅";
-          btnShare.style.pointerEvents = "none";
+<script>
+const phones=[
+{rank:1,name:"RedMagic 11 Pro+",brand:"RedMagic",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:4005248,ram:"16 GB",storage:"512 GB",battery:"7.500 mAh",screen:"6.85” AMOLED · 144 Hz",camera:"50 + 50 MP",tag:"GAMING BEAST"},
+{rank:2,name:"OPPO Find X9 Ultra",brand:"OPPO",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3766902,ram:"16 GB",storage:"512 GB",battery:"7.050 mAh",screen:"6.8” AMOLED · 120 Hz",camera:"200 + 200 + 50 MP",tag:"CAMERA MONSTER"},
+{rank:3,name:"iQOO 15",brand:"iQOO",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3714661,ram:"16 GB",storage:"1 TB",battery:"7.000 mAh",screen:"6.85” AMOLED · 144 Hz",camera:"50 + 50 + 50 MP",tag:"PERFORMANCE"},
+{rank:4,name:"POCO F8 Ultra",brand:"POCO",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3668860,ram:"16 GB",storage:"512 GB",battery:"6.500 mAh",screen:"6.9” AMOLED · 120 Hz",camera:"50 + 50 + 50 MP",tag:"BEST VALUE"},
+{rank:5,name:"OnePlus 15",brand:"OnePlus",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3646161,ram:"16 GB",storage:"1 TB",battery:"7.300 mAh",screen:"6.78” AMOLED · 165 Hz",camera:"50 + 50 + 50 MP",tag:"ALL-ROUNDER"},
+{rank:6,name:"Xiaomi 17 Ultra",brand:"Xiaomi",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3579338,ram:"16 GB",storage:"1 TB",battery:"6.800 mAh",screen:"6.9” AMOLED · 120 Hz",camera:"200 MP + telefoto",tag:"PHOTO KING"},
+{rank:7,name:"Galaxy S26 Ultra",brand:"Samsung",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3437807,ram:"12 GB",storage:"1 TB",battery:"5.000 mAh",screen:"6.9” Dynamic AMOLED · 120 Hz",camera:"200 MP + telefoto",tag:"ULTRA"},
+{rank:8,name:"vivo X300 Pro",brand:"vivo",image:"",cpu:"Dimensity 9500",antutu:3258010,ram:"16 GB",storage:"512 GB",battery:"6.510 mAh",screen:"6.78” AMOLED · 120 Hz",camera:"50 + 50 + 200 MP",tag:"PHOTO PRO"},
+{rank:9,name:"OPPO Find X9 Pro",brand:"OPPO",image:"",cpu:"Dimensity 9500",antutu:3254273,ram:"16 GB",storage:"512 GB",battery:"7.000 mAh",screen:"6.78” AMOLED · 120 Hz",camera:"50 + 50 + 200 MP",tag:"PRO"},
+{rank:10,name:"Xiaomi 17",brand:"Xiaomi",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3207732,ram:"12 GB",storage:"512 GB",battery:"6.330 mAh",screen:"6.3” AMOLED · 120 Hz",camera:"50 + 50 + 50 MP",tag:"COMPACT POWER"}
+];
 
-          setTimeout(() => {
-            btnShare.textContent = originalText;
-            btnShare.style.pointerEvents = "auto";
-          }, 2000);
-        } catch (err) {
-          console.error("Error al copiar enlace: ", err);
-        }
-      });
-    }
+const grid=document.getElementById("phoneGrid"),tableBody=document.getElementById("tableBody"),search=document.getElementById("search"),filter=document.getElementById("filter");
+const maxScore=Math.max(...phones.map(p=>p.antutu));
+function phoneverseScore(p){return Math.round(p.antutu/maxScore*100)}
+function fmt(n){return n.toLocaleString("es-CO")}
 
-    // ==========================================
-    // 2. MÓDULO: COMPARADOR CON ANIMACIÓN
-    // ==========================================
-    function poblarSelects() {
-      const s1 = document.getElementById('select-celular-1');
-      const s2 = document.getElementById('select-celular-2');
-      if (!s1 || !s2) return;
+function card(p){
+const medal=p.rank===1?"gold":p.rank===2?"silver":p.rank===3?"bronze":"";
+const feature=p.rank===1?"feature":"";
+const width=Math.round(p.antutu/maxScore*100);
+return `<article class="card ${feature}">
+<div class="top">
+<div class="rank ${medal}">${p.rank===1?"👑":p.rank}</div>
+<div class="phone-art"><span class="no-image">📱</span></div>
+<div class="info"><div class="brand">${p.brand}</div><h3>${p.name}</h3><span style="color:#7f8aa4;font-size:12px">${p.tag}</span></div>
+</div>
+<div class="score"><div><small>AnTuTu aprox.</small><strong class="count-up" data-target="${p.antutu}" data-format="antutu">0</strong></div><div style="text-align:right"><small>PHONEVERSE SCORE</small><strong class="score-pv count-up" data-target="${phoneverseScore(p)}" data-format="score">0/100</strong></div></div>
+<div class="bar"><div class="fill" style="--w:${width}%"></div></div>
+<div class="specs">
+<div class="spec">⚡ Procesador<b>${p.cpu}</b></div><div class="spec">🧠 RAM<b>${p.ram}</b></div>
+<div class="spec">💾 Almacenamiento<b>${p.storage}</b></div><div class="spec">🔋 Batería<b>${p.battery}</b></div>
+<div class="spec">🖥️ Pantalla<b>${p.screen}</b></div><div class="spec">📸 Cámaras<b>${p.camera}</b></div>
+</div>
+<div class="tags"><span class="tag">⚡ Alto rendimiento</span><span class="tag">📊 AnTuTu aprox.</span><span class="tag">📱 2026</span></div>
+</article>`;
+}
 
-      const opciones = celulares.map(c => `<option value="${c.id}">${c.nombre}</option>`).join('');
-      s1.innerHTML = opciones;
-      s2.innerHTML = opciones;
+function render(){
+const q=search.value.toLowerCase().trim(),f=filter.value;
+const list=phones.filter(p=>(f==="all"||p.brand===f)&&(p.name+" "+p.brand+" "+p.cpu).toLowerCase().includes(q));
+grid.innerHTML=list.length?list.map(card).join(""):`<div style="grid-column:1/-1;text-align:center;padding:60px;color:#7f8aa4">😵 No encontramos ese celular.</div>`;
+tableBody.innerHTML=list.map(p=>`<tr><td><b>#${p.rank} ${p.name}</b></td><td>${p.cpu}</td><td>${fmt(p.antutu)}</td><td><b style="color:#00e5ff">${phoneverseScore(p)}/100</b></td><td>${p.ram}</td><td>${p.battery}</td></tr>`).join("");
+const params=new URLSearchParams();
+if(search.value.trim())params.set("buscar",search.value.trim());
+if(f!=="all")params.set("marca",f);
+const newUrl=window.location.pathname+(params.toString()?"?"+params.toString():"")+window.location.hash;
+try{window.history.replaceState({},"",newUrl)}catch(e){}
+animateCounts();
+}
+function animateCounts(){
+document.querySelectorAll(".count-up").forEach(el=>{
+const target=parseInt(el.dataset.target,10),format=el.dataset.format,duration=900,start=performance.now();
+function tick(now){
+const progress=Math.min((now-start)/duration,1);
+const eased=1-Math.pow(1-progress,3);
+const value=Math.round(target*eased);
+el.textContent=format==="antutu"?fmt(value):value+"/100";
+if(progress<1)requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);
+});
+}
+function loadFromURL(){
+const params=new URLSearchParams(window.location.search);
+const buscar=params.get("buscar"),marca=params.get("marca");
+if(buscar)search.value=buscar;
+if(marca&&[...filter.options].some(o=>o.value===marca))filter.value=marca;
+}
+search.addEventListener("input",render);filter.addEventListener("change",render);
 
-      s1.selectedIndex = 0;
-      s2.selectedIndex = 1;
-    }
+function loadSelectors(){
+const p1=document.getElementById("phone1"),p2=document.getElementById("phone2");
+phones.forEach((p,index)=>{const o1=document.createElement("option");o1.value=index;o1.textContent="#"+p.rank+" "+p.name;const o2=o1.cloneNode(true);p1.appendChild(o1);p2.appendChild(o2)});
+p2.value="1";
+}
 
-    function cambiarComparacion() {
-      const id1 = document.getElementById('select-celular-1').value;
-      const id2 = document.getElementById('select-celular-2').value;
+function storageToGB(s){const value=parseFloat(s);return s.toUpperCase().includes("TB")?value*1024:value}
+function formatStorage(v){return v>=1024?(v/1024)+" TB":v+" GB"}
+function comparePhones(){
+const p1=phones[document.getElementById("phone1").value],p2=phones[document.getElementById("phone2").value];
+document.getElementById("battleTitle").innerHTML=`${p1.name} <span style="color:#8791aa"> VS </span> ${p2.name}`;
+const stats=[["⚡ AnTuTu",p1.antutu,p2.antutu,v=>fmt(v)],["🏆 PHONEVERSE",phoneverseScore(p1),phoneverseScore(p2),v=>v+"/100"],["🧠 RAM",parseInt(p1.ram),parseInt(p2.ram),v=>v+" GB"],["🔋 Batería",parseInt(p1.battery.replace(/\./g,"")),parseInt(p2.battery.replace(/\./g,"")),v=>v.toLocaleString("es-CO")+" mAh"],["💾 Almacenamiento",storageToGB(p1.storage),storageToGB(p2.storage),formatStorage]];
+document.getElementById("battleGrid").innerHTML=stats.map(s=>`<div class="battle-row"><div class="label">${s[0]}</div><div class="battle-values"><div class="${s[1]>s[2]?"winner":""}">${s[3](s[1])}</div><div>VS</div><div class="${s[2]>s[1]?"winner":""}">${s[3](s[2])}</div></div></div>`).join("");
+const winner=p1.antutu>p2.antutu?p1:p2;
+document.getElementById("finalWinner").innerHTML=`<span style="color:#8791aa">🏆 GANADOR</span><h2 style="color:#00e5ff;margin:8px">${winner.name} ⚡</h2>${phoneverseScore(winner)}/100 PHONEVERSE SCORE`;
+const resultEl=document.getElementById("result");resultEl.classList.remove("animate");resultEl.classList.add("show");requestAnimationFrame(()=>requestAnimationFrame(()=>resultEl.classList.add("animate")));
+}
 
-      const cel1 = celulares.find(c => c.id === id1);
-      const cel2 = celulares.find(c => c.id === id2);
+let finderUse="",finderPrice="";
+document.querySelectorAll(".finder-option").forEach(button=>button.addEventListener("click",()=>{
+if(button.dataset.use){finderUse=button.dataset.use;document.querySelectorAll("[data-use]").forEach(b=>b.classList.remove("selected"))}
+if(button.dataset.price){finderPrice=button.dataset.price;document.querySelectorAll("[data-price]").forEach(b=>b.classList.remove("selected"))}
+button.classList.add("selected");
+}));
 
-      const contenedor = document.getElementById('comparador-wrapper');
-      if (!contenedor || !cel1 || !cel2) return;
+function findPhone(){
+if(!finderUse||!finderPrice){alert("⚠️ Responde las dos preguntas primero.");return}
+let scores=phones.map(phone=>{let score=phoneverseScore(phone);
+if(finderUse==="gaming"){if(phone.brand==="RedMagic")score+=15;if(phone.brand==="iQOO")score+=10;if(phone.brand==="POCO")score+=8}
+if(finderUse==="camera"){if(phone.brand==="OPPO")score+=15;if(phone.brand==="vivo")score+=15;if(phone.name.includes("Ultra"))score+=10}
+if(finderUse==="battery"){const b=parseInt(phone.battery.replace(/\./g,""));if(b>=7000)score+=15;else if(b>=6500)score+=10}
+if(finderUse==="power")score+=phoneverseScore(phone)*.15;
+if(finderUse==="value"){if(phone.brand==="POCO")score+=18;if(phone.brand==="Xiaomi")score+=10}
+if(finderPrice==="low"){if(phone.brand==="POCO")score+=15;if(phone.brand==="Xiaomi")score+=10}
+if(finderPrice==="medium"&&(phone.brand==="POCO"||phone.brand==="Xiaomi"||phone.brand==="OnePlus"))score+=8;
+return{phone,score}});
+scores.sort((a,b)=>b.score-a.score);const winner=scores[0].phone;
+const reasons={gaming:"🎮 Excelente rendimiento para juegos y cargas pesadas.",camera:"📸 Una gran opción para quienes priorizan fotografía.",battery:"🔋 Su gran batería lo hace ideal para largas jornadas.",power:"⚡ Su rendimiento lo coloca entre los monstruos de PHONEVERSE.",value:"💰 Tiene una combinación equilibrada de rendimiento y características."};
+document.getElementById("finderName").textContent=winner.name;document.getElementById("finderScore").textContent=phoneverseScore(winner)+"/100 PHONEVERSE SCORE";document.getElementById("finderReason").textContent=reasons[finderUse];const finderResultEl=document.getElementById("finderResult");finderResultEl.classList.remove("animate");finderResultEl.classList.add("show");requestAnimationFrame(()=>requestAnimationFrame(()=>finderResultEl.classList.add("animate")));
+}
 
-      // Reinicio de animación vía Reflow
-      contenedor.classList.remove('animar-cambio');
-      void contenedor.offsetWidth;
+const newsGrid=document.getElementById("newsGrid"),newsStatus=document.getElementById("newsStatus");
+const newsSources=[
+{name:"Android Central",url:"https://www.androidcentral.com/feeds/all"},
+{name:"Tom's Guide",url:"https://www.tomsguide.com/feeds.xml"},
+{name:"TechRadar",url:"https://www.techradar.com/rss"}
+];
+const corsProxies=["https://api.allorigins.win/raw?url=","https://api.codetabs.com/v1/proxy?quest=","https://corsproxy.io/?url=","https://thingproxy.freeboard.io/fetch/"];
+async function fetchWithTimeout(url,ms){
+const controller=new AbortController();
+const id=setTimeout(()=>controller.abort(),ms);
+try{const response=await fetch(url,{signal:controller.signal});clearTimeout(id);return response}
+catch(e){clearTimeout(id);throw e}
+}
+async function getNews(source){
+let xmlText=null;
+for(const proxy of corsProxies){
+try{
+const response=await fetchWithTimeout(proxy+encodeURIComponent(source.url),8000);
+if(!response.ok)continue;
+const text=await response.text();
+if(text&&text.trim())
+{xmlText=text;break}
+}catch(e){continue}
+}
+if(!xmlText)throw new Error("No se pudo conectar");
+const doc=new DOMParser().parseFromString(xmlText,"text/xml");
+if(doc.querySelector("parsererror"))throw new Error("Fuente no disponible");
+const items=Array.from(doc.querySelectorAll("item"));
+if(!items.length)throw new Error("Fuente no disponible");
+return items.map(item=>{
+const title=item.querySelector("title")?.textContent?.trim()||"Sin título";
+const rawDesc=item.querySelector("description")?.textContent||item.getElementsByTagName("content:encoded")[0]?.textContent||"";
+const link=item.querySelector("link")?.textContent?.trim()||item.querySelector("guid")?.textContent?.trim()||"";
+const date=item.querySelector("pubDate")?.textContent?.trim()||"";
+return{title,description:cleanText(rawDesc||"Lee la noticia completa en la fuente."),link,date,source:source.name};
+});
+}
+function cleanText(text){const temp=document.createElement("div");temp.innerHTML=text;let clean=temp.textContent||temp.innerText||"";clean=clean.replace(/\s+/g," ").trim();return clean.length>150?clean.substring(0,150)+"...":clean}
+function newsEmoji(title){const t=title.toLowerCase();if(t.includes("camera")||t.includes("cámara")||t.includes("photo"))return"📸";if(t.includes("battery")||t.includes("batería")||t.includes("charge"))return"🔋";if(t.includes("gaming")||t.includes("game"))return"🎮";if(t.includes("iphone")||t.includes("apple"))return"🍎";if(t.includes("samsung")||t.includes("galaxy"))return"📱";if(t.includes("ai")||t.includes("artificial intelligence"))return"🤖";return"⚡"}
+function formatNewsDate(date){if(!date)return"FECHA NO DISPONIBLE";const d=new Date(date);if(isNaN(d.getTime()))return"NOTICIA RECIENTE";return d.toLocaleDateString("es-CO",{day:"2-digit",month:"short",year:"numeric"}).toUpperCase()}
+function escapeHTML(value){return String(value).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
+function safeURL(value){try{const u=new URL(value);return u.protocol==="http:"||u.protocol==="https:"?u.href:"#"}catch(e){return"#"}}
 
-      contenedor.innerHTML = `
-        ${generarColumnaComparador(cel1)}
-        ${generarColumnaComparador(cel2)}
-      `;
+async function fetchArticles(){
+const results=await Promise.allSettled(newsSources.map(getNews));let articles=[];results.forEach(r=>{if(r.status==="fulfilled")articles.push(...r.value)});
+articles.sort((a,b)=>(new Date(b.date).getTime()||0)-(new Date(a.date).getTime()||0));
+const seen=new Set();return articles.filter(a=>{const k=a.title.toLowerCase().trim();if(seen.has(k))return false;seen.add(k);return true}).slice(0,9);
+}
+function skeletonCards(n){
+const card=`<div class="skeleton-card"><div class="skeleton-image"></div><div class="skeleton-content"><div class="skeleton-line short"></div><div class="skeleton-line title"></div><div class="skeleton-line title2"></div><div class="skeleton-line text" style="margin-top:14px"></div><div class="skeleton-line text2"></div><div class="skeleton-line button"></div></div></div>`;
+return card.repeat(n);
+}
+async function loadNews(){
+newsGrid.innerHTML=skeletonCards(9);newsStatus.innerHTML=`<div class="spinner" style="width:16px;height:16px;display:inline-block;margin:0 8px 0 0;vertical-align:middle;border-width:2px"></div>Conectando con fuentes públicas de tecnología...`;
+try{
+let articles=await fetchArticles();
+if(!articles.length){
+newsStatus.innerHTML=`<div class="spinner" style="width:16px;height:16px;display:inline-block;margin:0 8px 0 0;vertical-align:middle;border-width:2px"></div>Reintentando conexión...`;
+await new Promise(r=>setTimeout(r,1500));
+articles=await fetchArticles();
+}
+if(!articles.length)throw new Error("No se encontraron noticias.");
+newsGrid.innerHTML=articles.map(a=>`<article class="news-card"><div class="news-image">${newsEmoji(a.title)}</div><div class="news-content"><div class="news-source">${escapeHTML(a.source)}</div><div class="news-date">${formatNewsDate(a.date)}</div><h3>${escapeHTML(a.title)}</h3><p>${escapeHTML(a.description)}</p><a href="${safeURL(a.link)}" target="_blank" rel="noopener noreferrer" class="news-button">LEER NOTICIA →</a></div></article>`).join("");
+newsStatus.innerHTML="🟢 <b style='color:#00e5ff'>Noticias actualizadas</b> · "+articles.length+" artículos encontrados";
+}catch(error){
+console.error(error);newsGrid.innerHTML=`<div class="news-error"><strong>📰 No pudimos cargar las noticias</strong>Comprueba que tienes conexión a Internet y vuelve a cargar la página.<br><br><button class="button" onclick="loadNews()" style="margin-top:15px">🔄 INTENTAR DE NUEVO</button></div>`;newsStatus.innerHTML="🔴 No se pudo conectar con las fuentes de noticias.";
+}
+}
 
-      contenedor.classList.add('animar-cambio');
-      actualizarIconosFavoritos();
-    }
+loadFromURL();render();loadSelectors();loadNews();
 
-    function generarColumnaComparador(cel) {
-      return `
-        <div style="position: relative;">
-          <button class="btn-fav" data-fav-id="${cel.id}" onclick="toggleFavorito('${cel.id}')">☆</button>
-          <h3>
-            <span class="emoji-phone-wrapper"><span class="emoji-phone">📱</span></span>
-            ${cel.nombre}
-          </h3>
-          <p style="margin: 10px 0; color: var(--text-secondary);">Puntaje general: <strong>${cel.puntaje}/100</strong></p>
-          
-          <label>Cámara (${cel.camara}%)</label>
-          <div class="stat-bar-container"><div class="bar-stat" style="width: ${cel.camara}%;"></div></div>
-          
-          <label style="margin-top:10px; display:block;">Pantalla (${cel.pantalla}%)</label>
-          <div class="stat-bar-container"><div class="bar-stat" style="width: ${cel.pantalla}%;"></div></div>
-          
-          <label style="margin-top:10px; display:block;">Batería (${cel.bateria}%)</label>
-          <div class="stat-bar-container"><div class="bar-stat" style="width: ${cel.bateria}%;"></div></div>
-        </div>
-      `;
-    }
-
-    // ==========================================
-    // 3. MÓDULO: TOP 3 RECOMENDADOS (FINDER)
-    // ==========================================
-    function mostrarTop3(lista) {
-      const contenedor = document.getElementById('finder-results');
-      if (!contenedor) return;
-
-      const top3 = [...lista].sort((a, b) => b.puntaje - a.puntaje).slice(0, 3);
-
-      contenedor.innerHTML = top3.map((cel, idx) => `
-        <div class="card-phone" style="animation-delay: ${idx * 0.12}s;">
-          <button class="btn-fav" data-fav-id="${cel.id}" onclick="toggleFavorito('${cel.id}')">☆</button>
-          <span class="badge">#${idx + 1} Recomendado</span>
-          <h3>
-            <span class="emoji-phone-wrapper"><span class="emoji-phone">📱</span></span>
-            ${cel.nombre}
-          </h3>
-          <p style="margin-top: 8px;">Puntaje: <strong>${cel.puntaje}/100</strong></p>
-        </div>
-      `).join('');
-
-      actualizarIconosFavoritos();
-    }
-
-    // ==========================================
-    // 4. MÓDULO: FAVORITOS LOCALSTORAGE
-    // ==========================================
-    function obtenerFavoritos() {
-      return JSON.parse(localStorage.getItem('phoneverse_favs')) || [];
-    }
-
-    function toggleFavorito(id) {
-      let favs = obtenerFavoritos();
-      favs = favs.includes(id) ? favs.filter(item => item !== id) : [...favs, id];
-      localStorage.setItem('phoneverse_favs', JSON.stringify(favs));
-      actualizarIconosFavoritos();
-    }
-
-    function actualizarIconosFavoritos() {
-      const favs = obtenerFavoritos();
-      document.querySelectorAll('[data-fav-id]').forEach(btn => {
-        const id = btn.getAttribute('data-fav-id');
-        const esFav = favs.includes(id);
-        btn.classList.toggle('active', esFav);
-        btn.textContent = esFav ? '★' : '☆';
-      });
-    }
-
-    // ==========================================
-    // 5. MÓDULO: DARK / LIGHT MODE
-    // ==========================================
-    function inicializarTema() {
-      const themeToggleBtn = document.getElementById('theme-toggle');
-      const temaGuardado = localStorage.getItem('phoneverse_theme') || 
-        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-
-      document.documentElement.setAttribute('data-theme', temaGuardado);
-
-      themeToggleBtn?.addEventListener('click', () => {
-        const actual = document.documentElement.getAttribute('data-theme');
-        const nuevo = actual === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', nuevo);
-        localStorage.setItem('phoneverse_theme', nuevo);
-      });
-    }
-  </script>
+const menuToggle=document.getElementById("menuToggle"),navLinks=document.getElementById("navLinks");
+function setMenuOpen(open){
+navLinks.classList.toggle("open",open);menuToggle.classList.toggle("open",open);
+menuToggle.setAttribute("aria-expanded",open?"true":"false");
+menuToggle.setAttribute("aria-label",open?"Cerrar menú":"Abrir menú");
+}
+menuToggle.addEventListener("click",()=>setMenuOpen(!navLinks.classList.contains("open")));
+navLinks.querySelectorAll("a").forEach(link=>link.addEventListener("click",()=>setMenuOpen(false)));
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&navLinks.classList.contains("open"))setMenuOpen(false)});
+</script>
 </body>
 </html>

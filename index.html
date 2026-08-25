@@ -15,7 +15,6 @@
 <meta name="twitter:title" content="PHONEVERSE ⚡ | Los monstruos del móvil">
 <meta name="twitter:description" content="Ranking, comparador y finder de smartphones 2026 + noticias tecnológicas en vivo.">
 
-
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
@@ -111,7 +110,6 @@ table{width:100%;border-collapse:collapse;min-width:700px}th,td{padding:15px;tex
 .skeleton-line.text2{width:75%}
 .skeleton-line.button{height:30px;width:45%;border-radius:9px;margin-top:14px}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
-
 
 footer{border-top:1px solid #1d2435;padding:35px 7%;text-align:center;color:#66718b;font-size:12px;line-height:1.7}footer b{color:#9da8bf}
 
@@ -366,34 +364,55 @@ function skeletonCards(n){
 const card=`<div class="skeleton-card"><div class="skeleton-image"></div><div class="skeleton-content"><div class="skeleton-line short"></div><div class="skeleton-line title"></div><div class="skeleton-line title2"></div><div class="skeleton-line text" style="margin-top:14px"></div><div class="skeleton-line text2"></div><div class="skeleton-line button"></div></div></div>`;
 return card.repeat(n);
 }
+
 async function loadNews(){
-newsGrid.innerHTML=skeletonCards(9);newsStatus.innerHTML=`<div class="spinner" style="width:16px;height:16px;display:inline-block;margin:0 8px 0 0;vertical-align:middle;border-width:2px"></div>Conectando con fuentes públicas de tecnología...`;
+newsGrid.innerHTML=skeletonCards(9);
+newsStatus.innerHTML=`<div class="spinner" style="width:16px;height:16px;display:inline-block;margin:0 8px 0 0;vertical-align:middle;border-width:2px"></div>Conectando con las fuentes de noticias...`;
+
 try{
-let articles=await fetchArticles();
-if(!articles.length){
-newsStatus.innerHTML=`<div class="spinner" style="width:16px;height:16px;display:inline-block;margin:0 8px 0 0;vertical-align:middle;border-width:2px"></div>Reintentando conexión...`;
-await new Promise(r=>setTimeout(r,1500));
-articles=await fetchArticles();
-}
-if(!articles.length)throw new Error("No se encontraron noticias.");
-newsGrid.innerHTML=articles.map(a=>`<article class="news-card"><div class="news-image">${newsEmoji(a.title)}</div><div class="news-content"><div class="news-source">${escapeHTML(a.source)}</div><div class="news-date">${formatNewsDate(a.date)}</div><h3>${escapeHTML(a.title)}</h3><p>${escapeHTML(a.description)}</p><a href="${safeURL(a.link)}" target="_blank" rel="noopener noreferrer" class="news-button">LEER NOTICIA →</a></div></article>`).join("");
-newsStatus.innerHTML="🟢 <b style='color:#00e5ff'>Noticias actualizadas</b> · "+articles.length+" artículos encontrados";
-}catch(error){
-console.error(error);newsGrid.innerHTML=`<div class="news-error"><strong>📰 No pudimos cargar las noticias</strong>Comprueba que tienes conexión a Internet y vuelve a cargar la página.<br><br><button class="button" onclick="loadNews()" style="margin-top:15px">🔄 INTENTAR DE NUEVO</button></div>`;newsStatus.innerHTML="🔴 No se pudo conectar con las fuentes de noticias.";
+const articles=await fetchArticles();
+if(!articles.length)throw new Error("No hay artículos disponibles");
+
+newsStatus.textContent="🟢 Noticias actualizadas correctamente";
+newsGrid.innerHTML=articles.map(art=>`
+<article class="news-card">
+<div class="news-image">${newsEmoji(art.title)}</div>
+<div class="news-content">
+<div class="news-source">${escapeHTML(art.source)}</div>
+<div class="news-date">${formatNewsDate(art.date)}</div>
+<h3>${escapeHTML(art.title)}</h3>
+<p>${escapeHTML(art.description)}</p>
+<a class="news-button" href="${safeURL(art.link)}" target="_blank" rel="noopener noreferrer">Leer noticia ↗</a>
+</div>
+</article>
+`).join("");
+}catch(err){
+newsStatus.textContent="🔴 No se pudieron cargar las noticias";
+newsGrid.innerHTML=`
+<div class="news-error">
+<strong>⚠️ No fue posible obtener noticias en vivo</strong>
+<p>Los servicios proxy de noticias no respondieron o no hay conexión disponible.</p>
+</div>`;
 }
 }
 
-loadFromURL();render();loadSelectors();loadNews();
+document.addEventListener("DOMContentLoaded",()=>{
+loadFromURL();
+render();
+loadSelectors();
+loadNews();
 
-const menuToggle=document.getElementById("menuToggle"),navLinks=document.getElementById("navLinks");
-function setMenuOpen(open){
-navLinks.classList.toggle("open",open);menuToggle.classList.toggle("open",open);
-menuToggle.setAttribute("aria-expanded",open?"true":"false");
-menuToggle.setAttribute("aria-label",open?"Cerrar menú":"Abrir menú");
+const menuToggle=document.getElementById("menuToggle");
+const navLinks=document.getElementById("navLinks");
+
+if(menuToggle&&navLinks){
+menuToggle.addEventListener("click",()=>{
+const isOpen=navLinks.classList.toggle("open");
+menuToggle.classList.toggle("open",isOpen);
+menuToggle.setAttribute("aria-expanded",isOpen);
+});
 }
-menuToggle.addEventListener("click",()=>setMenuOpen(!navLinks.classList.contains("open")));
-navLinks.querySelectorAll("a").forEach(link=>link.addEventListener("click",()=>setMenuOpen(false)));
-document.addEventListener("keydown",e=>{if(e.key==="Escape"&&navLinks.classList.contains("open"))setMenuOpen(false)});
+});
 </script>
 </body>
 </html>

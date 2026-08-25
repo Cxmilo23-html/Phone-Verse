@@ -18,7 +18,8 @@ body:after{content:"";position:fixed;inset:0;z-index:-2;opacity:.15;background-i
 
 header{min-height:650px;padding:30px 7% 80px;display:flex;flex-direction:column}
 nav{display:flex;justify-content:space-between;align-items:center;position:relative}
-.menu-toggle{display:none;background:none;border:1px solid #252c42;border-radius:10px;width:42px;height:42px;color:#f5f7ff;font-size:20px;cursor:pointer}
+.menu-toggle{display:none;background:none;border:1px solid #252c42;border-radius:10px;width:42px;height:42px;color:#f5f7ff;font-size:20px;cursor:pointer;transition:.3s;position:relative;z-index:11}
+.menu-toggle.open{transform:rotate(90deg);border-color:#00e5ff;color:#00e5ff}
 .nav-links{display:flex}
 .nav-links.open{display:flex}
 .logo{font-size:24px;font-weight:900;letter-spacing:2px}.logo span{color:#00e5ff}
@@ -91,10 +92,10 @@ footer{border-top:1px solid #1d2435;padding:35px 7%;text-align:center;color:#667
 @media(max-width:800px){
 header{min-height:600px;padding-left:5%;padding-right:5%}
 .menu-toggle{display:block}
-.nav-links{display:none;position:absolute;top:56px;right:0;flex-direction:column;background:#0e1221;border:1px solid #252c42;border-radius:14px;padding:10px;gap:2px;min-width:160px;z-index:10}
-.nav-links.open{display:flex}
-.nav-links a{margin:0;padding:10px 12px;border-radius:8px}
-.nav-links a:hover{background:#161c2d}
+.nav-links{display:flex;position:absolute;top:56px;right:0;flex-direction:column;background:#0e1221;border:1px solid #252c42;border-radius:14px;padding:10px;gap:2px;min-width:160px;z-index:10;opacity:0;transform:translateY(-10px) scale(.96);pointer-events:none;visibility:hidden;transition:opacity .25s ease,transform .25s ease,visibility .25s}
+.nav-links.open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto;visibility:visible}
+.nav-links a{margin:0;padding:10px 12px;border-radius:8px;transition:.2s}
+.nav-links a:hover{background:#161c2d;padding-left:16px}
 .grid{grid-template-columns:1fr}.feature{grid-column:auto}
 .compare-selects{grid-template-columns:1fr}.vs{text-align:center}.battle-grid{grid-template-columns:1fr}.news-grid{grid-template-columns:1fr}.specs{grid-template-columns:1fr}
 }
@@ -321,8 +322,8 @@ console.error(error);newsGrid.innerHTML=`<div class="news-error"><strong>📰 No
 render();loadSelectors();loadNews();
 
 const menuToggle=document.getElementById("menuToggle"),navLinks=document.getElementById("navLinks");
-menuToggle.addEventListener("click",()=>navLinks.classList.toggle("open"));
-navLinks.querySelectorAll("a").forEach(link=>link.addEventListener("click",()=>navLinks.classList.remove("open")));
+menuToggle.addEventListener("click",()=>{navLinks.classList.toggle("open");menuToggle.classList.toggle("open")});
+navLinks.querySelectorAll("a").forEach(link=>link.addEventListener("click",()=>{navLinks.classList.remove("open");menuToggle.classList.remove("open")}));
 </script>
 </body>
 </html>

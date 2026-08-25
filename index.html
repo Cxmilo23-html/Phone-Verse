@@ -243,13 +243,13 @@ body.light .section-divider:before,body.light .section-divider:after{background:
 <span class="badge">RANKING DE RENDIMIENTO · 2026</span>
 <h1>LOS MONSTRUOS<br>DEL MÓVIL.</h1>
 <p>Descubre smartphones, compara su potencia, encuentra el celular ideal y mantente al día con las últimas noticias del mundo móvil.</p>
-<a class="cta" href="#ranking">VER EL TOP 20 ↓</a>
+<a class="cta" href="#ranking">VER EL TOP 23 ↓</a>
 </div>
 </header>
 
 <main class="container">
 <section id="ranking">
-<div class="section-title"><h2>🏆 Top 20 de potencia</h2><p>Datos orientativos para comparar rendimiento. AnTuTu es una aproximación.</p></div>
+<div class="section-title"><h2>🏆 Top 23 de potencia</h2><p>Datos orientativos para comparar rendimiento. AnTuTu es una aproximación.</p></div>
 <div class="controls">
 <input id="search" type="text" placeholder="🔎 Buscar celular, marca o procesador..." list="phoneList">
 <datalist id="phoneList"></datalist>
@@ -324,26 +324,29 @@ body.light .section-divider:before,body.light .section-divider:after{background:
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
 <script>
 const phones=[
-{rank:1,name:"RedMagic 11 Pro+",brand:"RedMagic",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:4005248,ram:"16 GB",storage:"512 GB",battery:"7.500 mAh",screen:"6.85” AMOLED · 144 Hz",camera:"50 + 50 MP",tag:"GAMING BEAST"},
-{rank:2,name:"OPPO Find X9 Ultra",brand:"OPPO",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3766902,ram:"16 GB",storage:"512 GB",battery:"7.050 mAh",screen:"6.8” AMOLED · 120 Hz",camera:"200 + 200 + 50 MP",tag:"CAMERA MONSTER"},
-{rank:3,name:"iQOO 15",brand:"iQOO",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3714661,ram:"16 GB",storage:"1 TB",battery:"7.000 mAh",screen:"6.85” AMOLED · 144 Hz",camera:"50 + 50 + 50 MP",tag:"PERFORMANCE"},
-{rank:4,name:"POCO F8 Ultra",brand:"POCO",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3668860,ram:"16 GB",storage:"512 GB",battery:"6.500 mAh",screen:"6.9” AMOLED · 120 Hz",camera:"50 + 50 + 50 MP",tag:"BEST VALUE"},
-{rank:5,name:"OnePlus 15",brand:"OnePlus",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3646161,ram:"16 GB",storage:"1 TB",battery:"7.300 mAh",screen:"6.78” AMOLED · 165 Hz",camera:"50 + 50 + 50 MP",tag:"ALL-ROUNDER"},
-{rank:6,name:"Xiaomi 17 Ultra",brand:"Xiaomi",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3579338,ram:"16 GB",storage:"1 TB",battery:"6.800 mAh",screen:"6.9” AMOLED · 120 Hz",camera:"200 MP + telefoto",tag:"PHOTO KING"},
-{rank:7,name:"Galaxy S26 Ultra",brand:"Samsung",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3437807,ram:"12 GB",storage:"1 TB",battery:"5.000 mAh",screen:"6.9” Dynamic AMOLED · 120 Hz",camera:"200 MP + telefoto",tag:"ULTRA"},
-{rank:8,name:"vivo X300 Pro",brand:"vivo",image:"",cpu:"Dimensity 9500",antutu:3258010,ram:"16 GB",storage:"512 GB",battery:"6.510 mAh",screen:"6.78” AMOLED · 120 Hz",camera:"50 + 50 + 200 MP",tag:"PHOTO PRO"},
-{rank:9,name:"OPPO Find X9 Pro",brand:"OPPO",image:"",cpu:"Dimensity 9500",antutu:3254273,ram:"16 GB",storage:"512 GB",battery:"7.000 mAh",screen:"6.78” AMOLED · 120 Hz",camera:"50 + 50 + 200 MP",tag:"PRO"},
-{rank:10,name:"Xiaomi 17",brand:"Xiaomi",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3207732,ram:"12 GB",storage:"512 GB",battery:"6.330 mAh",screen:"6.3” AMOLED · 120 Hz",camera:"50 + 50 + 50 MP",tag:"COMPACT POWER"},
-{rank:11,name:"ASUS ROG Phone 10",brand:"ASUS",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3150480,ram:"16 GB",storage:"512 GB",battery:"6.000 mAh",screen:"6.78” AMOLED · 165 Hz",camera:"50 + 13 MP",tag:"GAMER PRO"},
-{rank:12,name:"Honor Magic8 Pro",brand:"Honor",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3082150,ram:"16 GB",storage:"512 GB",battery:"5.900 mAh",screen:"6.71” AMOLED · 120 Hz",camera:"200 + 50 + 50 MP",tag:"AI CAMERA"},
-{rank:13,name:"Realme GT8 Pro",brand:"Realme",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:2991640,ram:"12 GB",storage:"512 GB",battery:"6.500 mAh",screen:"6.8” AMOLED · 144 Hz",camera:"50 + 50 + 50 MP",tag:"FLAGSHIP KILLER"},
-{rank:14,name:"Sony Xperia 1 VII",brand:"Sony",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:2873920,ram:"12 GB",storage:"256 GB",battery:"5.000 mAh",screen:"6.5” 4K OLED · 120 Hz",camera:"48 + 48 + 12 MP",tag:"PRO DISPLAY"},
-{rank:15,name:"Huawei Mate 80 Pro",brand:"Huawei",image:"",cpu:"Kirin 9020",antutu:2754310,ram:"16 GB",storage:"512 GB",battery:"5.700 mAh",screen:"6.8” OLED · 120 Hz",camera:"50 + 40 + 64 MP",tag:"PHOTO LEGEND"},
-{rank:16,name:"OnePlus 13",brand:"OnePlus",image:"",cpu:"Snapdragon 8 Elite",antutu:3116931,ram:"16 GB",storage:"512 GB",battery:"6.000 mAh",screen:"6.82” LTPO AMOLED · 120 Hz",camera:"50 + 50 + 50 MP",tag:"ALL-ROUNDER"},
-{rank:17,name:"Samsung Galaxy Z Fold7",brand:"Samsung",image:"",cpu:"Snapdragon 8 Elite for Galaxy",antutu:3065623,ram:"12 GB",storage:"256 GB",battery:"4.400 mAh",screen:"8” AMOLED plegable · 120 Hz",camera:"200 + 12 + 10 MP",tag:"FOLDABLE"},
-{rank:18,name:"Apple iPhone 17 Pro Max",brand:"Apple",image:"",cpu:"Apple A19 Pro",antutu:2590567,ram:"12 GB",storage:"256 GB",battery:"4.823 mAh",screen:"6.9” OLED · 120 Hz",camera:"48 + 48 + 12 MP",tag:"iOS FLAGSHIP"},
-{rank:19,name:"Nothing Phone (3)",brand:"Nothing",image:"",cpu:"Snapdragon 8s Gen 4",antutu:2300545,ram:"16 GB",storage:"256 GB",battery:"5.150 mAh",screen:"6.67” AMOLED · 120 Hz",camera:"50 + 50 + 50 MP",tag:"DESIGN ICON"},
-{rank:20,name:"Google Pixel 10 Pro XL",brand:"Google",image:"",cpu:"Google Tensor G5",antutu:1617706,ram:"16 GB",storage:"256 GB",battery:"5.200 mAh",screen:"6.8” OLED · 120 Hz",camera:"50 + 48 + 48 MP",tag:"AI CAMERA"}
+{rank:1,name:"RedMagic 11 Pro+",brand:"RedMagic",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:4005248,ram:"16 GB",storage:"512 GB",battery:"7.500 mAh",screen:"6.85” AMOLED · 144 Hz",camera:"50 + 50 MP",tag:"GAMING BEAST",tier:"flagship"},
+{rank:2,name:"OPPO Find X9 Ultra",brand:"OPPO",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3766902,ram:"16 GB",storage:"512 GB",battery:"7.050 mAh",screen:"6.8” AMOLED · 120 Hz",camera:"200 + 200 + 50 MP",tag:"CAMERA MONSTER",tier:"flagship"},
+{rank:3,name:"iQOO 15",brand:"iQOO",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3714661,ram:"16 GB",storage:"1 TB",battery:"7.000 mAh",screen:"6.85” AMOLED · 144 Hz",camera:"50 + 50 + 50 MP",tag:"PERFORMANCE",tier:"flagship"},
+{rank:4,name:"POCO F8 Ultra",brand:"POCO",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3668860,ram:"16 GB",storage:"512 GB",battery:"6.500 mAh",screen:"6.9” AMOLED · 120 Hz",camera:"50 + 50 + 50 MP",tag:"BEST VALUE",tier:"gama-alta"},
+{rank:5,name:"OnePlus 15",brand:"OnePlus",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3646161,ram:"16 GB",storage:"1 TB",battery:"7.300 mAh",screen:"6.78” AMOLED · 165 Hz",camera:"50 + 50 + 50 MP",tag:"ALL-ROUNDER",tier:"flagship"},
+{rank:6,name:"Xiaomi 17 Ultra",brand:"Xiaomi",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3579338,ram:"16 GB",storage:"1 TB",battery:"6.800 mAh",screen:"6.9” AMOLED · 120 Hz",camera:"200 MP + telefoto",tag:"PHOTO KING",tier:"flagship"},
+{rank:7,name:"Galaxy S26 Ultra",brand:"Samsung",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3437807,ram:"12 GB",storage:"1 TB",battery:"5.000 mAh",screen:"6.9” Dynamic AMOLED · 120 Hz",camera:"200 MP + telefoto",tag:"ULTRA",tier:"flagship"},
+{rank:8,name:"vivo X300 Pro",brand:"vivo",image:"",cpu:"Dimensity 9500",antutu:3258010,ram:"16 GB",storage:"512 GB",battery:"6.510 mAh",screen:"6.78” AMOLED · 120 Hz",camera:"50 + 50 + 200 MP",tag:"PHOTO PRO",tier:"flagship"},
+{rank:9,name:"OPPO Find X9 Pro",brand:"OPPO",image:"",cpu:"Dimensity 9500",antutu:3254273,ram:"16 GB",storage:"512 GB",battery:"7.000 mAh",screen:"6.78” AMOLED · 120 Hz",camera:"50 + 50 + 200 MP",tag:"PRO",tier:"flagship"},
+{rank:10,name:"Xiaomi 17",brand:"Xiaomi",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3207732,ram:"12 GB",storage:"512 GB",battery:"6.330 mAh",screen:"6.3” AMOLED · 120 Hz",camera:"50 + 50 + 50 MP",tag:"COMPACT POWER",tier:"gama-alta"},
+{rank:11,name:"ASUS ROG Phone 10",brand:"ASUS",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3150480,ram:"16 GB",storage:"512 GB",battery:"6.000 mAh",screen:"6.78” AMOLED · 165 Hz",camera:"50 + 13 MP",tag:"GAMER PRO",tier:"gama-alta"},
+{rank:12,name:"Honor Magic8 Pro",brand:"Honor",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3082150,ram:"16 GB",storage:"512 GB",battery:"5.900 mAh",screen:"6.71” AMOLED · 120 Hz",camera:"200 + 50 + 50 MP",tag:"AI CAMERA",tier:"gama-alta"},
+{rank:13,name:"Realme GT8 Pro",brand:"Realme",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:2991640,ram:"12 GB",storage:"512 GB",battery:"6.500 mAh",screen:"6.8” AMOLED · 144 Hz",camera:"50 + 50 + 50 MP",tag:"FLAGSHIP KILLER",tier:"gama-alta"},
+{rank:14,name:"Sony Xperia 1 VII",brand:"Sony",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:2873920,ram:"12 GB",storage:"256 GB",battery:"5.000 mAh",screen:"6.5” 4K OLED · 120 Hz",camera:"48 + 48 + 12 MP",tag:"PRO DISPLAY",tier:"flagship"},
+{rank:15,name:"Huawei Mate 80 Pro",brand:"Huawei",image:"",cpu:"Kirin 9020",antutu:2754310,ram:"16 GB",storage:"512 GB",battery:"5.700 mAh",screen:"6.8” OLED · 120 Hz",camera:"50 + 40 + 64 MP",tag:"PHOTO LEGEND",tier:"flagship"},
+{rank:16,name:"OnePlus 13",brand:"OnePlus",image:"",cpu:"Snapdragon 8 Elite",antutu:3116931,ram:"16 GB",storage:"512 GB",battery:"6.000 mAh",screen:"6.82” LTPO AMOLED · 120 Hz",camera:"50 + 50 + 50 MP",tag:"ALL-ROUNDER",tier:"flagship"},
+{rank:17,name:"Samsung Galaxy Z Fold7",brand:"Samsung",image:"",cpu:"Snapdragon 8 Elite for Galaxy",antutu:3065623,ram:"12 GB",storage:"256 GB",battery:"4.400 mAh",screen:"8” AMOLED plegable · 120 Hz",camera:"200 + 12 + 10 MP",tag:"FOLDABLE",tier:"flagship"},
+{rank:18,name:"Apple iPhone 17 Pro Max",brand:"Apple",image:"",cpu:"Apple A19 Pro",antutu:2590567,ram:"12 GB",storage:"256 GB",battery:"4.823 mAh",screen:"6.9” OLED · 120 Hz",camera:"48 + 48 + 12 MP",tag:"iOS FLAGSHIP",tier:"flagship"},
+{rank:19,name:"Nothing Phone (3)",brand:"Nothing",image:"",cpu:"Snapdragon 8s Gen 4",antutu:2300545,ram:"16 GB",storage:"256 GB",battery:"5.150 mAh",screen:"6.67” AMOLED · 120 Hz",camera:"50 + 50 + 50 MP",tag:"DESIGN ICON",tier:"gama-alta"},
+{rank:20,name:"Google Pixel 10 Pro XL",brand:"Google",image:"",cpu:"Google Tensor G5",antutu:1617706,ram:"16 GB",storage:"256 GB",battery:"5.200 mAh",screen:"6.8” OLED · 120 Hz",camera:"50 + 48 + 48 MP",tag:"AI CAMERA",tier:"flagship"},
+{rank:21,name:"Realme GT 7 Pro",brand:"Realme",image:"",cpu:"Snapdragon 8 Elite",antutu:3111924,ram:"16 GB",storage:"1 TB",battery:"6.500 mAh",screen:"6.78” LTPO AMOLED · 120 Hz",camera:"50 + 50 + 8 MP",tag:"BIG BATTERY",tier:"gama-alta"},
+{rank:22,name:"vivo X200 Pro",brand:"vivo",image:"",cpu:"Dimensity 9400",antutu:2825187,ram:"16 GB",storage:"512 GB",battery:"6.000 mAh",screen:"6.78” LTPO AMOLED · 120 Hz",camera:"50 + 50 + 200 MP",tag:"ZOOM MASTER",tier:"flagship"},
+{rank:23,name:"POCO X7 Pro",brand:"POCO",image:"",cpu:"Dimensity 8400 Ultra",antutu:1934662,ram:"12 GB",storage:"512 GB",battery:"6.000 mAh",screen:"6.67” AMOLED · 120 Hz",camera:"50 + 8 MP",tag:"MID-RANGE VALUE",tier:"gama-media"}
 ];
 
 const TOP_CARD_LIMIT=10;
@@ -650,11 +653,11 @@ const i1=parseInt(document.getElementById("phone1").value,10);
 const i2=parseInt(document.getElementById("phone2").value,10);
 const p1=phones[i1],p2=phones[i2];
 document.getElementById("battleTitle").innerHTML=`${p1.name} <span style="color:#8791aa"> VS </span> ${p2.name}`;
-const stats=[["⚡ AnTuTu",p1.antutu,p2.antutu,v=>fmt(v)],["🏆 PHONEVERSE",phoneverseScore(p1),phoneverseScore(p2),v=>v+"/100"],["🧠 RAM",parseInt(p1.ram),parseInt(p2.ram),v=>v+" GB"],["🔋 Batería",parseInt(p1.battery.replace(/\./g,"")),parseInt(p2.battery.replace(/\./g,"")),v=>v.toLocaleString("es-CO")+" mAh"],["💾 Almacenamiento",storageToGB(p1.storage),storageToGB(p2.storage),formatStorage]];
+const stats=[["⚡ Procesador",p1.cpu,p2.cpu,v=>v,true],["⚡ AnTuTu",p1.antutu,p2.antutu,v=>fmt(v)],["🏆 PHONEVERSE",phoneverseScore(p1),phoneverseScore(p2),v=>v+"/100"],["🧠 RAM",parseInt(p1.ram),parseInt(p2.ram),v=>v+" GB"],["🔋 Batería",parseInt(p1.battery.replace(/\./g,"")),parseInt(p2.battery.replace(/\./g,"")),v=>v.toLocaleString("es-CO")+" mAh"],["💾 Almacenamiento",storageToGB(p1.storage),storageToGB(p2.storage),formatStorage]];
 const key=i1+"|"+i2;
 const isNewComparison=lastComparison!==key;
 lastComparison=key;
-document.getElementById("battleGrid").innerHTML=stats.map(s=>`<div class="battle-row${isNewComparison?" flash":""}"><div class="label">${s[0]}</div><div class="battle-values${isNewComparison?" flash":""}"><div class="${s[1]>s[2]?"winner":""}">${s[3](s[1])}</div><div>VS</div><div class="${s[2]>s[1]?"winner":""}">${s[3](s[2])}</div></div></div>`).join("");
+document.getElementById("battleGrid").innerHTML=stats.map(s=>`<div class="battle-row${isNewComparison?" flash":""}"><div class="label">${s[0]}</div><div class="battle-values${isNewComparison?" flash":""}"><div class="${!s[4]&&s[1]>s[2]?"winner":""}">${s[3](s[1])}</div><div>VS</div><div class="${!s[4]&&s[2]>s[1]?"winner":""}">${s[3](s[2])}</div></div></div>`).join("");
 const winner=p1.antutu>p2.antutu?p1:p2;
 document.getElementById("finalWinner").innerHTML=`<span style="color:#8791aa">🏆 GANADOR</span><h2 style="color:#00e5ff;margin:8px">${winner.name} ⚡</h2>${phoneverseScore(winner)}/100 PHONEVERSE SCORE`;
 renderRadar(p1,p2);
@@ -701,13 +704,13 @@ button.classList.add("selected");
 }));
 function scorePhoneForFinder(phone){
 let score=phoneverseScore(phone);
-if(finderUse==="gaming"){if(phone.brand==="RedMagic")score+=15;if(phone.brand==="iQOO")score+=10;if(phone.brand==="POCO")score+=8}
-if(finderUse==="camera"){if(phone.brand==="OPPO")score+=15;if(phone.brand==="vivo")score+=15;if(phone.name.includes("Ultra"))score+=10}
+if(finderUse==="gaming"){if(phone.brand==="RedMagic")score+=15;if(phone.brand==="iQOO")score+=10;if(phone.brand==="POCO")score+=8;if(phone.brand==="ASUS")score+=12}
+if(finderUse==="camera"){if(phone.brand==="OPPO")score+=15;if(phone.brand==="vivo")score+=15;if(phone.brand==="Honor")score+=10;if(phone.name.includes("Ultra"))score+=10}
 if(finderUse==="battery"){const b=parseInt(phone.battery.replace(/\./g,""));if(b>=7000)score+=15;else if(b>=6500)score+=10}
 if(finderUse==="power")score+=phoneverseScore(phone)*.15;
-if(finderUse==="value"){if(phone.brand==="POCO")score+=18;if(phone.brand==="Xiaomi")score+=10}
-if(finderPrice==="low"){if(phone.brand==="POCO")score+=15;if(phone.brand==="Xiaomi")score+=10}
-if(finderPrice==="medium"&&(phone.brand==="POCO"||phone.brand==="Xiaomi"||phone.brand==="OnePlus"))score+=8;
+if(finderUse==="value"){if(phone.tier==="gama-media")score+=28;else if(phone.tier==="gama-alta")score+=16}
+if(finderPrice==="low"){if(phone.tier==="gama-media")score+=30;else if(phone.tier==="gama-alta")score+=14;else score-=18}
+if(finderPrice==="medium"){if(phone.tier==="gama-alta")score+=14;else if(phone.tier==="gama-media")score+=8;else score-=6}
 return score;
 }
 function findPhone(){

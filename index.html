@@ -86,6 +86,21 @@ table{width:100%;border-collapse:collapse;min-width:700px}th,td{padding:15px;tex
 .news-button{display:inline-block;margin-top:17px;padding:9px 13px;border:1px solid #29334c;border-radius:9px;color:#cdd5e7;text-decoration:none;font-size:12px;font-weight:700;transition:.2s}.news-button:hover{border-color:#00e5ff;color:#00e5ff}
 .loading{grid-column:1/-1;text-align:center;padding:60px;color:#8791aa}.news-error{grid-column:1/-1;text-align:center;padding:50px;border:1px solid #392d45;border-radius:20px;background:#0b0f1b;color:#8791aa}.news-error strong{display:block;color:#f5f7ff;font-size:20px;margin-bottom:10px}
 
+.spinner{width:34px;height:34px;border:3px solid #1a2032;border-top-color:#00e5ff;border-radius:50%;margin:0 auto 16px;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.skeleton-card{background:rgba(15,19,34,.82);border:1px solid #252c42;border-radius:22px;overflow:hidden}
+.skeleton-image{height:180px;background:linear-gradient(90deg,#10182d 25%,#1a2338 37%,#10182d 63%);background-size:400% 100%;animation:shimmer 1.6s ease-in-out infinite}
+.skeleton-content{padding:22px}
+.skeleton-line{height:11px;border-radius:6px;background:linear-gradient(90deg,#161c2d 25%,#232c46 37%,#161c2d 63%);background-size:400% 100%;animation:shimmer 1.6s ease-in-out infinite;margin-bottom:10px}
+.skeleton-line.short{width:40%}
+.skeleton-line.title{height:16px;width:85%;margin-top:4px}
+.skeleton-line.title2{height:16px;width:60%}
+.skeleton-line.text{width:100%}
+.skeleton-line.text2{width:75%}
+.skeleton-line.button{height:30px;width:45%;border-radius:9px;margin-top:14px}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+
 footer{border-top:1px solid #1d2435;padding:35px 7%;text-align:center;color:#66718b;font-size:12px;line-height:1.7}footer b{color:#9da8bf}
 
 @keyframes cardIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
@@ -162,7 +177,7 @@ header{min-height:600px;padding-left:5%;padding-right:5%}
 <section class="news-section" id="noticias">
 <div class="news-header"><span class="badge">📰 PHONEVERSE NEWS · EN VIVO</span><h2>LAS NOTICIAS DEL <span>MUNDO MÓVIL.</span></h2><p>Noticias tecnológicas obtenidas desde fuentes públicas.</p></div>
 <div class="news-status" id="newsStatus">🔄 Cargando noticias reales...</div>
-<div class="news-grid" id="newsGrid"><div class="loading">🔄 Buscando las últimas noticias...</div></div>
+<div class="news-grid" id="newsGrid"></div>
 </section>
 </main>
 
@@ -305,12 +320,24 @@ function formatNewsDate(date){if(!date)return"FECHA NO DISPONIBLE";const d=new D
 function escapeHTML(value){return String(value).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
 function safeURL(value){try{const u=new URL(value);return u.protocol==="http:"||u.protocol==="https:"?u.href:"#"}catch(e){return"#"}}
 
-async function loadNews(){
-newsGrid.innerHTML=`<div class="loading">🔄 Cargando noticias reales...</div>`;newsStatus.textContent="🔄 Conectando con fuentes públicas de tecnología...";
-try{
+async function fetchArticles(){
 const results=await Promise.allSettled(newsSources.map(getNews));let articles=[];results.forEach(r=>{if(r.status==="fulfilled")articles.push(...r.value)});
 articles.sort((a,b)=>(new Date(b.date).getTime()||0)-(new Date(a.date).getTime()||0));
-const seen=new Set();articles=articles.filter(a=>{const k=a.title.toLowerCase().trim();if(seen.has(k))return false;seen.add(k);return true}).slice(0,9);
+const seen=new Set();return articles.filter(a=>{const k=a.title.toLowerCase().trim();if(seen.has(k))return false;seen.add(k);return true}).slice(0,9);
+}
+function skeletonCards(n){
+const card=`<div class="skeleton-card"><div class="skeleton-image"></div><div class="skeleton-content"><div class="skeleton-line short"></div><div class="skeleton-line title"></div><div class="skeleton-line title2"></div><div class="skeleton-line text" style="margin-top:14px"></div><div class="skeleton-line text2"></div><div class="skeleton-line button"></div></div></div>`;
+return card.repeat(n);
+}
+async function loadNews(){
+newsGrid.innerHTML=skeletonCards(9);newsStatus.innerHTML=`<div class="spinner" style="width:16px;height:16px;display:inline-block;margin:0 8px 0 0;vertical-align:middle;border-width:2px"></div>Conectando con fuentes públicas de tecnología...`;
+try{
+let articles=await fetchArticles();
+if(!articles.length){
+newsStatus.innerHTML=`<div class="spinner" style="width:16px;height:16px;display:inline-block;margin:0 8px 0 0;vertical-align:middle;border-width:2px"></div>Reintentando conexión...`;
+await new Promise(r=>setTimeout(r,1500));
+articles=await fetchArticles();
+}
 if(!articles.length)throw new Error("No se encontraron noticias.");
 newsGrid.innerHTML=articles.map(a=>`<article class="news-card"><div class="news-image">${newsEmoji(a.title)}</div><div class="news-content"><div class="news-source">${escapeHTML(a.source)}</div><div class="news-date">${formatNewsDate(a.date)}</div><h3>${escapeHTML(a.title)}</h3><p>${escapeHTML(a.description)}</p><a href="${safeURL(a.link)}" target="_blank" rel="noopener noreferrer" class="news-button">LEER NOTICIA →</a></div></article>`).join("");
 newsStatus.innerHTML="🟢 <b style='color:#00e5ff'>Noticias actualizadas</b> · "+articles.length+" artículos encontrados";

@@ -15,7 +15,6 @@
 <meta name="twitter:title" content="PHONEVERSE ⚡ | Los monstruos del móvil">
 <meta name="twitter:description" content="Ranking, comparador y finder de smartphones 2026 + noticias tecnológicas en vivo.">
 
-
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
@@ -53,8 +52,11 @@ input{width:min(360px,100%)}input:focus,select:focus{border-color:#00e5ff}
 .copy-link-btn:hover{border-color:#00e5ff;color:#00e5ff}
 .copy-toast{position:absolute;top:-38px;left:50%;transform:translateX(-50%) translateY(6px);background:#00e5ff;color:#061018;font-size:12px;font-weight:800;padding:7px 12px;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease}
 .copy-link-btn.copied .copy-toast{opacity:1;transform:translateX(-50%) translateY(0)}
+.fav-toggle-btn{background:#0e1221;border:1px solid #242b40;color:#b9c0d5;border-radius:12px;padding:13px 16px;cursor:pointer;font-size:13px;font-weight:700;transition:.2s}
+.fav-toggle-btn:hover{border-color:#ffd66b;color:#ffd66b}
+.fav-toggle-btn.active{background:rgba(255,214,107,.12);border-color:#ffd66b;color:#ffd66b}
 
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;padding-bottom:80px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;padding-bottom:10px}
 .card{background:rgba(15,19,34,.76);border:1px solid #252c42;border-radius:22px;padding:24px;transition:.35s;animation:cardIn .55s ease both;position:relative}
 .card:hover{transform:translateY(-7px);border-color:rgba(0,229,255,.55);box-shadow:0 18px 50px rgba(0,0,0,.35)}
 .feature{grid-column:1/-1;border-color:rgba(168,76,255,.35)}
@@ -86,18 +88,32 @@ input{width:min(360px,100%)}input:focus,select:focus{border-color:#00e5ff}
 .specs{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:18px}.spec{padding:10px;background:#0b0f1b;border-radius:10px;color:#aeb6c9;font-size:12px}.spec b{display:block;color:#f4f6ff;font-size:13px;margin-top:3px}
 .tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:15px}.tag{font-size:10px;padding:6px 8px;border-radius:7px;background:#161c2d;color:#9da8bf}
 
+.price-row{display:flex;align-items:center;gap:8px;margin-top:14px;background:#0b0f1b;border:1px solid #20263a;border-radius:10px;padding:8px 10px;flex-wrap:wrap}
+.price-row label{font-size:11px;color:#7f8aa4;flex:none}
+.price-row input{padding:6px 8px;font-size:12px;width:120px;border-radius:8px}
+.value-badge{font-size:11px;color:#00e5ff;font-weight:800;white-space:nowrap}
+
+.note-textarea{width:100%;margin-top:10px;background:#0b0f1b;border:1px solid #20263a;border-radius:10px;padding:10px;color:#c5cbda;font-size:12px;font-family:inherit;resize:vertical;min-height:50px;transition:border-color .2s}
+.note-textarea:focus{outline:none;border-color:#00e5ff}
+
 .panel{margin:30px 0 80px;padding:35px;border:1px solid #252c42;border-radius:25px;background:rgba(12,16,28,.82)}
 .compare-selects{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:center}
 .compare-box{background:#0b0f1b;border:1px solid #252c42;border-radius:18px;padding:22px;text-align:center}.compare-box h3{margin-bottom:15px;color:#00e5ff}.select-phone{width:100%}
 .vs{font-size:28px;font-weight:900;color:#a84cff}
 .button{display:block;margin:25px auto 0;padding:14px 28px;border:0;border-radius:12px;font-weight:900;cursor:pointer;color:#061018;background:linear-gradient(100deg,#00e5ff,#66ffca);transition:.25s}
 .button:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,229,255,.15)}
+.duel-btn{display:block;margin:14px auto 0;padding:12px 24px;border:1px solid #a84cff;border-radius:12px;font-weight:900;cursor:pointer;color:#a84cff;background:transparent;transition:.25s}
+.duel-btn:hover{background:rgba(168,76,255,.12);transform:translateY(-2px)}
+.history-chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:20px}
+.history-chip{font-size:11px;padding:8px 12px;border-radius:999px;background:#0b0f1b;border:1px solid #252c42;color:#9da8bf;cursor:pointer;transition:.2s}
+.history-chip:hover{border-color:#00e5ff;color:#00e5ff}
 .result{display:none;margin-top:30px;opacity:0;transform:translateY(15px);transition:opacity .4s ease,transform .4s ease}.result.show{display:block}.result.show.animate{opacity:1;transform:translateY(0)}
 .battle-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:20px}.battle-row{background:#0b0f1b;border:1px solid #20263a;border-radius:14px;padding:16px;transition:box-shadow .3s ease,border-color .3s ease}.battle-row.flash{animation:rowFlash .6s ease}.label{text-align:center;color:#8791aa;font-size:12px;margin-bottom:10px}.battle-values{display:grid;grid-template-columns:1fr auto 1fr;text-align:center;gap:10px}.winner{color:#00e5ff;font-weight:900}
 .battle-values div{transition:transform .3s ease,opacity .3s ease}
 .battle-values.flash div{animation:valueFlash .5s ease}
 @keyframes rowFlash{0%{box-shadow:0 0 0 0 rgba(0,229,255,0);border-color:#20263a}30%{box-shadow:0 0 25px 2px rgba(0,229,255,.35);border-color:#00e5ff}100%{box-shadow:0 0 0 0 rgba(0,229,255,0);border-color:#20263a}}
 @keyframes valueFlash{0%{transform:scale(1);opacity:1}35%{transform:scale(1.18);opacity:.6}100%{transform:scale(1);opacity:1}}
+.radar-wrap{max-width:420px;margin:30px auto 0;background:#0b0f1b;border:1px solid #20263a;border-radius:18px;padding:20px}
 
 .finder-question{margin:25px 0}.finder-question h3{margin-bottom:14px;font-size:16px}.finder-options{display:flex;gap:10px;flex-wrap:wrap}
 .finder-option{padding:12px 16px;border:1px solid #252c42;background:#0b0f1b;color:#b9c0d5;border-radius:12px;cursor:pointer;transition:.2s}
@@ -110,12 +126,43 @@ input{width:min(360px,100%)}input:focus,select:focus{border-color:#00e5ff}
 .finder-pick .pick-rank{color:#00e5ff;font-size:11px;font-weight:800;letter-spacing:1px}
 .finder-pick h4{margin:8px 0 4px;font-size:16px}
 .finder-pick .pick-score{color:#8791aa;font-size:12px}
+.share-btn{display:block;margin:20px auto 0;padding:11px 22px;border-radius:12px;border:1px solid #00e5ff;background:transparent;color:#00e5ff;font-weight:800;cursor:pointer;transition:.2s;position:relative}
+.share-btn:hover{background:rgba(0,229,255,.1);transform:translateY(-2px)}
+.share-btn .copy-toast{position:absolute;top:-38px;left:50%;transform:translateX(-50%) translateY(6px);background:#00e5ff;color:#061018;font-size:12px;font-weight:800;padding:7px 12px;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease}
+.share-btn.copied .copy-toast{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ---- Lista compacta (rank 11+) ---- */
+.compact-list{display:flex;flex-direction:column;gap:10px;padding-bottom:40px}
+.compact-row{display:grid;grid-template-columns:44px 46px 1fr auto auto auto 38px;align-items:center;gap:14px;background:rgba(15,19,34,.7);border:1px solid #252c42;border-radius:14px;padding:12px 16px;transition:.25s;animation:cardIn .5s ease both}
+.compact-row:hover{border-color:rgba(0,229,255,.5);transform:translateX(4px)}
+.compact-rank{font-weight:900;color:#8791aa;font-size:14px;text-align:center}
+.compact-art{width:36px;height:50px;border-radius:8px;background:#0b0f1b;display:grid;place-items:center;font-size:16px;flex:none}
+.compact-name{min-width:0}
+.compact-name b{display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.compact-name span{color:#77829d;font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+.compact-score{text-align:right;color:#00e5ff;font-weight:900;font-size:15px;white-space:nowrap}
+.compact-score small{display:block;color:#7f8aa4;font-weight:600;font-size:10px}
+.compact-spec{color:#aeb6c9;font-size:12px;white-space:nowrap;text-align:right}
+.compact-spec small{display:block;color:#66718b;font-size:10px}
+.compact-fav{width:32px;height:32px;border-radius:9px;border:1px solid #252c42;background:#0b0f1b;color:#5a6480;display:grid;place-items:center;cursor:pointer;font-size:15px;transition:.2s;flex:none}
+.compact-fav:hover{border-color:#ffd66b;color:#ffd66b}
+.compact-fav.active{color:#ffd66b;border-color:#ffd66b;background:rgba(255,214,107,.1)}
+.section-divider{display:flex;align-items:center;gap:14px;margin:10px 0 18px;color:#66718b;font-size:12px;letter-spacing:1px;text-transform:uppercase}
+.section-divider:before,.section-divider:after{content:"";flex:1;height:1px;background:#20263a}
+@media(max-width:700px){
+.compact-row{grid-template-columns:32px 34px 1fr auto 34px;gap:10px}
+.compact-spec{display:none}
+}
 
 .compare-table{margin-bottom:90px;padding:28px;border:1px solid #252c42;border-radius:22px;background:rgba(12,16,28,.78);overflow:auto}
 table{width:100%;border-collapse:collapse;min-width:700px}th,td{padding:15px;text-align:left;border-bottom:1px solid #20263a}th{color:#00e5ff;font-size:12px}td{color:#c5cbda;font-size:13px}
+th.sortable{cursor:pointer;user-select:none}
+th.sortable:hover{color:#66ffca}
+.sort-arrow{margin-left:4px;font-size:10px;opacity:.8}
 
 .news-section{margin:30px 0 90px}.news-header{text-align:center;margin-bottom:35px}.news-header h2{font-size:40px;margin:15px 0 10px}.news-header h2 span{color:#00e5ff}.news-header p{color:#8791aa;line-height:1.6}
 .news-status{width:min(800px,100%);margin:0 auto 25px;padding:14px 18px;border-radius:12px;background:#0b0f1b;border:1px solid #252c42;color:#8791aa;text-align:center;font-size:13px}
+.news-filter-row{display:flex;justify-content:center;margin-bottom:20px}
 .news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.news-card{background:rgba(15,19,34,.82);border:1px solid #252c42;border-radius:22px;overflow:hidden;transition:.35s}.news-card:hover{transform:translateY(-8px);border-color:#00e5ff;box-shadow:0 20px 50px rgba(0,229,255,.08)}
 .news-image{height:180px;display:grid;place-items:center;font-size:65px;background:radial-gradient(circle at 30% 30%,rgba(0,229,255,.25),transparent 35%),linear-gradient(135deg,#10182d,#21143b)}
 .news-content{padding:22px}.news-source{font-size:11px;color:#00e5ff;font-weight:800;text-transform:uppercase;letter-spacing:1px}.news-date{color:#66718b;font-size:11px;margin-top:5px}.news-content h3{font-size:19px;line-height:1.35;margin:10px 0}.news-content p{font-size:13px;color:#8f99b1;line-height:1.6}
@@ -135,7 +182,6 @@ table{width:100%;border-collapse:collapse;min-width:700px}th,td{padding:15px;tex
 .skeleton-line.text2{width:75%}
 .skeleton-line.button{height:30px;width:45%;border-radius:9px;margin-top:14px}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
-
 
 footer{border-top:1px solid #1d2435;padding:35px 7%;text-align:center;color:#66718b;font-size:12px;line-height:1.7}footer b{color:#9da8bf}
 
@@ -163,15 +209,21 @@ body.light .hero p{color:#4a5474}
 body.light .menu-toggle,body.light .theme-toggle{background:#fff;border-color:#dde2f0;color:#131a2c}
 body.light .nav-links{background:#fff;border-color:#dde2f0}
 body.light .nav-links a{color:#4a5474}
-body.light input,body.light select,body.light .copy-link-btn{background:#fff;border-color:#dde2f0;color:#131a2c}
-body.light .card,body.light .panel,body.light .compare-table,body.light .news-card,body.light .news-status,body.light .compare-box,body.light .battle-row,body.light .finder-option,body.light .finder-result,body.light .skeleton-card,body.light .news-error{background:#fff;border-color:#dde2f0}
-body.light .section-title p,body.light .brand,body.light .score small,body.light .news-header p,body.light .label{color:#6b7593}
+body.light input,body.light select,body.light .copy-link-btn,body.light .fav-toggle-btn{background:#fff;border-color:#dde2f0;color:#131a2c}
+body.light .card,body.light .panel,body.light .compare-table,body.light .news-card,body.light .news-status,body.light .compare-box,body.light .battle-row,body.light .finder-option,body.light .finder-result,body.light .skeleton-card,body.light .news-error,body.light .price-row,body.light .note-textarea,body.light .history-chip,body.light .radar-wrap,body.light .finder-pick,body.light .compact-row,body.light .compact-art,body.light .compact-fav{background:#fff;border-color:#dde2f0}
+body.light .section-title p,body.light .brand,body.light .score small,body.light .news-header p,body.light .label,body.light .compact-name span,body.light .compact-score small,body.light .compact-spec small{color:#6b7593}
 body.light .spec{background:#f4f6fb;color:#4a5474}
 body.light .spec b{color:#131a2c}
 body.light .tag{background:#eef1fa;color:#5a6480}
 body.light td{color:#354061}
+body.light th{color:#0079a3}
 body.light .fav-btn{background:#fff;border-color:#dde2f0}
-body.light .finder-pick{background:#f4f6fb;border-color:#dde2f0}
+body.light .note-textarea{color:#354061}
+body.light .duel-btn{color:#7a2fd6;border-color:#7a2fd6}
+body.light .share-btn{color:#0079a3;border-color:#0079a3}
+body.light .history-chip{color:#5a6480}
+body.light .section-divider{color:#8791aa}
+body.light .section-divider:before,body.light .section-divider:after{background:#dde2f0}
 </style>
 </head>
 
@@ -191,21 +243,25 @@ body.light .finder-pick{background:#f4f6fb;border-color:#dde2f0}
 <span class="badge">RANKING DE RENDIMIENTO · 2026</span>
 <h1>LOS MONSTRUOS<br>DEL MÓVIL.</h1>
 <p>Descubre smartphones, compara su potencia, encuentra el celular ideal y mantente al día con las últimas noticias del mundo móvil.</p>
-<a class="cta" href="#ranking">VER EL TOP 10 ↓</a>
+<a class="cta" href="#ranking">VER EL TOP 20 ↓</a>
 </div>
 </header>
 
 <main class="container">
 <section id="ranking">
-<div class="section-title"><h2>🏆 Top 10 de potencia</h2><p>Datos orientativos para comparar rendimiento. AnTuTu es una aproximación.</p></div>
+<div class="section-title"><h2>🏆 Top 20 de potencia</h2><p>Datos orientativos para comparar rendimiento. AnTuTu es una aproximación.</p></div>
 <div class="controls">
-<input id="search" type="text" placeholder="🔎 Buscar celular, marca o procesador...">
+<input id="search" type="text" placeholder="🔎 Buscar celular, marca o procesador..." list="phoneList">
+<datalist id="phoneList"></datalist>
 <select id="filter">
-<option value="all">Todas las marcas</option><option value="RedMagic">RedMagic</option><option value="OPPO">OPPO</option><option value="iQOO">iQOO</option><option value="POCO">POCO</option><option value="OnePlus">OnePlus</option><option value="Xiaomi">Xiaomi</option><option value="Samsung">Samsung</option><option value="vivo">vivo</option>
+<option value="all">Todas las marcas</option><option value="RedMagic">RedMagic</option><option value="OPPO">OPPO</option><option value="iQOO">iQOO</option><option value="POCO">POCO</option><option value="OnePlus">OnePlus</option><option value="Xiaomi">Xiaomi</option><option value="Samsung">Samsung</option><option value="vivo">vivo</option><option value="ASUS">ASUS</option><option value="Honor">Honor</option><option value="Realme">Realme</option><option value="Sony">Sony</option><option value="Huawei">Huawei</option><option value="Apple">Apple</option><option value="Nothing">Nothing</option><option value="Google">Google</option>
 </select>
 <button class="copy-link-btn" id="copyLinkBtn">🔗 Copiar link<span class="copy-toast">¡Copiado! ✅</span></button>
+<button class="fav-toggle-btn" id="favOnlyBtn">⭐ Solo favoritos</button>
 </div>
 <section class="grid" id="phoneGrid"></section>
+<div class="section-divider" id="compactDivider" style="display:none">Resto del ranking</div>
+<section class="compact-list" id="phoneCompactList"></section>
 </section>
 
 <section class="panel" id="comparar">
@@ -216,7 +272,14 @@ body.light .finder-pick{background:#f4f6fb;border-color:#dde2f0}
 <div class="compare-box"><h3>📱 CELULAR 2</h3><select id="phone2" class="select-phone"></select></div>
 </div>
 <button class="button" onclick="comparePhones()">⚡ COMPARAR CELULARES</button>
-<div class="result" id="result"><h2 id="battleTitle" style="text-align:center"></h2><div class="battle-grid" id="battleGrid"></div><div id="finalWinner" style="margin-top:25px;padding:22px;text-align:center;border-radius:18px;background:#0b0f1b;border:1px solid #30384f"></div></div>
+<button class="duel-btn" id="duelBtn">🎲 Duelo aleatorio</button>
+<div class="history-chips" id="historyChips"></div>
+<div class="result" id="result">
+<h2 id="battleTitle" style="text-align:center"></h2>
+<div class="battle-grid" id="battleGrid"></div>
+<div class="radar-wrap"><canvas id="radarCanvas" height="260"></canvas></div>
+<div id="finalWinner" style="margin-top:25px;padding:22px;text-align:center;border-radius:18px;background:#0b0f1b;border:1px solid #30384f"></div>
+</div>
 </section>
 
 <section class="panel" id="finder">
@@ -228,17 +291,25 @@ body.light .finder-pick{background:#f4f6fb;border-color:#dde2f0}
 <button class="finder-option" data-price="low">💸 Muy importante</button><button class="finder-option" data-price="medium">💰 Importante</button><button class="finder-option" data-price="high">💎 No importa</button>
 </div></div>
 <button class="button" onclick="findPhone()">⚡ ENCONTRAR MI CELULAR</button>
-<div class="finder-result" id="finderResult"><span>🎯 TU RECOMENDACIÓN</span><h3 id="finderName"></h3><p id="finderScore"></p><p id="finderReason"></p><div class="finder-top3" id="finderTop3"></div></div>
+<div class="finder-result" id="finderResult"><span>🎯 TU RECOMENDACIÓN</span><h3 id="finderName"></h3><p id="finderScore"></p><p id="finderReason"></p><div class="finder-top3" id="finderTop3"></div><button class="share-btn" id="shareFinderBtn">📤 Compartir resultado<span class="copy-toast">¡Copiado! ✅</span></button></div>
 </section>
 
 <section class="compare-table">
-<div class="section-title"><h2>📊 Comparación rápida</h2><p>Una vista sencilla de los monstruos.</p></div>
-<table><thead><tr><th>Celular</th><th>Procesador</th><th>AnTuTu aprox.</th><th>PHONEVERSE</th><th>RAM</th><th>Batería</th></tr></thead><tbody id="tableBody"></tbody></table>
+<div class="section-title"><h2>📊 Comparación rápida</h2><p>Toca un encabezado para ordenar la tabla.</p></div>
+<table><thead><tr>
+<th class="sortable" data-key="name">Celular<span class="sort-arrow" data-arrow="name"></span></th>
+<th class="sortable" data-key="cpu">Procesador<span class="sort-arrow" data-arrow="cpu"></span></th>
+<th class="sortable" data-key="antutu">AnTuTu aprox.<span class="sort-arrow" data-arrow="antutu"></span></th>
+<th class="sortable" data-key="score">PHONEVERSE<span class="sort-arrow" data-arrow="score"></span></th>
+<th class="sortable" data-key="ram">RAM<span class="sort-arrow" data-arrow="ram"></span></th>
+<th class="sortable" data-key="battery">Batería<span class="sort-arrow" data-arrow="battery"></span></th>
+</tr></thead><tbody id="tableBody"></tbody></table>
 </section>
 
 <section class="news-section" id="noticias">
 <div class="news-header"><span class="badge">📰 PHONEVERSE NEWS · EN VIVO</span><h2>LAS NOTICIAS DEL <span>MUNDO MÓVIL.</span></h2><p>Noticias tecnológicas obtenidas desde fuentes públicas.</p></div>
 <div class="news-status" id="newsStatus">🔄 Cargando noticias reales...</div>
+<div class="news-filter-row"><select id="newsBrandFilter"><option value="all">Todas las marcas</option></select></div>
 <div class="news-grid" id="newsGrid"></div>
 </section>
 </main>
@@ -250,6 +321,7 @@ body.light .finder-pick{background:#f4f6fb;border-color:#dde2f0}
 <p>© 2026 PHONEVERSE · Tecnología móvil en un solo lugar.</p>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
 <script>
 const phones=[
 {rank:1,name:"RedMagic 11 Pro+",brand:"RedMagic",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:4005248,ram:"16 GB",storage:"512 GB",battery:"7.500 mAh",screen:"6.85” AMOLED · 144 Hz",camera:"50 + 50 MP",tag:"GAMING BEAST"},
@@ -261,15 +333,42 @@ const phones=[
 {rank:7,name:"Galaxy S26 Ultra",brand:"Samsung",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3437807,ram:"12 GB",storage:"1 TB",battery:"5.000 mAh",screen:"6.9” Dynamic AMOLED · 120 Hz",camera:"200 MP + telefoto",tag:"ULTRA"},
 {rank:8,name:"vivo X300 Pro",brand:"vivo",image:"",cpu:"Dimensity 9500",antutu:3258010,ram:"16 GB",storage:"512 GB",battery:"6.510 mAh",screen:"6.78” AMOLED · 120 Hz",camera:"50 + 50 + 200 MP",tag:"PHOTO PRO"},
 {rank:9,name:"OPPO Find X9 Pro",brand:"OPPO",image:"",cpu:"Dimensity 9500",antutu:3254273,ram:"16 GB",storage:"512 GB",battery:"7.000 mAh",screen:"6.78” AMOLED · 120 Hz",camera:"50 + 50 + 200 MP",tag:"PRO"},
-{rank:10,name:"Xiaomi 17",brand:"Xiaomi",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3207732,ram:"12 GB",storage:"512 GB",battery:"6.330 mAh",screen:"6.3” AMOLED · 120 Hz",camera:"50 + 50 + 50 MP",tag:"COMPACT POWER"}
+{rank:10,name:"Xiaomi 17",brand:"Xiaomi",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3207732,ram:"12 GB",storage:"512 GB",battery:"6.330 mAh",screen:"6.3” AMOLED · 120 Hz",camera:"50 + 50 + 50 MP",tag:"COMPACT POWER"},
+{rank:11,name:"ASUS ROG Phone 10",brand:"ASUS",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3150480,ram:"16 GB",storage:"512 GB",battery:"6.000 mAh",screen:"6.78” AMOLED · 165 Hz",camera:"50 + 13 MP",tag:"GAMER PRO"},
+{rank:12,name:"Honor Magic8 Pro",brand:"Honor",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3082150,ram:"16 GB",storage:"512 GB",battery:"5.900 mAh",screen:"6.71” AMOLED · 120 Hz",camera:"200 + 50 + 50 MP",tag:"AI CAMERA"},
+{rank:13,name:"Realme GT8 Pro",brand:"Realme",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:2991640,ram:"12 GB",storage:"512 GB",battery:"6.500 mAh",screen:"6.8” AMOLED · 144 Hz",camera:"50 + 50 + 50 MP",tag:"FLAGSHIP KILLER"},
+{rank:14,name:"Sony Xperia 1 VII",brand:"Sony",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:2873920,ram:"12 GB",storage:"256 GB",battery:"5.000 mAh",screen:"6.5” 4K OLED · 120 Hz",camera:"48 + 48 + 12 MP",tag:"PRO DISPLAY"},
+{rank:15,name:"Huawei Mate 80 Pro",brand:"Huawei",image:"",cpu:"Kirin 9020",antutu:2754310,ram:"16 GB",storage:"512 GB",battery:"5.700 mAh",screen:"6.8” OLED · 120 Hz",camera:"50 + 40 + 64 MP",tag:"PHOTO LEGEND"},
+{rank:16,name:"OnePlus 13",brand:"OnePlus",image:"",cpu:"Snapdragon 8 Elite",antutu:3116931,ram:"16 GB",storage:"512 GB",battery:"6.000 mAh",screen:"6.82” LTPO AMOLED · 120 Hz",camera:"50 + 50 + 50 MP",tag:"ALL-ROUNDER"},
+{rank:17,name:"Samsung Galaxy Z Fold7",brand:"Samsung",image:"",cpu:"Snapdragon 8 Elite for Galaxy",antutu:3065623,ram:"12 GB",storage:"256 GB",battery:"4.400 mAh",screen:"8” AMOLED plegable · 120 Hz",camera:"200 + 12 + 10 MP",tag:"FOLDABLE"},
+{rank:18,name:"Apple iPhone 17 Pro Max",brand:"Apple",image:"",cpu:"Apple A19 Pro",antutu:2590567,ram:"12 GB",storage:"256 GB",battery:"4.823 mAh",screen:"6.9” OLED · 120 Hz",camera:"48 + 48 + 12 MP",tag:"iOS FLAGSHIP"},
+{rank:19,name:"Nothing Phone (3)",brand:"Nothing",image:"",cpu:"Snapdragon 8s Gen 4",antutu:2300545,ram:"16 GB",storage:"256 GB",battery:"5.150 mAh",screen:"6.67” AMOLED · 120 Hz",camera:"50 + 50 + 50 MP",tag:"DESIGN ICON"},
+{rank:20,name:"Google Pixel 10 Pro XL",brand:"Google",image:"",cpu:"Google Tensor G5",antutu:1617706,ram:"16 GB",storage:"256 GB",battery:"5.200 mAh",screen:"6.8” OLED · 120 Hz",camera:"50 + 48 + 48 MP",tag:"AI CAMERA"}
 ];
 
-const grid=document.getElementById("phoneGrid"),tableBody=document.getElementById("tableBody"),search=document.getElementById("search"),filter=document.getElementById("filter");
+const TOP_CARD_LIMIT=10;
+
+const grid=document.getElementById("phoneGrid"),tableBody=document.getElementById("tableBody"),search=document.getElementById("search"),filter=document.getElementById("filter"),favOnlyBtn=document.getElementById("favOnlyBtn");
+const compactList=document.getElementById("phoneCompactList"),compactDivider=document.getElementById("compactDivider");
 const maxScore=Math.max(...phones.map(p=>p.antutu));
 function phoneverseScore(p){return Math.round(p.antutu/maxScore*100)}
 function fmt(n){return n.toLocaleString("es-CO")}
+function storageToGB(s){const value=parseFloat(s);return s.toUpperCase().includes("TB")?value*1024:value}
+function formatStorage(v){return v>=1024?(v/1024)+" TB":v+" GB"}
+function getCameraMP(p){const m=p.camera.match(/\d+/);return m?parseInt(m[0],10):0}
+function escapeAttr(value){return String(value).replace(/"/g,"&quot;")}
+function escapeHTML(value){return String(value).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
 
-/* ---- Favoritos (localStorage) ---- */
+const maxRAM=Math.max(...phones.map(p=>parseInt(p.ram)));
+const maxBatteryMah=Math.max(...phones.map(p=>parseInt(p.battery.replace(/\./g,""))));
+const maxStorageGB=Math.max(...phones.map(p=>storageToGB(p.storage)));
+const maxCameraMP=Math.max(...phones.map(p=>getCameraMP(p)));
+
+let showFavOnly=false;
+let currentList=[];
+let currentSort={key:null,dir:1};
+
+/* ---- Favoritos ---- */
 const FAV_KEY="phoneverse_favorites";
 function getFavorites(){try{return JSON.parse(localStorage.getItem(FAV_KEY))||[]}catch(e){return[]}}
 function saveFavorites(list){try{localStorage.setItem(FAV_KEY,JSON.stringify(list))}catch(e){}}
@@ -281,6 +380,44 @@ saveFavorites(favs);
 btn.classList.toggle("active",favs.includes(name));
 btn.textContent=favs.includes(name)?"★":"☆";
 btn.classList.remove("pulse");void btn.offsetWidth;btn.classList.add("pulse");
+if(showFavOnly)render();
+}
+
+/* ---- Notas personales ---- */
+const NOTE_KEY="phoneverse_notes";
+function getNotes(){try{return JSON.parse(localStorage.getItem(NOTE_KEY))||{}}catch(e){return{}}}
+function saveNotes(notes){try{localStorage.setItem(NOTE_KEY,JSON.stringify(notes))}catch(e){}}
+
+/* ---- Precios / calculadora precio-rendimiento ---- */
+const PRICE_KEY="phoneverse_prices";
+function getPrices(){try{return JSON.parse(localStorage.getItem(PRICE_KEY))||{}}catch(e){return{}}}
+function savePrices(prices){try{localStorage.setItem(PRICE_KEY,JSON.stringify(prices))}catch(e){}}
+function computeValuePoints(p,price){
+const num=parseFloat(price);
+if(!num||num<=0)return"";
+const val=(phoneverseScore(p)/num)*100000;
+return "💎 "+val.toFixed(2)+" pts/100k";
+}
+
+/* ---- Historial de comparaciones ---- */
+const HISTORY_KEY="phoneverse_history";
+function getHistory(){try{return JSON.parse(localStorage.getItem(HISTORY_KEY))||[]}catch(e){return[]}}
+function saveHistoryEntry(i1,i2){
+let history=getHistory().filter(h=>!(h.i1===i1&&h.i2===i2));
+history.unshift({i1,i2,n1:phones[i1].name,n2:phones[i2].name});
+history=history.slice(0,5);
+try{localStorage.setItem(HISTORY_KEY,JSON.stringify(history))}catch(e){}
+renderHistory();
+}
+function renderHistory(){
+const container=document.getElementById("historyChips");
+const history=getHistory();
+container.innerHTML=history.map(h=>`<button class="history-chip" data-i1="${h.i1}" data-i2="${h.i2}">${escapeHTML(h.n1)} 🆚 ${escapeHTML(h.n2)}</button>`).join("");
+container.querySelectorAll(".history-chip").forEach(chip=>chip.addEventListener("click",()=>{
+document.getElementById("phone1").value=chip.dataset.i1;
+document.getElementById("phone2").value=chip.dataset.i2;
+comparePhones();
+}));
 }
 
 function card(p){
@@ -288,6 +425,8 @@ const medal=p.rank===1?"gold":p.rank===2?"silver":p.rank===3?"bronze":"";
 const feature=p.rank===1?"feature":"";
 const width=Math.round(p.antutu/maxScore*100);
 const fav=isFavorite(p.name);
+const priceVal=getPrices()[p.name]||"";
+const noteVal=getNotes()[p.name]||"";
 return `<article class="card ${feature}">
 <button class="fav-btn ${fav?"active":""}" data-fav="${escapeAttr(p.name)}" title="Marcar como favorito" aria-label="Marcar ${escapeAttr(p.name)} como favorito">${fav?"★":"☆"}</button>
 <div class="top">
@@ -303,26 +442,86 @@ return `<article class="card ${feature}">
 <div class="spec">🖥️ Pantalla<b>${p.screen}</b></div><div class="spec">📸 Cámaras<b>${p.camera}</b></div>
 </div>
 <div class="tags"><span class="tag">⚡ Alto rendimiento</span><span class="tag">📊 AnTuTu aprox.</span><span class="tag">📱 2026</span></div>
+<div class="price-row">
+<label>💲 Precio</label>
+<input type="number" min="0" step="1" placeholder="Ej: 3200000" data-price="${escapeAttr(p.name)}" value="${escapeAttr(priceVal)}">
+<span class="value-badge" data-valuebadge="${escapeAttr(p.name)}">${computeValuePoints(p,priceVal)}</span>
+</div>
+<textarea class="note-textarea" data-note="${escapeAttr(p.name)}" placeholder="📝 Tus notas sobre este celular...">${escapeHTML(noteVal)}</textarea>
 </article>`;
 }
-function escapeAttr(value){return String(value).replace(/"/g,"&quot;")}
+
+function compactRow(p){
+const fav=isFavorite(p.name);
+return `<article class="compact-row">
+<div class="compact-rank">#${p.rank}</div>
+<div class="compact-art">📱</div>
+<div class="compact-name"><b>${escapeHTML(p.name)}</b><span>${escapeHTML(p.brand)}</span></div>
+<div class="compact-spec">${p.cpu}<small>Procesador</small></div>
+<div class="compact-spec">${p.battery}<small>Batería</small></div>
+<div class="compact-score">${phoneverseScore(p)}/100<small>AnTuTu ${fmt(p.antutu)}</small></div>
+<button class="compact-fav ${fav?"active":""}" data-fav="${escapeAttr(p.name)}" title="Marcar como favorito" aria-label="Marcar ${escapeAttr(p.name)} como favorito">${fav?"★":"☆"}</button>
+</article>`;
+}
 
 function render(){
 const q=search.value.toLowerCase().trim(),f=filter.value;
-const list=phones.filter(p=>(f==="all"||p.brand===f)&&(p.name+" "+p.brand+" "+p.cpu).toLowerCase().includes(q));
-grid.innerHTML=list.length?list.map(card).join(""):`<div style="grid-column:1/-1;text-align:center;padding:60px;color:#7f8aa4">😵 No encontramos ese celular.</div>`;
-tableBody.innerHTML=list.map(p=>`<tr><td><b>#${p.rank} ${p.name}</b></td><td>${p.cpu}</td><td>${fmt(p.antutu)}</td><td><b style="color:#00e5ff">${phoneverseScore(p)}/100</b></td><td>${p.ram}</td><td>${p.battery}</td></tr>`).join("");
+const list=phones.filter(p=>(f==="all"||p.brand===f)&&(!showFavOnly||isFavorite(p.name))&&(p.name+" "+p.brand+" "+p.cpu).toLowerCase().includes(q));
+const topList=list.filter(p=>p.rank<=TOP_CARD_LIMIT);
+const restList=list.filter(p=>p.rank>TOP_CARD_LIMIT);
+if(topList.length){
+grid.innerHTML=topList.map(card).join("");
+}else{
+grid.innerHTML="";
+}
+if(restList.length){
+compactDivider.style.display="flex";
+compactList.innerHTML=restList.map(compactRow).join("");
+}else{
+compactDivider.style.display="none";
+compactList.innerHTML="";
+}
+if(!list.length){
+grid.innerHTML=showFavOnly?`<div style="grid-column:1/-1;text-align:center;padding:60px;color:#7f8aa4">⭐ Aún no tienes favoritos que coincidan.</div>`:`<div style="grid-column:1/-1;text-align:center;padding:60px;color:#7f8aa4">😵 No encontramos ese celular.</div>`;
+}
+currentList=list;
+renderTable(list);
 const params=new URLSearchParams();
 if(search.value.trim())params.set("buscar",search.value.trim());
 if(f!=="all")params.set("marca",f);
+if(showFavOnly)params.set("favoritos","1");
 const newUrl=window.location.pathname+(params.toString()?"?"+params.toString():"")+window.location.hash;
 try{window.history.replaceState({},"",newUrl)}catch(e){}
 animateCounts();
 bindFavButtons();
+bindPriceInputs();
+bindNoteTextareas();
 }
 function bindFavButtons(){
 document.querySelectorAll("[data-fav]").forEach(btn=>{
 btn.addEventListener("click",()=>toggleFavorite(btn.dataset.fav,btn));
+});
+}
+function bindPriceInputs(){
+document.querySelectorAll("[data-price]").forEach(input=>{
+if(input.tagName!=="INPUT")return;
+input.addEventListener("input",()=>{
+const prices=getPrices();
+prices[input.dataset.price]=input.value;
+savePrices(prices);
+const phone=phones.find(p=>p.name===input.dataset.price);
+const badge=[...document.querySelectorAll("[data-valuebadge]")].find(el=>el.dataset.valuebadge===input.dataset.price);
+if(badge&&phone)badge.textContent=computeValuePoints(phone,input.value);
+});
+});
+}
+function bindNoteTextareas(){
+document.querySelectorAll("[data-note]").forEach(area=>{
+area.addEventListener("input",()=>{
+const notes=getNotes();
+notes[area.dataset.note]=area.value;
+saveNotes(notes);
+});
 });
 }
 function animateCounts(){
@@ -340,11 +539,25 @@ requestAnimationFrame(tick);
 }
 function loadFromURL(){
 const params=new URLSearchParams(window.location.search);
-const buscar=params.get("buscar"),marca=params.get("marca");
+const buscar=params.get("buscar"),marca=params.get("marca"),favoritos=params.get("favoritos");
 if(buscar)search.value=buscar;
 if(marca&&[...filter.options].some(o=>o.value===marca))filter.value=marca;
+if(favoritos==="1"){showFavOnly=true;favOnlyBtn.classList.add("active")}
 }
 search.addEventListener("input",render);filter.addEventListener("change",render);
+favOnlyBtn.addEventListener("click",()=>{
+showFavOnly=!showFavOnly;
+favOnlyBtn.classList.toggle("active",showFavOnly);
+render();
+});
+
+/* ---- Autocompletado ---- */
+function populateDatalist(){
+const datalist=document.getElementById("phoneList");
+const names=new Set();
+phones.forEach(p=>{names.add(p.name);names.add(p.brand)});
+datalist.innerHTML=[...names].map(n=>`<option value="${escapeAttr(n)}"></option>`).join("");
+}
 
 /* ---- Copiar link ---- */
 const copyLinkBtn=document.getElementById("copyLinkBtn");
@@ -356,15 +569,15 @@ else{
 const temp=document.createElement("textarea");temp.value=url;temp.style.position="fixed";temp.style.opacity="0";
 document.body.appendChild(temp);temp.focus();temp.select();document.execCommand("copy");document.body.removeChild(temp);
 }
-showCopyToast();
-}catch(e){showCopyToast(true)}
+showToast(copyLinkBtn,"¡Copiado! ✅");
+}catch(e){showToast(copyLinkBtn,"No se pudo copiar ❌")}
 });
-function showCopyToast(failed){
-const toast=copyLinkBtn.querySelector(".copy-toast");
-if(failed){toast.textContent="No se pudo copiar ❌"}else{toast.textContent="¡Copiado! ✅"}
-copyLinkBtn.classList.add("copied");
-clearTimeout(copyLinkBtn._toastTimer);
-copyLinkBtn._toastTimer=setTimeout(()=>copyLinkBtn.classList.remove("copied"),1800);
+function showToast(btn,message){
+const toast=btn.querySelector(".copy-toast");
+if(toast)toast.textContent=message;
+btn.classList.add("copied");
+clearTimeout(btn._toastTimer);
+btn._toastTimer=setTimeout(()=>btn.classList.remove("copied"),1800);
 }
 
 /* ---- Dark/Light mode ---- */
@@ -392,29 +605,100 @@ phones.forEach((p,index)=>{const o1=document.createElement("option");o1.value=in
 p2.value="1";
 }
 
-function storageToGB(s){const value=parseFloat(s);return s.toUpperCase().includes("TB")?value*1024:value}
-function formatStorage(v){return v>=1024?(v/1024)+" TB":v+" GB"}
+/* ---- Tabla ordenable ---- */
+function getSortValue(p,key){
+switch(key){
+case "name":return p.name.toLowerCase();
+case "cpu":return p.cpu.toLowerCase();
+case "antutu":return p.antutu;
+case "score":return phoneverseScore(p);
+case "ram":return parseInt(p.ram);
+case "battery":return parseInt(p.battery.replace(/\./g,""));
+default:return 0;
+}
+}
+function renderTable(list){
+let sorted=[...list];
+if(currentSort.key){
+sorted.sort((a,b)=>{
+const va=getSortValue(a,currentSort.key),vb=getSortValue(b,currentSort.key);
+if(va<vb)return-1*currentSort.dir;
+if(va>vb)return 1*currentSort.dir;
+return 0;
+});
+}
+tableBody.innerHTML=sorted.map(p=>`<tr><td><b>#${p.rank} ${p.name}</b></td><td>${p.cpu}</td><td>${fmt(p.antutu)}</td><td><b style="color:#00e5ff">${phoneverseScore(p)}/100</b></td><td>${p.ram}</td><td>${p.battery}</td></tr>`).join("");
+document.querySelectorAll(".sort-arrow").forEach(arrow=>{
+arrow.textContent=arrow.dataset.arrow===currentSort.key?(currentSort.dir===1?"▲":"▼"):"";
+});
+}
+function initTableSorting(){
+document.querySelectorAll("th.sortable").forEach(th=>{
+th.addEventListener("click",()=>{
+const key=th.dataset.key;
+if(currentSort.key===key){currentSort.dir*=-1}else{currentSort={key,dir:1}}
+renderTable(currentList);
+});
+});
+}
+
+/* ---- Comparador + radar + duelo + historial ---- */
 let lastComparison=null;
+let radarChart=null;
 function comparePhones(){
-const p1=phones[document.getElementById("phone1").value],p2=phones[document.getElementById("phone2").value];
+const i1=parseInt(document.getElementById("phone1").value,10);
+const i2=parseInt(document.getElementById("phone2").value,10);
+const p1=phones[i1],p2=phones[i2];
 document.getElementById("battleTitle").innerHTML=`${p1.name} <span style="color:#8791aa"> VS </span> ${p2.name}`;
 const stats=[["⚡ AnTuTu",p1.antutu,p2.antutu,v=>fmt(v)],["🏆 PHONEVERSE",phoneverseScore(p1),phoneverseScore(p2),v=>v+"/100"],["🧠 RAM",parseInt(p1.ram),parseInt(p2.ram),v=>v+" GB"],["🔋 Batería",parseInt(p1.battery.replace(/\./g,"")),parseInt(p2.battery.replace(/\./g,"")),v=>v.toLocaleString("es-CO")+" mAh"],["💾 Almacenamiento",storageToGB(p1.storage),storageToGB(p2.storage),formatStorage]];
-const key=p1.name+"|"+p2.name;
+const key=i1+"|"+i2;
 const isNewComparison=lastComparison!==key;
 lastComparison=key;
 document.getElementById("battleGrid").innerHTML=stats.map(s=>`<div class="battle-row${isNewComparison?" flash":""}"><div class="label">${s[0]}</div><div class="battle-values${isNewComparison?" flash":""}"><div class="${s[1]>s[2]?"winner":""}">${s[3](s[1])}</div><div>VS</div><div class="${s[2]>s[1]?"winner":""}">${s[3](s[2])}</div></div></div>`).join("");
 const winner=p1.antutu>p2.antutu?p1:p2;
 document.getElementById("finalWinner").innerHTML=`<span style="color:#8791aa">🏆 GANADOR</span><h2 style="color:#00e5ff;margin:8px">${winner.name} ⚡</h2>${phoneverseScore(winner)}/100 PHONEVERSE SCORE`;
+renderRadar(p1,p2);
+saveHistoryEntry(i1,i2);
 const resultEl=document.getElementById("result");resultEl.classList.remove("animate");resultEl.classList.add("show");requestAnimationFrame(()=>requestAnimationFrame(()=>resultEl.classList.add("animate")));
 }
+function renderRadar(p1,p2){
+const canvas=document.getElementById("radarCanvas");
+if(!canvas||typeof Chart==="undefined")return;
+const labels=["AnTuTu","RAM","Batería","Almacenamiento","Cámara"];
+const dataFor=p=>[phoneverseScore(p),Math.round(parseInt(p.ram)/maxRAM*100),Math.round(parseInt(p.battery.replace(/\./g,""))/maxBatteryMah*100),Math.round(storageToGB(p.storage)/maxStorageGB*100),Math.round(getCameraMP(p)/maxCameraMP*100)];
+const isLight=document.body.classList.contains("light");
+const gridColor=isLight?"rgba(0,0,0,.1)":"rgba(255,255,255,.08)";
+const labelColor=isLight?"#4a5474":"#b9c0d5";
+if(radarChart)radarChart.destroy();
+radarChart=new Chart(canvas.getContext("2d"),{
+type:"radar",
+data:{labels,datasets:[
+{label:p1.name,data:dataFor(p1),borderColor:"#00e5ff",backgroundColor:"rgba(0,229,255,.18)",pointBackgroundColor:"#00e5ff"},
+{label:p2.name,data:dataFor(p2),borderColor:"#a84cff",backgroundColor:"rgba(168,76,255,.18)",pointBackgroundColor:"#a84cff"}
+]},
+options:{
+responsive:true,
+scales:{r:{beginAtZero:true,max:100,ticks:{display:false,stepSize:20},grid:{color:gridColor},angleLines:{color:gridColor},pointLabels:{color:labelColor,font:{size:11}}}},
+plugins:{legend:{labels:{color:labelColor,font:{size:11}}}}
+}
+});
+}
+document.getElementById("duelBtn").addEventListener("click",()=>{
+let i1=Math.floor(Math.random()*phones.length);
+let i2=Math.floor(Math.random()*phones.length);
+while(i2===i1){i2=Math.floor(Math.random()*phones.length)}
+document.getElementById("phone1").value=i1;
+document.getElementById("phone2").value=i2;
+comparePhones();
+});
 
-let finderUse="",finderPrice="";
+/* ---- Finder + top 3 + compartir ---- */
+let finderUse="",finderPrice="",lastFinderWinner=null;
 document.querySelectorAll(".finder-option").forEach(button=>button.addEventListener("click",()=>{
 if(button.dataset.use){finderUse=button.dataset.use;document.querySelectorAll("[data-use]").forEach(b=>b.classList.remove("selected"))}
-if(button.dataset.price){finderPrice=button.dataset.price;document.querySelectorAll("[data-price]").forEach(b=>b.classList.remove("selected"))}
+if(button.dataset.price){finderPrice=button.dataset.price;document.querySelectorAll("[data-price]").forEach(b=>{if(b.classList.contains("finder-option"))b.classList.remove("selected")})}
 button.classList.add("selected");
 }));
-
 function scorePhoneForFinder(phone){
 let score=phoneverseScore(phone);
 if(finderUse==="gaming"){if(phone.brand==="RedMagic")score+=15;if(phone.brand==="iQOO")score+=10;if(phone.brand==="POCO")score+=8}
@@ -431,6 +715,7 @@ if(!finderUse||!finderPrice){alert("⚠️ Responde las dos preguntas primero.")
 let scores=phones.map(phone=>({phone,score:scorePhoneForFinder(phone)}));
 scores.sort((a,b)=>b.score-a.score);
 const winner=scores[0].phone;
+lastFinderWinner=winner;
 const top3=scores.slice(0,3);
 const reasons={gaming:"🎮 Excelente rendimiento para juegos y cargas pesadas.",camera:"📸 Una gran opción para quienes priorizan fotografía.",battery:"🔋 Su gran batería lo hace ideal para largas jornadas.",power:"⚡ Su rendimiento lo coloca entre los monstruos de PHONEVERSE.",value:"💰 Tiene una combinación equilibrada de rendimiento y características."};
 document.getElementById("finderName").textContent=winner.name;document.getElementById("finderScore").textContent=phoneverseScore(winner)+"/100 PHONEVERSE SCORE";document.getElementById("finderReason").textContent=reasons[finderUse];
@@ -438,7 +723,22 @@ const medals=["🥇","🥈","🥉"];
 document.getElementById("finderTop3").innerHTML=top3.map((item,i)=>`<div class="finder-pick"><span class="pick-medal">${medals[i]}</span><div class="pick-rank">TOP ${i+1}</div><h4>${item.phone.name}</h4><div class="pick-score">${phoneverseScore(item.phone)}/100 PHONEVERSE SCORE</div></div>`).join("");
 const finderResultEl=document.getElementById("finderResult");finderResultEl.classList.remove("animate");finderResultEl.classList.add("show");requestAnimationFrame(()=>requestAnimationFrame(()=>finderResultEl.classList.add("animate")));
 }
+const shareFinderBtn=document.getElementById("shareFinderBtn");
+shareFinderBtn.addEventListener("click",async()=>{
+if(!lastFinderWinner)return;
+const text=`🎯 Mi celular ideal según PHONEVERSE es: ${lastFinderWinner.name} (${phoneverseScore(lastFinderWinner)}/100) ⚡`;
+try{
+if(navigator.share){await navigator.share({title:"PHONEVERSE",text});return}
+if(navigator.clipboard&&navigator.clipboard.writeText){await navigator.clipboard.writeText(text)}
+else{
+const temp=document.createElement("textarea");temp.value=text;temp.style.position="fixed";temp.style.opacity="0";
+document.body.appendChild(temp);temp.focus();temp.select();document.execCommand("copy");document.body.removeChild(temp);
+}
+showToast(shareFinderBtn,"¡Copiado! ✅");
+}catch(e){/* el usuario canceló el panel de compartir */}
+});
 
+/* ---- Noticias ---- */
 const newsGrid=document.getElementById("newsGrid"),newsStatus=document.getElementById("newsStatus");
 const newsSources=[
 {name:"Android Central",url:"https://www.androidcentral.com/feeds/all"},
@@ -446,6 +746,7 @@ const newsSources=[
 {name:"TechRadar",url:"https://www.techradar.com/rss"}
 ];
 const corsProxies=["https://api.allorigins.win/raw?url=","https://api.codetabs.com/v1/proxy?quest=","https://corsproxy.io/?url=","https://thingproxy.freeboard.io/fetch/"];
+let allArticles=[];
 async function fetchWithTimeout(url,ms){
 const controller=new AbortController();
 const id=setTimeout(()=>controller.abort(),ms);
@@ -479,7 +780,6 @@ return{title,description:cleanText(rawDesc||"Lee la noticia completa en la fuent
 function cleanText(text){const temp=document.createElement("div");temp.innerHTML=text;let clean=temp.textContent||temp.innerText||"";clean=clean.replace(/\s+/g," ").trim();return clean.length>150?clean.substring(0,150)+"...":clean}
 function newsEmoji(title){const t=title.toLowerCase();if(t.includes("camera")||t.includes("cámara")||t.includes("photo"))return"📸";if(t.includes("battery")||t.includes("batería")||t.includes("charge"))return"🔋";if(t.includes("gaming")||t.includes("game"))return"🎮";if(t.includes("iphone")||t.includes("apple"))return"🍎";if(t.includes("samsung")||t.includes("galaxy"))return"📱";if(t.includes("ai")||t.includes("artificial intelligence"))return"🤖";return"⚡"}
 function formatNewsDate(date){if(!date)return"FECHA NO DISPONIBLE";const d=new Date(date);if(isNaN(d.getTime()))return"NOTICIA RECIENTE";return d.toLocaleDateString("es-CO",{day:"2-digit",month:"short",year:"numeric"}).toUpperCase()}
-function escapeHTML(value){return String(value).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
 function safeURL(value){try{const u=new URL(value);return u.protocol==="http:"||u.protocol==="https:"?u.href:"#"}catch(e){return"#"}}
 
 async function fetchArticles(){
@@ -491,6 +791,23 @@ function skeletonCards(n){
 const card=`<div class="skeleton-card"><div class="skeleton-image"></div><div class="skeleton-content"><div class="skeleton-line short"></div><div class="skeleton-line title"></div><div class="skeleton-line title2"></div><div class="skeleton-line text" style="margin-top:14px"></div><div class="skeleton-line text2"></div><div class="skeleton-line button"></div></div></div>`;
 return card.repeat(n);
 }
+function populateNewsBrandFilter(){
+const select=document.getElementById("newsBrandFilter");
+const brands=[...new Set(phones.map(p=>p.brand))];
+select.innerHTML=`<option value="all">Todas las marcas</option>`+brands.map(b=>`<option value="${escapeAttr(b)}">${escapeHTML(b)}</option>`).join("");
+select.addEventListener("change",()=>renderNewsList(filterArticlesByBrand(select.value)));
+}
+function filterArticlesByBrand(brand){
+if(brand==="all")return allArticles;
+return allArticles.filter(a=>a.title.toLowerCase().includes(brand.toLowerCase()));
+}
+function renderNewsList(articles){
+if(!articles.length){
+newsGrid.innerHTML=`<div class="news-error"><strong>📰 Sin noticias de esa marca</strong>Prueba con otra marca o revisa todas las noticias.</div>`;
+return;
+}
+newsGrid.innerHTML=articles.map(a=>`<article class="news-card"><div class="news-image">${newsEmoji(a.title)}</div><div class="news-content"><div class="news-source">${escapeHTML(a.source)}</div><div class="news-date">${formatNewsDate(a.date)}</div><h3>${escapeHTML(a.title)}</h3><p>${escapeHTML(a.description)}</p><a href="${safeURL(a.link)}" target="_blank" rel="noopener noreferrer" class="news-button">LEER NOTICIA →</a></div></article>`).join("");
+}
 async function loadNews(){
 newsGrid.innerHTML=skeletonCards(9);newsStatus.innerHTML=`<div class="spinner" style="width:16px;height:16px;display:inline-block;margin:0 8px 0 0;vertical-align:middle;border-width:2px"></div>Conectando con fuentes públicas de tecnología...`;
 try{
@@ -501,14 +818,15 @@ await new Promise(r=>setTimeout(r,1500));
 articles=await fetchArticles();
 }
 if(!articles.length)throw new Error("No se encontraron noticias.");
-newsGrid.innerHTML=articles.map(a=>`<article class="news-card"><div class="news-image">${newsEmoji(a.title)}</div><div class="news-content"><div class="news-source">${escapeHTML(a.source)}</div><div class="news-date">${formatNewsDate(a.date)}</div><h3>${escapeHTML(a.title)}</h3><p>${escapeHTML(a.description)}</p><a href="${safeURL(a.link)}" target="_blank" rel="noopener noreferrer" class="news-button">LEER NOTICIA →</a></div></article>`).join("");
+allArticles=articles;
+renderNewsList(filterArticlesByBrand(document.getElementById("newsBrandFilter").value));
 newsStatus.innerHTML="🟢 <b style='color:#00e5ff'>Noticias actualizadas</b> · "+articles.length+" artículos encontrados";
 }catch(error){
 console.error(error);newsGrid.innerHTML=`<div class="news-error"><strong>📰 No pudimos cargar las noticias</strong>Comprueba que tienes conexión a Internet y vuelve a cargar la página.<br><br><button class="button" onclick="loadNews()" style="margin-top:15px">🔄 INTENTAR DE NUEVO</button></div>`;newsStatus.innerHTML="🔴 No se pudo conectar con las fuentes de noticias.";
 }
 }
 
-initTheme();loadFromURL();render();loadSelectors();loadNews();
+initTheme();loadFromURL();populateDatalist();render();loadSelectors();initTableSorting();renderHistory();populateNewsBrandFilter();loadNews();
 
 const menuToggle=document.getElementById("menuToggle"),navLinks=document.getElementById("navLinks");
 function setMenuOpen(open){

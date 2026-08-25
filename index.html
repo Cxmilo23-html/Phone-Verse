@@ -164,15 +164,15 @@ header{min-height:600px;padding-left:5%;padding-right:5%}nav a{display:none}.gri
 
 <script>
 const phones=[
-{rank:1,name:"RedMagic 11 Pro+",brand:"RedMagic",image:"redmagic.jpg",cpu:"Snapdragon 8 Elite Gen 5",antutu:4005248,ram:"16 GB",storage:"512 GB",battery:"7.500 mAh",screen:"6.85” AMOLED · 144 Hz",camera:"50 + 50 MP",tag:"GAMING BEAST"},
-{rank:2,name:"OPPO Find X9 Ultra",brand:"OPPO",image:"oppo-find-x9-ultra.jpg",cpu:"Snapdragon 8 Elite Gen 5",antutu:3766902,ram:"16 GB",storage:"512 GB",battery:"7.050 mAh",screen:"6.8” AMOLED · 120 Hz",camera:"200 + 200 + 50 MP",tag:"CAMERA MONSTER"},
-{rank:3,name:"iQOO 15",brand:"iQOO",image:"iqoo-15.jpg",cpu:"Snapdragon 8 Elite Gen 5",antutu:3714661,ram:"16 GB",storage:"1 TB",battery:"7.000 mAh",screen:"6.85” AMOLED · 144 Hz",camera:"50 + 50 + 50 MP",tag:"PERFORMANCE"},
-{rank:4,name:"POCO F8 Ultra",brand:"POCO",image:"poco-f8-ultra.jpg",cpu:"Snapdragon 8 Elite Gen 5",antutu:3668860,ram:"16 GB",storage:"512 GB",battery:"6.500 mAh",screen:"6.9” AMOLED · 120 Hz",camera:"50 + 50 + 50 MP",tag:"BEST VALUE"},
-{rank:5,name:"OnePlus 15",brand:"OnePlus",image:"oneplus-15.jpg",cpu:"Snapdragon 8 Elite Gen 5",antutu:3646161,ram:"16 GB",storage:"1 TB",battery:"7.300 mAh",screen:"6.78” AMOLED · 165 Hz",camera:"50 + 50 + 50 MP",tag:"ALL-ROUNDER"},
+{rank:1,name:"RedMagic 11 Pro+",brand:"RedMagic",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:4005248,ram:"16 GB",storage:"512 GB",battery:"7.500 mAh",screen:"6.85” AMOLED · 144 Hz",camera:"50 + 50 MP",tag:"GAMING BEAST"},
+{rank:2,name:"OPPO Find X9 Ultra",brand:"OPPO",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3766902,ram:"16 GB",storage:"512 GB",battery:"7.050 mAh",screen:"6.8” AMOLED · 120 Hz",camera:"200 + 200 + 50 MP",tag:"CAMERA MONSTER"},
+{rank:3,name:"iQOO 15",brand:"iQOO",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3714661,ram:"16 GB",storage:"1 TB",battery:"7.000 mAh",screen:"6.85” AMOLED · 144 Hz",camera:"50 + 50 + 50 MP",tag:"PERFORMANCE"},
+{rank:4,name:"POCO F8 Ultra",brand:"POCO",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3668860,ram:"16 GB",storage:"512 GB",battery:"6.500 mAh",screen:"6.9” AMOLED · 120 Hz",camera:"50 + 50 + 50 MP",tag:"BEST VALUE"},
+{rank:5,name:"OnePlus 15",brand:"OnePlus",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3646161,ram:"16 GB",storage:"1 TB",battery:"7.300 mAh",screen:"6.78” AMOLED · 165 Hz",camera:"50 + 50 + 50 MP",tag:"ALL-ROUNDER"},
 {rank:6,name:"Xiaomi 17 Ultra",brand:"Xiaomi",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3579338,ram:"16 GB",storage:"1 TB",battery:"6.800 mAh",screen:"6.9” AMOLED · 120 Hz",camera:"200 MP + telefoto",tag:"PHOTO KING"},
 {rank:7,name:"Galaxy S26 Ultra",brand:"Samsung",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3437807,ram:"12 GB",storage:"1 TB",battery:"5.000 mAh",screen:"6.9” Dynamic AMOLED · 120 Hz",camera:"200 MP + telefoto",tag:"ULTRA"},
 {rank:8,name:"vivo X300 Pro",brand:"vivo",image:"",cpu:"Dimensity 9500",antutu:3258010,ram:"16 GB",storage:"512 GB",battery:"6.510 mAh",screen:"6.78” AMOLED · 120 Hz",camera:"50 + 50 + 200 MP",tag:"PHOTO PRO"},
-{rank:9,name:"OPPO Find X9 Pro",brand:"OPPO",image:"oppo-find-x9-pro.jpg",cpu:"Dimensity 9500",antutu:3254273,ram:"16 GB",storage:"512 GB",battery:"7.000 mAh",screen:"6.78” AMOLED · 120 Hz",camera:"50 + 50 + 200 MP",tag:"PRO"},
+{rank:9,name:"OPPO Find X9 Pro",brand:"OPPO",image:"",cpu:"Dimensity 9500",antutu:3254273,ram:"16 GB",storage:"512 GB",battery:"7.000 mAh",screen:"6.78” AMOLED · 120 Hz",camera:"50 + 50 + 200 MP",tag:"PRO"},
 {rank:10,name:"Xiaomi 17",brand:"Xiaomi",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:3207732,ram:"12 GB",storage:"512 GB",battery:"6.330 mAh",screen:"6.3” AMOLED · 120 Hz",camera:"50 + 50 + 50 MP",tag:"COMPACT POWER"}
 ];
 
@@ -188,7 +188,7 @@ const width=Math.round(p.antutu/maxScore*100);
 return `<article class="card ${feature}">
 <div class="top">
 <div class="rank ${medal}">${p.rank===1?"👑":p.rank}</div>
-<div class="phone-art">${p.image?`<img src="${p.image}" alt="${p.name}" loading="lazy">`:`<span class="no-image">📱</span>`}</div>
+<div class="phone-art"><span class="no-image">📱</span></div>
 <div class="info"><div class="brand">${p.brand}</div><h3>${p.name}</h3><span style="color:#7f8aa4;font-size:12px">${p.tag}</span></div>
 </div>
 <div class="score"><div><small>AnTuTu aprox.</small><strong>${fmt(p.antutu)}</strong></div><div style="text-align:right"><small>PHONEVERSE SCORE</small><strong class="score-pv">${phoneverseScore(p)}/100</strong></div></div>
@@ -216,10 +216,12 @@ phones.forEach((p,index)=>{const o1=document.createElement("option");o1.value=in
 p2.value="1";
 }
 
+function storageToGB(s){const value=parseFloat(s);return s.toUpperCase().includes("TB")?value*1024:value}
+function formatStorage(v){return v>=1024?(v/1024)+" TB":v+" GB"}
 function comparePhones(){
 const p1=phones[document.getElementById("phone1").value],p2=phones[document.getElementById("phone2").value];
 document.getElementById("battleTitle").innerHTML=`${p1.name} <span style="color:#8791aa"> VS </span> ${p2.name}`;
-const stats=[["⚡ AnTuTu",p1.antutu,p2.antutu,v=>fmt(v)],["🏆 PHONEVERSE",phoneverseScore(p1),phoneverseScore(p2),v=>v+"/100"],["🧠 RAM",parseInt(p1.ram),parseInt(p2.ram),v=>v+" GB"],["🔋 Batería",parseInt(p1.battery.replace(/\./g,"")),parseInt(p2.battery.replace(/\./g,"")),v=>v.toLocaleString("es-CO")+" mAh"],["💾 Almacenamiento",parseInt(p1.storage),parseInt(p2.storage),v=>v+" GB"]];
+const stats=[["⚡ AnTuTu",p1.antutu,p2.antutu,v=>fmt(v)],["🏆 PHONEVERSE",phoneverseScore(p1),phoneverseScore(p2),v=>v+"/100"],["🧠 RAM",parseInt(p1.ram),parseInt(p2.ram),v=>v+" GB"],["🔋 Batería",parseInt(p1.battery.replace(/\./g,"")),parseInt(p2.battery.replace(/\./g,"")),v=>v.toLocaleString("es-CO")+" mAh"],["💾 Almacenamiento",storageToGB(p1.storage),storageToGB(p2.storage),formatStorage]];
 document.getElementById("battleGrid").innerHTML=stats.map(s=>`<div class="battle-row"><div class="label">${s[0]}</div><div class="battle-values"><div class="${s[1]>s[2]?"winner":""}">${s[3](s[1])}</div><div>VS</div><div class="${s[2]>s[1]?"winner":""}">${s[3](s[2])}</div></div></div>`).join("");
 const winner=p1.antutu>p2.antutu?p1:p2;
 document.getElementById("finalWinner").innerHTML=`<span style="color:#8791aa">🏆 GANADOR</span><h2 style="color:#00e5ff;margin:8px">${winner.name} ⚡</h2>${phoneverseScore(winner)}/100 PHONEVERSE SCORE`;

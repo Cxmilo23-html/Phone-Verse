@@ -21,12 +21,13 @@
 
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:Inter,Arial,sans-serif;background:#070914;color:#f5f7ff;overflow-x:hidden}
-body:before{content:"";position:fixed;inset:0;z-index:-3;background:radial-gradient(circle at 15% 10%,rgba(0,229,255,.15),transparent 28%),radial-gradient(circle at 85% 20%,rgba(162,70,255,.18),transparent 30%),radial-gradient(circle at 50% 90%,rgba(0,255,153,.08),transparent 30%)}
+body{font-family:Inter,Arial,sans-serif;background:#070914;color:#f5f7ff;overflow-x:hidden;transition:background .3s ease,color .3s ease}
+body:before{content:"";position:fixed;inset:0;z-index:-3;background:radial-gradient(circle at 15% 10%,rgba(0,229,255,.15),transparent 28%),radial-gradient(circle at 85% 20%,rgba(162,70,255,.18),transparent 30%),radial-gradient(circle at 50% 90%,rgba(0,255,153,.08),transparent 30%);transition:background .3s ease}
 body:after{content:"";position:fixed;inset:0;z-index:-2;opacity:.15;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:45px 45px}
 
 header{min-height:650px;padding:30px 7% 80px;display:flex;flex-direction:column}
-nav{display:flex;justify-content:space-between;align-items:center;position:relative}
+nav{display:flex;justify-content:space-between;align-items:center;position:relative;gap:10px}
+.nav-right{display:flex;align-items:center;gap:10px}
 .menu-toggle{display:none;background:none;border:1px solid #252c42;border-radius:10px;width:42px;height:42px;color:#f5f7ff;font-size:20px;cursor:pointer;transition:.3s;position:relative;z-index:11}
 .menu-toggle.open{transform:rotate(90deg);border-color:#00e5ff;color:#00e5ff}
 .nav-links{display:flex}
@@ -34,6 +35,8 @@ nav{display:flex;justify-content:space-between;align-items:center;position:relat
 .logo{font-size:24px;font-weight:900;letter-spacing:2px}.logo span{color:#00e5ff}
 nav a{color:#b9c0d5;text-decoration:none;margin-left:20px;font-size:13px;transition:.2s}
 nav a:hover{color:#00e5ff}
+.theme-toggle{background:#0e1221;border:1px solid #252c42;border-radius:10px;width:42px;height:42px;display:grid;place-items:center;cursor:pointer;font-size:18px;transition:.25s;flex:none}
+.theme-toggle:hover{border-color:#00e5ff;transform:translateY(-2px)}
 .hero{max-width:1000px;margin:auto;text-align:center}
 .badge{display:inline-block;padding:9px 16px;border:1px solid rgba(0,229,255,.35);border-radius:999px;background:rgba(0,229,255,.06);color:#00e5ff;font-size:12px;font-weight:800;letter-spacing:1.5px}
 h1{font-size:clamp(48px,9vw,105px);line-height:.92;margin:25px 0 22px;font-weight:900;letter-spacing:-5px;background:linear-gradient(100deg,#fff,#00e5ff 45%,#a84cff);-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -43,17 +46,27 @@ h1{font-size:clamp(48px,9vw,105px);line-height:.92;margin:25px 0 22px;font-weigh
 .container{width:min(1200px,88%);margin:auto}
 .section-title{text-align:center;margin:30px 0 35px}.section-title h2{font-size:38px;margin-bottom:10px}.section-title p{color:#8791aa}
 
-.controls{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:30px}
-input,select{background:#0e1221;border:1px solid #242b40;color:white;border-radius:12px;padding:13px 16px;outline:none}
+.controls{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:30px;position:relative}
+input,select{background:#0e1221;border:1px solid #242b40;color:white;border-radius:12px;padding:13px 16px;outline:none;transition:background .3s ease,color .3s ease,border-color .2s ease}
 input{width:min(360px,100%)}input:focus,select:focus{border-color:#00e5ff}
+.copy-link-btn{background:#0e1221;border:1px solid #242b40;color:#b9c0d5;border-radius:12px;padding:13px 16px;cursor:pointer;font-size:13px;font-weight:700;display:flex;align-items:center;gap:8px;transition:.2s;position:relative}
+.copy-link-btn:hover{border-color:#00e5ff;color:#00e5ff}
+.copy-toast{position:absolute;top:-38px;left:50%;transform:translateX(-50%) translateY(6px);background:#00e5ff;color:#061018;font-size:12px;font-weight:800;padding:7px 12px;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease}
+.copy-link-btn.copied .copy-toast{opacity:1;transform:translateX(-50%) translateY(0)}
 
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;padding-bottom:80px}
-.card{background:rgba(15,19,34,.76);border:1px solid #252c42;border-radius:22px;padding:24px;transition:.35s;animation:cardIn .55s ease both}
+.card{background:rgba(15,19,34,.76);border:1px solid #252c42;border-radius:22px;padding:24px;transition:.35s;animation:cardIn .55s ease both;position:relative}
 .card:hover{transform:translateY(-7px);border-color:rgba(0,229,255,.55);box-shadow:0 18px 50px rgba(0,0,0,.35)}
 .feature{grid-column:1/-1;border-color:rgba(168,76,255,.35)}
 .top{display:flex;gap:18px;align-items:center}
 .rank{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;font-size:20px;font-weight:900;background:#171d30;color:#b9c4dc;flex:none}
 .gold{background:linear-gradient(135deg,#ffd66b,#a66b00);color:#111}.silver{background:linear-gradient(135deg,#e9efff,#737c95);color:#111}.bronze{background:linear-gradient(135deg,#e9a56c,#743a14);color:#111}
+
+.fav-btn{position:absolute;top:18px;right:18px;width:38px;height:38px;border-radius:12px;border:1px solid #252c42;background:#0b0f1b;color:#5a6480;display:grid;place-items:center;cursor:pointer;font-size:18px;transition:.2s;z-index:2}
+.fav-btn:hover{border-color:#ffd66b;color:#ffd66b;transform:scale(1.08)}
+.fav-btn.active{color:#ffd66b;border-color:#ffd66b;background:rgba(255,214,107,.1)}
+.fav-btn.pulse{animation:favPulse .35s ease}
+@keyframes favPulse{0%{transform:scale(1)}50%{transform:scale(1.35)}100%{transform:scale(1)}}
 
 .phone-art{width:78px;height:108px;border:0;border-radius:16px;background:#0b0f1b;position:relative;flex:none;display:grid;place-items:center;overflow:hidden;box-shadow:0 8px 25px rgba(0,0,0,.35);transition:.45s ease}
 .phone-art img{width:100%;height:100%;object-fit:contain;display:block;transition:.45s ease}
@@ -80,12 +93,23 @@ input{width:min(360px,100%)}input:focus,select:focus{border-color:#00e5ff}
 .button{display:block;margin:25px auto 0;padding:14px 28px;border:0;border-radius:12px;font-weight:900;cursor:pointer;color:#061018;background:linear-gradient(100deg,#00e5ff,#66ffca);transition:.25s}
 .button:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,229,255,.15)}
 .result{display:none;margin-top:30px;opacity:0;transform:translateY(15px);transition:opacity .4s ease,transform .4s ease}.result.show{display:block}.result.show.animate{opacity:1;transform:translateY(0)}
-.battle-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:20px}.battle-row{background:#0b0f1b;border:1px solid #20263a;border-radius:14px;padding:16px}.label{text-align:center;color:#8791aa;font-size:12px;margin-bottom:10px}.battle-values{display:grid;grid-template-columns:1fr auto 1fr;text-align:center;gap:10px}.winner{color:#00e5ff;font-weight:900}
+.battle-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:20px}.battle-row{background:#0b0f1b;border:1px solid #20263a;border-radius:14px;padding:16px;transition:box-shadow .3s ease,border-color .3s ease}.battle-row.flash{animation:rowFlash .6s ease}.label{text-align:center;color:#8791aa;font-size:12px;margin-bottom:10px}.battle-values{display:grid;grid-template-columns:1fr auto 1fr;text-align:center;gap:10px}.winner{color:#00e5ff;font-weight:900}
+.battle-values div{transition:transform .3s ease,opacity .3s ease}
+.battle-values.flash div{animation:valueFlash .5s ease}
+@keyframes rowFlash{0%{box-shadow:0 0 0 0 rgba(0,229,255,0);border-color:#20263a}30%{box-shadow:0 0 25px 2px rgba(0,229,255,.35);border-color:#00e5ff}100%{box-shadow:0 0 0 0 rgba(0,229,255,0);border-color:#20263a}}
+@keyframes valueFlash{0%{transform:scale(1);opacity:1}35%{transform:scale(1.18);opacity:.6}100%{transform:scale(1);opacity:1}}
 
 .finder-question{margin:25px 0}.finder-question h3{margin-bottom:14px;font-size:16px}.finder-options{display:flex;gap:10px;flex-wrap:wrap}
 .finder-option{padding:12px 16px;border:1px solid #252c42;background:#0b0f1b;color:#b9c0d5;border-radius:12px;cursor:pointer;transition:.2s}
 .finder-option.selected{background:rgba(0,229,255,.1);border-color:#00e5ff;color:#00e5ff}
 .finder-result{display:none;margin-top:30px;padding:25px;border-radius:20px;text-align:center;border:1px solid rgba(0,229,255,.25);background:#0b0f1b;opacity:0;transform:translateY(15px);transition:opacity .4s ease,transform .4s ease}.finder-result.show{display:block}.finder-result.show.animate{opacity:1;transform:translateY(0)}.finder-result h3{color:#00e5ff;font-size:27px;margin:8px 0}
+.finder-top3{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:22px;text-align:left}
+.finder-pick{background:#10162a;border:1px solid #242b40;border-radius:16px;padding:18px;position:relative;transition:.25s}
+.finder-pick:hover{border-color:#00e5ff;transform:translateY(-4px)}
+.finder-pick .pick-medal{position:absolute;top:14px;right:14px;font-size:20px}
+.finder-pick .pick-rank{color:#00e5ff;font-size:11px;font-weight:800;letter-spacing:1px}
+.finder-pick h4{margin:8px 0 4px;font-size:16px}
+.finder-pick .pick-score{color:#8791aa;font-size:12px}
 
 .compare-table{margin-bottom:90px;padding:28px;border:1px solid #252c42;border-radius:22px;background:rgba(12,16,28,.78);overflow:auto}
 table{width:100%;border-collapse:collapse;min-width:700px}th,td{padding:15px;text-align:left;border-bottom:1px solid #20263a}th{color:#00e5ff;font-size:12px}td{color:#c5cbda;font-size:13px}
@@ -125,7 +149,29 @@ header{min-height:600px;padding-left:5%;padding-right:5%}
 .nav-links a:hover{background:#161c2d;padding-left:16px}
 .grid{grid-template-columns:1fr}.feature{grid-column:auto}
 .compare-selects{grid-template-columns:1fr}.vs{text-align:center}.battle-grid{grid-template-columns:1fr}.news-grid{grid-template-columns:1fr}.specs{grid-template-columns:1fr}
+.finder-top3{grid-template-columns:1fr}
 }
+
+/* ===== LIGHT MODE ===== */
+body.light{background:#f4f6fb;color:#131a2c}
+body.light:before{background:radial-gradient(circle at 15% 10%,rgba(0,140,180,.10),transparent 28%),radial-gradient(circle at 85% 20%,rgba(120,50,200,.10),transparent 30%),radial-gradient(circle at 50% 90%,rgba(0,180,120,.06),transparent 30%)}
+body.light .logo{color:#131a2c}
+body.light nav a{color:#4a5474}
+body.light .badge{background:rgba(0,140,180,.08);border-color:rgba(0,140,180,.35);color:#0079a3}
+body.light h1{background:linear-gradient(100deg,#131a2c,#0079a3 45%,#7a2fd6);-webkit-background-clip:text;background-clip:text;color:transparent}
+body.light .hero p{color:#4a5474}
+body.light .menu-toggle,body.light .theme-toggle{background:#fff;border-color:#dde2f0;color:#131a2c}
+body.light .nav-links{background:#fff;border-color:#dde2f0}
+body.light .nav-links a{color:#4a5474}
+body.light input,body.light select,body.light .copy-link-btn{background:#fff;border-color:#dde2f0;color:#131a2c}
+body.light .card,body.light .panel,body.light .compare-table,body.light .news-card,body.light .news-status,body.light .compare-box,body.light .battle-row,body.light .finder-option,body.light .finder-result,body.light .skeleton-card,body.light .news-error{background:#fff;border-color:#dde2f0}
+body.light .section-title p,body.light .brand,body.light .score small,body.light .news-header p,body.light .label{color:#6b7593}
+body.light .spec{background:#f4f6fb;color:#4a5474}
+body.light .spec b{color:#131a2c}
+body.light .tag{background:#eef1fa;color:#5a6480}
+body.light td{color:#354061}
+body.light .fav-btn{background:#fff;border-color:#dde2f0}
+body.light .finder-pick{background:#f4f6fb;border-color:#dde2f0}
 </style>
 </head>
 
@@ -136,7 +182,10 @@ header{min-height:600px;padding-left:5%;padding-right:5%}
 <div class="nav-links" id="navLinks">
 <a href="#ranking">Ranking</a><a href="#comparar">Comparar</a><a href="#finder">Finder</a><a href="#noticias">Noticias</a><a href="#info">Info</a>
 </div>
+<div class="nav-right">
+<button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema" title="Cambiar tema">🌙</button>
 <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">☰</button>
+</div>
 </nav>
 <div class="hero">
 <span class="badge">RANKING DE RENDIMIENTO · 2026</span>
@@ -154,6 +203,7 @@ header{min-height:600px;padding-left:5%;padding-right:5%}
 <select id="filter">
 <option value="all">Todas las marcas</option><option value="RedMagic">RedMagic</option><option value="OPPO">OPPO</option><option value="iQOO">iQOO</option><option value="POCO">POCO</option><option value="OnePlus">OnePlus</option><option value="Xiaomi">Xiaomi</option><option value="Samsung">Samsung</option><option value="vivo">vivo</option>
 </select>
+<button class="copy-link-btn" id="copyLinkBtn">🔗 Copiar link<span class="copy-toast">¡Copiado! ✅</span></button>
 </div>
 <section class="grid" id="phoneGrid"></section>
 </section>
@@ -178,7 +228,7 @@ header{min-height:600px;padding-left:5%;padding-right:5%}
 <button class="finder-option" data-price="low">💸 Muy importante</button><button class="finder-option" data-price="medium">💰 Importante</button><button class="finder-option" data-price="high">💎 No importa</button>
 </div></div>
 <button class="button" onclick="findPhone()">⚡ ENCONTRAR MI CELULAR</button>
-<div class="finder-result" id="finderResult"><span>🎯 TU RECOMENDACIÓN</span><h3 id="finderName"></h3><p id="finderScore"></p><p id="finderReason"></p></div>
+<div class="finder-result" id="finderResult"><span>🎯 TU RECOMENDACIÓN</span><h3 id="finderName"></h3><p id="finderScore"></p><p id="finderReason"></p><div class="finder-top3" id="finderTop3"></div></div>
 </section>
 
 <section class="compare-table">
@@ -219,11 +269,27 @@ const maxScore=Math.max(...phones.map(p=>p.antutu));
 function phoneverseScore(p){return Math.round(p.antutu/maxScore*100)}
 function fmt(n){return n.toLocaleString("es-CO")}
 
+/* ---- Favoritos (localStorage) ---- */
+const FAV_KEY="phoneverse_favorites";
+function getFavorites(){try{return JSON.parse(localStorage.getItem(FAV_KEY))||[]}catch(e){return[]}}
+function saveFavorites(list){try{localStorage.setItem(FAV_KEY,JSON.stringify(list))}catch(e){}}
+function isFavorite(name){return getFavorites().includes(name)}
+function toggleFavorite(name,btn){
+let favs=getFavorites();
+if(favs.includes(name)){favs=favs.filter(n=>n!==name)}else{favs.push(name)}
+saveFavorites(favs);
+btn.classList.toggle("active",favs.includes(name));
+btn.textContent=favs.includes(name)?"★":"☆";
+btn.classList.remove("pulse");void btn.offsetWidth;btn.classList.add("pulse");
+}
+
 function card(p){
 const medal=p.rank===1?"gold":p.rank===2?"silver":p.rank===3?"bronze":"";
 const feature=p.rank===1?"feature":"";
 const width=Math.round(p.antutu/maxScore*100);
+const fav=isFavorite(p.name);
 return `<article class="card ${feature}">
+<button class="fav-btn ${fav?"active":""}" data-fav="${escapeAttr(p.name)}" title="Marcar como favorito" aria-label="Marcar ${escapeAttr(p.name)} como favorito">${fav?"★":"☆"}</button>
 <div class="top">
 <div class="rank ${medal}">${p.rank===1?"👑":p.rank}</div>
 <div class="phone-art"><span class="no-image">📱</span></div>
@@ -239,6 +305,7 @@ return `<article class="card ${feature}">
 <div class="tags"><span class="tag">⚡ Alto rendimiento</span><span class="tag">📊 AnTuTu aprox.</span><span class="tag">📱 2026</span></div>
 </article>`;
 }
+function escapeAttr(value){return String(value).replace(/"/g,"&quot;")}
 
 function render(){
 const q=search.value.toLowerCase().trim(),f=filter.value;
@@ -251,6 +318,12 @@ if(f!=="all")params.set("marca",f);
 const newUrl=window.location.pathname+(params.toString()?"?"+params.toString():"")+window.location.hash;
 try{window.history.replaceState({},"",newUrl)}catch(e){}
 animateCounts();
+bindFavButtons();
+}
+function bindFavButtons(){
+document.querySelectorAll("[data-fav]").forEach(btn=>{
+btn.addEventListener("click",()=>toggleFavorite(btn.dataset.fav,btn));
+});
 }
 function animateCounts(){
 document.querySelectorAll(".count-up").forEach(el=>{
@@ -273,6 +346,46 @@ if(marca&&[...filter.options].some(o=>o.value===marca))filter.value=marca;
 }
 search.addEventListener("input",render);filter.addEventListener("change",render);
 
+/* ---- Copiar link ---- */
+const copyLinkBtn=document.getElementById("copyLinkBtn");
+copyLinkBtn.addEventListener("click",async()=>{
+const url=window.location.href;
+try{
+if(navigator.clipboard&&navigator.clipboard.writeText){await navigator.clipboard.writeText(url)}
+else{
+const temp=document.createElement("textarea");temp.value=url;temp.style.position="fixed";temp.style.opacity="0";
+document.body.appendChild(temp);temp.focus();temp.select();document.execCommand("copy");document.body.removeChild(temp);
+}
+showCopyToast();
+}catch(e){showCopyToast(true)}
+});
+function showCopyToast(failed){
+const toast=copyLinkBtn.querySelector(".copy-toast");
+if(failed){toast.textContent="No se pudo copiar ❌"}else{toast.textContent="¡Copiado! ✅"}
+copyLinkBtn.classList.add("copied");
+clearTimeout(copyLinkBtn._toastTimer);
+copyLinkBtn._toastTimer=setTimeout(()=>copyLinkBtn.classList.remove("copied"),1800);
+}
+
+/* ---- Dark/Light mode ---- */
+const THEME_KEY="phoneverse_theme";
+const themeToggle=document.getElementById("themeToggle");
+function applyTheme(theme){
+document.body.classList.toggle("light",theme==="light");
+themeToggle.textContent=theme==="light"?"☀️":"🌙";
+themeToggle.title=theme==="light"?"Cambiar a modo oscuro":"Cambiar a modo claro";
+}
+function initTheme(){
+let saved=null;
+try{saved=localStorage.getItem(THEME_KEY)}catch(e){}
+applyTheme(saved==="light"?"light":"dark");
+}
+themeToggle.addEventListener("click",()=>{
+const next=document.body.classList.contains("light")?"dark":"light";
+applyTheme(next);
+try{localStorage.setItem(THEME_KEY,next)}catch(e){}
+});
+
 function loadSelectors(){
 const p1=document.getElementById("phone1"),p2=document.getElementById("phone2");
 phones.forEach((p,index)=>{const o1=document.createElement("option");o1.value=index;o1.textContent="#"+p.rank+" "+p.name;const o2=o1.cloneNode(true);p1.appendChild(o1);p2.appendChild(o2)});
@@ -281,11 +394,15 @@ p2.value="1";
 
 function storageToGB(s){const value=parseFloat(s);return s.toUpperCase().includes("TB")?value*1024:value}
 function formatStorage(v){return v>=1024?(v/1024)+" TB":v+" GB"}
+let lastComparison=null;
 function comparePhones(){
 const p1=phones[document.getElementById("phone1").value],p2=phones[document.getElementById("phone2").value];
 document.getElementById("battleTitle").innerHTML=`${p1.name} <span style="color:#8791aa"> VS </span> ${p2.name}`;
 const stats=[["⚡ AnTuTu",p1.antutu,p2.antutu,v=>fmt(v)],["🏆 PHONEVERSE",phoneverseScore(p1),phoneverseScore(p2),v=>v+"/100"],["🧠 RAM",parseInt(p1.ram),parseInt(p2.ram),v=>v+" GB"],["🔋 Batería",parseInt(p1.battery.replace(/\./g,"")),parseInt(p2.battery.replace(/\./g,"")),v=>v.toLocaleString("es-CO")+" mAh"],["💾 Almacenamiento",storageToGB(p1.storage),storageToGB(p2.storage),formatStorage]];
-document.getElementById("battleGrid").innerHTML=stats.map(s=>`<div class="battle-row"><div class="label">${s[0]}</div><div class="battle-values"><div class="${s[1]>s[2]?"winner":""}">${s[3](s[1])}</div><div>VS</div><div class="${s[2]>s[1]?"winner":""}">${s[3](s[2])}</div></div></div>`).join("");
+const key=p1.name+"|"+p2.name;
+const isNewComparison=lastComparison!==key;
+lastComparison=key;
+document.getElementById("battleGrid").innerHTML=stats.map(s=>`<div class="battle-row${isNewComparison?" flash":""}"><div class="label">${s[0]}</div><div class="battle-values${isNewComparison?" flash":""}"><div class="${s[1]>s[2]?"winner":""}">${s[3](s[1])}</div><div>VS</div><div class="${s[2]>s[1]?"winner":""}">${s[3](s[2])}</div></div></div>`).join("");
 const winner=p1.antutu>p2.antutu?p1:p2;
 document.getElementById("finalWinner").innerHTML=`<span style="color:#8791aa">🏆 GANADOR</span><h2 style="color:#00e5ff;margin:8px">${winner.name} ⚡</h2>${phoneverseScore(winner)}/100 PHONEVERSE SCORE`;
 const resultEl=document.getElementById("result");resultEl.classList.remove("animate");resultEl.classList.add("show");requestAnimationFrame(()=>requestAnimationFrame(()=>resultEl.classList.add("animate")));
@@ -298,9 +415,8 @@ if(button.dataset.price){finderPrice=button.dataset.price;document.querySelector
 button.classList.add("selected");
 }));
 
-function findPhone(){
-if(!finderUse||!finderPrice){alert("⚠️ Responde las dos preguntas primero.");return}
-let scores=phones.map(phone=>{let score=phoneverseScore(phone);
+function scorePhoneForFinder(phone){
+let score=phoneverseScore(phone);
 if(finderUse==="gaming"){if(phone.brand==="RedMagic")score+=15;if(phone.brand==="iQOO")score+=10;if(phone.brand==="POCO")score+=8}
 if(finderUse==="camera"){if(phone.brand==="OPPO")score+=15;if(phone.brand==="vivo")score+=15;if(phone.name.includes("Ultra"))score+=10}
 if(finderUse==="battery"){const b=parseInt(phone.battery.replace(/\./g,""));if(b>=7000)score+=15;else if(b>=6500)score+=10}
@@ -308,10 +424,19 @@ if(finderUse==="power")score+=phoneverseScore(phone)*.15;
 if(finderUse==="value"){if(phone.brand==="POCO")score+=18;if(phone.brand==="Xiaomi")score+=10}
 if(finderPrice==="low"){if(phone.brand==="POCO")score+=15;if(phone.brand==="Xiaomi")score+=10}
 if(finderPrice==="medium"&&(phone.brand==="POCO"||phone.brand==="Xiaomi"||phone.brand==="OnePlus"))score+=8;
-return{phone,score}});
-scores.sort((a,b)=>b.score-a.score);const winner=scores[0].phone;
+return score;
+}
+function findPhone(){
+if(!finderUse||!finderPrice){alert("⚠️ Responde las dos preguntas primero.");return}
+let scores=phones.map(phone=>({phone,score:scorePhoneForFinder(phone)}));
+scores.sort((a,b)=>b.score-a.score);
+const winner=scores[0].phone;
+const top3=scores.slice(0,3);
 const reasons={gaming:"🎮 Excelente rendimiento para juegos y cargas pesadas.",camera:"📸 Una gran opción para quienes priorizan fotografía.",battery:"🔋 Su gran batería lo hace ideal para largas jornadas.",power:"⚡ Su rendimiento lo coloca entre los monstruos de PHONEVERSE.",value:"💰 Tiene una combinación equilibrada de rendimiento y características."};
-document.getElementById("finderName").textContent=winner.name;document.getElementById("finderScore").textContent=phoneverseScore(winner)+"/100 PHONEVERSE SCORE";document.getElementById("finderReason").textContent=reasons[finderUse];const finderResultEl=document.getElementById("finderResult");finderResultEl.classList.remove("animate");finderResultEl.classList.add("show");requestAnimationFrame(()=>requestAnimationFrame(()=>finderResultEl.classList.add("animate")));
+document.getElementById("finderName").textContent=winner.name;document.getElementById("finderScore").textContent=phoneverseScore(winner)+"/100 PHONEVERSE SCORE";document.getElementById("finderReason").textContent=reasons[finderUse];
+const medals=["🥇","🥈","🥉"];
+document.getElementById("finderTop3").innerHTML=top3.map((item,i)=>`<div class="finder-pick"><span class="pick-medal">${medals[i]}</span><div class="pick-rank">TOP ${i+1}</div><h4>${item.phone.name}</h4><div class="pick-score">${phoneverseScore(item.phone)}/100 PHONEVERSE SCORE</div></div>`).join("");
+const finderResultEl=document.getElementById("finderResult");finderResultEl.classList.remove("animate");finderResultEl.classList.add("show");requestAnimationFrame(()=>requestAnimationFrame(()=>finderResultEl.classList.add("animate")));
 }
 
 const newsGrid=document.getElementById("newsGrid"),newsStatus=document.getElementById("newsStatus");
@@ -383,7 +508,7 @@ console.error(error);newsGrid.innerHTML=`<div class="news-error"><strong>📰 No
 }
 }
 
-loadFromURL();render();loadSelectors();loadNews();
+initTheme();loadFromURL();render();loadSelectors();loadNews();
 
 const menuToggle=document.getElementById("menuToggle"),navLinks=document.getElementById("navLinks");
 function setMenuOpen(open){

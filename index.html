@@ -114,6 +114,7 @@ input{width:min(360px,100%)}input:focus,select:focus{border-color:#00e5ff}
 @keyframes rowFlash{0%{box-shadow:0 0 0 0 rgba(0,229,255,0);border-color:#20263a}30%{box-shadow:0 0 25px 2px rgba(0,229,255,.35);border-color:#00e5ff}100%{box-shadow:0 0 0 0 rgba(0,229,255,0);border-color:#20263a}}
 @keyframes valueFlash{0%{transform:scale(1);opacity:1}35%{transform:scale(1.18);opacity:.6}100%{transform:scale(1);opacity:1}}
 .radar-wrap{max-width:420px;margin:30px auto 0;background:#0b0f1b;border:1px solid #20263a;border-radius:18px;padding:20px}
+.radar-canvas-box{position:relative;height:280px}
 
 .finder-question{margin:25px 0}.finder-question h3{margin-bottom:14px;font-size:16px}.finder-options{display:flex;gap:10px;flex-wrap:wrap}
 .finder-option{padding:12px 16px;border:1px solid #252c42;background:#0b0f1b;color:#b9c0d5;border-radius:12px;cursor:pointer;transition:.2s}
@@ -277,7 +278,7 @@ body.light .section-divider:before,body.light .section-divider:after{background:
 <div class="result" id="result">
 <h2 id="battleTitle" style="text-align:center"></h2>
 <div class="battle-grid" id="battleGrid"></div>
-<div class="radar-wrap"><canvas id="radarCanvas" height="260"></canvas></div>
+<div class="radar-wrap"><div class="radar-canvas-box"><canvas id="radarCanvas"></canvas></div></div>
 <div id="finalWinner" style="margin-top:25px;padding:22px;text-align:center;border-radius:18px;background:#0b0f1b;border:1px solid #30384f"></div>
 </div>
 </section>
@@ -321,7 +322,7 @@ body.light .section-divider:before,body.light .section-divider:after{background:
 <p>© 2026 PHONEVERSE · Tecnología móvil en un solo lugar.</p>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js" onerror="this.onerror=null;var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js';document.head.appendChild(s);"></script>
 <script>
 const phones=[
 {rank:1,name:"RedMagic 11 Pro+",brand:"RedMagic",image:"",cpu:"Snapdragon 8 Elite Gen 5",antutu:4005248,ram:"16 GB",storage:"512 GB",battery:"7.500 mAh",screen:"6.85” AMOLED · 144 Hz",camera:"50 + 50 MP",tag:"GAMING BEAST",tier:"flagship"},
@@ -660,19 +661,39 @@ lastComparison=key;
 document.getElementById("battleGrid").innerHTML=stats.map(s=>`<div class="battle-row${isNewComparison?" flash":""}"><div class="label">${s[0]}</div><div class="battle-values${isNewComparison?" flash":""}"><div class="${!s[4]&&s[1]>s[2]?"winner":""}">${s[3](s[1])}</div><div>VS</div><div class="${!s[4]&&s[2]>s[1]?"winner":""}">${s[3](s[2])}</div></div></div>`).join("");
 const winner=p1.antutu>p2.antutu?p1:p2;
 document.getElementById("finalWinner").innerHTML=`<span style="color:#8791aa">🏆 GANADOR</span><h2 style="color:#00e5ff;margin:8px">${winner.name} ⚡</h2>${phoneverseScore(winner)}/100 PHONEVERSE SCORE`;
-renderRadar(p1,p2);
 saveHistoryEntry(i1,i2);
-const resultEl=document.getElementById("result");resultEl.classList.remove("animate");resultEl.classList.add("show");requestAnimationFrame(()=>requestAnimationFrame(()=>resultEl.classList.add("animate")));
+const resultEl=document.getElementById("result");resultEl.classList.remove("animate");resultEl.classList.add("show");
+renderRadar(p1,p2);
+requestAnimationFrame(()=>requestAnimationFrame(()=>resultEl.classList.add("animate")));
 }
-function renderRadar(p1,p2){
-const canvas=document.getElementById("radarCanvas");
-if(!canvas||typeof Chart==="undefined")return;
+function ensureRadarCanvas(){
+const wrap=document.querySelector(".radar-canvas-box");
+if(!wrap)return null;
+let canvas=document.getElementById("radarCanvas");
+if(!canvas){
+canvas=document.createElement("canvas");
+canvas.id="radarCanvas";
+wrap.innerHTML="";
+wrap.appendChild(canvas);
+}
+return canvas;
+}
+function renderRadar(p1,p2,attempt){
+attempt=attempt||0;
+const wrap=document.querySelector(".radar-canvas-box");
+if(typeof Chart==="undefined"){
+if(attempt<6){setTimeout(()=>renderRadar(p1,p2,attempt+1),500);return}
+if(wrap)wrap.innerHTML=`<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#7f8aa4;font-size:13px;text-align:center;padding:0 14px;line-height:1.5">📡 No se pudo cargar el gráfico comparativo.<br>Revisa tu conexión e inténtalo de nuevo.</div>`;
+return;
+}
+const canvas=ensureRadarCanvas();
+if(!canvas)return;
 const labels=["AnTuTu","RAM","Batería","Almacenamiento","Cámara"];
 const dataFor=p=>[phoneverseScore(p),Math.round(parseInt(p.ram)/maxRAM*100),Math.round(parseInt(p.battery.replace(/\./g,""))/maxBatteryMah*100),Math.round(storageToGB(p.storage)/maxStorageGB*100),Math.round(getCameraMP(p)/maxCameraMP*100)];
 const isLight=document.body.classList.contains("light");
 const gridColor=isLight?"rgba(0,0,0,.1)":"rgba(255,255,255,.08)";
 const labelColor=isLight?"#4a5474":"#b9c0d5";
-if(radarChart)radarChart.destroy();
+if(radarChart){radarChart.destroy();radarChart=null}
 radarChart=new Chart(canvas.getContext("2d"),{
 type:"radar",
 data:{labels,datasets:[
@@ -681,6 +702,7 @@ data:{labels,datasets:[
 ]},
 options:{
 responsive:true,
+maintainAspectRatio:false,
 scales:{r:{beginAtZero:true,max:100,ticks:{display:false,stepSize:20},grid:{color:gridColor},angleLines:{color:gridColor},pointLabels:{color:labelColor,font:{size:11}}}},
 plugins:{legend:{labels:{color:labelColor,font:{size:11}}}}
 }

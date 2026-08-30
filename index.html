@@ -43,6 +43,13 @@ h1{font-size:clamp(48px,9vw,105px);line-height:.92;margin:25px 0 22px;font-weigh
 .cta{display:inline-block;margin-top:30px;padding:14px 24px;border-radius:12px;color:#061018;text-decoration:none;font-weight:800;background:linear-gradient(100deg,#00e5ff,#66ffca);transition:.3s}
 .cta:hover{transform:translateY(-4px);box-shadow:0 10px 35px rgba(0,229,255,.18)}
 .container{width:min(1200px,88%);margin:auto}
+
+/* ---- Sistema de pestañas (una sección visible a la vez) ---- */
+.tab-view{display:none}
+.tab-view.active{display:block;animation:tabIn .35s ease both}
+@keyframes tabIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+nav a.active-tab{color:#00e5ff;font-weight:800}
+body.light nav a.active-tab{color:#0079a3}
 .section-title{text-align:center;margin:30px 0 35px}.section-title h2{font-size:38px;margin-bottom:10px}.section-title p{color:#8791aa}
 
 .controls{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:30px;position:relative}
@@ -56,7 +63,11 @@ input{width:min(360px,100%)}input:focus,select:focus{border-color:#00e5ff}
 .fav-toggle-btn:hover{border-color:#ffd66b;color:#ffd66b}
 .fav-toggle-btn.active{background:rgba(255,214,107,.12);border-color:#ffd66b;color:#ffd66b}
 
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;padding-bottom:10px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-bottom:10px}
+@media(max-width:1099px) and (min-width:801px){
+.grid{grid-template-columns:repeat(3,1fr)}
+.news-grid{grid-template-columns:repeat(2,1fr)}
+}
 .card{background:rgba(15,19,34,.76);border:1px solid #252c42;border-radius:22px;padding:24px;transition:.35s;animation:cardIn .55s ease both;position:relative}
 .card:hover{transform:translateY(-7px);border-color:rgba(0,229,255,.55);box-shadow:0 18px 50px rgba(0,0,0,.35)}
 .feature{grid-column:1/-1;border-color:rgba(168,76,255,.35)}
@@ -233,7 +244,7 @@ body.light .section-divider:before,body.light .section-divider:after{background:
 <nav>
 <div class="logo">PHONE<span>VERSE</span> ⚡</div>
 <div class="nav-links" id="navLinks">
-<a href="#ranking">Ranking</a><a href="#comparar">Comparar</a><a href="#finder">Finder</a><a href="#noticias">Noticias</a><a href="#info">Info</a>
+<a href="#ranking">Ranking</a><a href="#comparar">Comparar</a><a href="#finder">Finder</a><a href="#datapack">Data Pack</a><a href="#noticias">Noticias</a><a href="#info">Info</a>
 </div>
 <div class="nav-right">
 <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema" title="Cambiar tema">🌙</button>
@@ -249,7 +260,7 @@ body.light .section-divider:before,body.light .section-divider:after{background:
 </header>
 
 <main class="container">
-<section id="ranking">
+<section id="ranking" class="tab-view">
 <div class="section-title"><h2>🏆 Top 23 de potencia</h2><p>Datos orientativos para comparar rendimiento. AnTuTu es una aproximación.</p></div>
 <div class="controls">
 <input id="search" type="text" placeholder="🔎 Buscar celular, marca o procesador..." list="phoneList">
@@ -265,7 +276,7 @@ body.light .section-divider:before,body.light .section-divider:after{background:
 <section class="compact-list" id="phoneCompactList"></section>
 </section>
 
-<section class="panel" id="comparar">
+<section class="panel tab-view" id="comparar">
 <div class="section-title"><h2>⚔️ PHONEVERSE COMPARE</h2><p>Elige dos celulares y descubre cuál gana.</p></div>
 <div class="compare-selects">
 <div class="compare-box"><h3>📱 CELULAR 1</h3><select id="phone1" class="select-phone"></select></div>
@@ -283,7 +294,7 @@ body.light .section-divider:before,body.light .section-divider:after{background:
 </div>
 </section>
 
-<section class="panel" id="finder">
+<section class="panel tab-view" id="finder">
 <div class="section-title"><h2>🧠 PHONEVERSE FINDER</h2><p>Responde y descubre qué celular encaja mejor contigo.</p></div>
 <div class="finder-question"><h3>🎯 ¿Para qué quieres principalmente el celular?</h3><div class="finder-options">
 <button class="finder-option" data-use="gaming">🎮 Gaming</button><button class="finder-option" data-use="camera">📸 Cámara</button><button class="finder-option" data-use="battery">🔋 Batería</button><button class="finder-option" data-use="power">⚡ Potencia</button><button class="finder-option" data-use="value">💰 Calidad/precio</button>
@@ -295,7 +306,7 @@ body.light .section-divider:before,body.light .section-divider:after{background:
 <div class="finder-result" id="finderResult"><span>🎯 TU RECOMENDACIÓN</span><h3 id="finderName"></h3><p id="finderScore"></p><p id="finderReason"></p><div class="finder-top3" id="finderTop3"></div><button class="share-btn" id="shareFinderBtn">📤 Compartir resultado<span class="copy-toast">¡Copiado! ✅</span></button></div>
 </section>
 
-<section class="compare-table">
+<section class="compare-table tab-view" id="datapack">
 <div class="section-title"><h2>📊 Comparación rápida</h2><p>Toca un encabezado para ordenar la tabla.</p></div>
 <table><thead><tr>
 <th class="sortable" data-key="name">Celular<span class="sort-arrow" data-arrow="name"></span></th>
@@ -307,7 +318,7 @@ body.light .section-divider:before,body.light .section-divider:after{background:
 </tr></thead><tbody id="tableBody"></tbody></table>
 </section>
 
-<section class="news-section" id="noticias">
+<section class="news-section tab-view" id="noticias">
 <div class="news-header"><span class="badge">📰 PHONEVERSE NEWS · EN VIVO</span><h2>LAS NOTICIAS DEL <span>MUNDO MÓVIL.</span></h2><p>Noticias tecnológicas obtenidas desde fuentes públicas.</p></div>
 <div class="news-status" id="newsStatus">🔄 Cargando noticias reales...</div>
 <div class="news-filter-row"><select id="newsBrandFilter"><option value="all">Todas las marcas</option></select></div>
@@ -315,7 +326,7 @@ body.light .section-divider:before,body.light .section-divider:after{background:
 </section>
 </main>
 
-<footer id="info">
+<footer id="info" class="tab-view">
 <p><b>PHONEVERSE ⚡</b> — Proyecto educativo de HTML, CSS y JavaScript.</p>
 <p>Las puntuaciones de rendimiento son aproximadas y pueden variar según software, temperatura, versión de la prueba y configuración.</p>
 <p>Las noticias pertenecen a sus respectivas fuentes.</p>
@@ -876,25 +887,51 @@ return;
 }
 newsGrid.innerHTML=articles.map(a=>`<article class="news-card"><div class="news-image">${newsEmoji(a.title)}</div><div class="news-content"><div class="news-source">${escapeHTML(a.source)}</div><div class="news-date">${formatNewsDate(a.date)}</div><h3>${escapeHTML(a.title)}</h3><p>${escapeHTML(a.description)}</p><a href="${safeURL(a.link)}" target="_blank" rel="noopener noreferrer" class="news-button">LEER NOTICIA →</a></div></article>`).join("");
 }
+function newsTimeout(ms){
+return new Promise((_,reject)=>setTimeout(()=>reject(new Error("Tiempo de espera agotado")),ms));
+}
 async function loadNews(){
 newsGrid.innerHTML=skeletonCards(9);newsStatus.innerHTML=`<div class="spinner" style="width:16px;height:16px;display:inline-block;margin:0 8px 0 0;vertical-align:middle;border-width:2px"></div>Conectando con fuentes públicas de tecnología...`;
 try{
-let articles=await fetchArticles();
-if(!articles.length){
-newsStatus.innerHTML=`<div class="spinner" style="width:16px;height:16px;display:inline-block;margin:0 8px 0 0;vertical-align:middle;border-width:2px"></div>Reintentando conexión...`;
-await new Promise(r=>setTimeout(r,1500));
-articles=await fetchArticles();
-}
+const articles=await Promise.race([fetchArticles(),newsTimeout(18000)]);
 if(!articles.length)throw new Error("No se encontraron noticias.");
 allArticles=articles;
 renderNewsList(filterArticlesByBrand(document.getElementById("newsBrandFilter").value));
 newsStatus.innerHTML="🟢 <b style='color:#00e5ff'>Noticias actualizadas</b> · "+articles.length+" artículos encontrados";
 }catch(error){
-console.error(error);newsGrid.innerHTML=`<div class="news-error"><strong>📰 No pudimos cargar las noticias</strong>Comprueba que tienes conexión a Internet y vuelve a cargar la página.<br><br><button class="button" onclick="loadNews()" style="margin-top:15px">🔄 INTENTAR DE NUEVO</button></div>`;newsStatus.innerHTML="🔴 No se pudo conectar con las fuentes de noticias.";
+console.error(error);
+newsGrid.innerHTML=`<div class="news-error"><strong>📰 No pudimos cargar las noticias</strong>Intenta nuevamente más tarde.<br><br><button class="button" onclick="loadNews()" style="margin-top:15px">🔄 INTENTAR DE NUEVO</button></div>`;
+newsStatus.innerHTML="🔴 No se pudo conectar con las fuentes de noticias.";
 }
 }
 
-initTheme();loadFromURL();populateDatalist();render();loadSelectors();initTableSorting();renderHistory();populateNewsBrandFilter();loadNews();
+/* ---- Navegación por pestañas ---- */
+const TAB_IDS=["ranking","comparar","finder","datapack","noticias","info"];
+function showTab(id,updateHash){
+if(!TAB_IDS.includes(id))id="ranking";
+document.querySelectorAll(".tab-view").forEach(el=>el.classList.toggle("active",el.id===id));
+document.querySelectorAll('nav a[href^="#"]').forEach(link=>{
+link.classList.toggle("active-tab",link.getAttribute("href")==="#"+id);
+});
+if(updateHash!==false){
+try{history.replaceState(null,"","#"+id)}catch(e){}
+}
+window.scrollTo({top:0,behavior:"smooth"});
+}
+function initTabs(){
+document.querySelectorAll('a[href^="#"]').forEach(link=>{
+const id=link.getAttribute("href").slice(1);
+if(!TAB_IDS.includes(id))return;
+link.addEventListener("click",e=>{
+e.preventDefault();
+showTab(id);
+});
+});
+const initial=window.location.hash.replace("#","");
+showTab(TAB_IDS.includes(initial)?initial:"ranking",false);
+}
+
+initTabs();initTheme();loadFromURL();populateDatalist();render();loadSelectors();initTableSorting();renderHistory();populateNewsBrandFilter();loadNews();
 
 const menuToggle=document.getElementById("menuToggle"),navLinks=document.getElementById("navLinks");
 function setMenuOpen(open){

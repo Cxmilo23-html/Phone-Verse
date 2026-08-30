@@ -172,6 +172,30 @@ th.sortable{cursor:pointer;user-select:none}
 th.sortable:hover{color:#66ffca}
 .sort-arrow{margin-left:4px;font-size:10px;opacity:.8}
 
+/* ---- Data Pack (fichas extendidas) ---- */
+.datapack-list{display:flex;flex-direction:column;gap:18px;padding-bottom:20px}
+.datapack-card{background:rgba(15,19,34,.76);border:1px solid #252c42;border-radius:22px;padding:26px;animation:cardIn .5s ease both}
+.datapack-card.pending{border-color:rgba(255,214,107,.4)}
+.datapack-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.datapack-top h3{font-size:19px}
+.datapack-rank-badge{font-size:12px;font-weight:900;color:#00e5ff;background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.3);border-radius:999px;padding:6px 12px;white-space:nowrap}
+.datapack-specs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.datapack-spec{padding:10px;background:#0b0f1b;border-radius:10px;color:#aeb6c9;font-size:12px}
+.datapack-spec b{display:block;color:#f4f6ff;font-size:13px;margin-top:3px}
+.datapack-ratings{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:16px}
+.datapack-rating{font-size:12px;color:#8791aa}
+.datapack-rating b{display:block;color:#ffd66b;font-size:15px;letter-spacing:1px;margin-top:3px}
+.datapack-strengths{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.datapack-strong,.datapack-weak{padding:12px 14px;border-radius:12px;font-size:12px;line-height:1.6}
+.datapack-strong{background:rgba(0,229,255,.06);border:1px solid rgba(0,229,255,.25);color:#c5f7ff}
+.datapack-weak{background:rgba(255,107,107,.06);border:1px solid rgba(255,107,107,.25);color:#ffd3d3}
+.datapack-note{margin-top:14px;padding:12px 14px;border-radius:12px;background:#0b0f1b;border:1px solid #20263a;color:#8f99b1;font-size:12px;line-height:1.6}
+.datapack-pending-note{padding:14px;border-radius:12px;background:rgba(255,214,107,.06);border:1px solid rgba(255,214,107,.3);color:#ffd66b;font-size:13px;line-height:1.6}
+@media(max-width:800px){
+.datapack-specs{grid-template-columns:1fr 1fr}
+.datapack-strengths{grid-template-columns:1fr}
+}
+
 .news-section{margin:30px 0 90px}.news-header{text-align:center;margin-bottom:35px}.news-header h2{font-size:40px;margin:15px 0 10px}.news-header h2 span{color:#00e5ff}.news-header p{color:#8791aa;line-height:1.6}
 .news-status{width:min(800px,100%);margin:0 auto 25px;padding:14px 18px;border-radius:12px;background:#0b0f1b;border:1px solid #252c42;color:#8791aa;text-align:center;font-size:13px}
 .news-filter-row{display:flex;justify-content:center;margin-bottom:20px}
@@ -236,6 +260,10 @@ body.light .share-btn{color:#0079a3;border-color:#0079a3}
 body.light .history-chip{color:#5a6480}
 body.light .section-divider{color:#8791aa}
 body.light .section-divider:before,body.light .section-divider:after{background:#dde2f0}
+body.light .datapack-card,body.light .datapack-note{background:#fff;border-color:#dde2f0}
+body.light .datapack-spec{background:#f4f6fb;color:#4a5474}
+body.light .datapack-spec b{color:#131a2c}
+body.light .datapack-rating{color:#6b7593}
 </style>
 </head>
 
@@ -244,7 +272,7 @@ body.light .section-divider:before,body.light .section-divider:after{background:
 <nav>
 <div class="logo">PHONE<span>VERSE</span> ⚡</div>
 <div class="nav-links" id="navLinks">
-<a href="#ranking">Ranking</a><a href="#comparar">Comparar</a><a href="#finder">Finder</a><a href="#datapack">Data Pack</a><a href="#noticias">Noticias</a><a href="#info">Info</a>
+<a href="#ranking">Ranking</a><a href="#comparar">Comparar</a><a href="#finder">Finder</a><a href="#datapack">Data Pack</a><a href="#tabla">Tabla</a><a href="#noticias">Noticias</a><a href="#info">Info</a>
 </div>
 <div class="nav-right">
 <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema" title="Cambiar tema">🌙</button>
@@ -306,7 +334,12 @@ body.light .section-divider:before,body.light .section-divider:after{background:
 <div class="finder-result" id="finderResult"><span>🎯 TU RECOMENDACIÓN</span><h3 id="finderName"></h3><p id="finderScore"></p><p id="finderReason"></p><div class="finder-top3" id="finderTop3"></div><button class="share-btn" id="shareFinderBtn">📤 Compartir resultado<span class="copy-toast">¡Copiado! ✅</span></button></div>
 </section>
 
-<section class="compare-table tab-view" id="datapack">
+<section class="panel tab-view" id="datapack">
+<div class="section-title"><h2>📦 DATA PACK PHONEVERSE 2026</h2><p>La ficha extendida de cada celular: specs completas, ratings, punto fuerte, punto débil y fuente.</p></div>
+<div class="datapack-list" id="datapackList"></div>
+</section>
+
+<section class="compare-table tab-view" id="tabla">
 <div class="section-title"><h2>📊 Comparación rápida</h2><p>Toca un encabezado para ordenar la tabla.</p></div>
 <table><thead><tr>
 <th class="sortable" data-key="name">Celular<span class="sort-arrow" data-arrow="name"></span></th>
@@ -688,6 +721,65 @@ renderTable(currentList);
 });
 }
 
+/* ---- Data Pack: fichas extendidas ---- */
+const datapackInfo={
+"RedMagic 11 Pro+":{charge:"80 W",front:"16 MP",gaming:5,cooling:5,strength:"Rendimiento + refrigeración",weakness:"Peso/tamaño y cámaras menos prioritarias que el gaming",note:"La referencia disponible registra 4.113.275 en AnTuTu v11, 233 g y Snapdragon 8 Elite Gen 5."},
+"OPPO Find X9 Ultra":{charge:"Hasta 100 W",gaming:5,camera:5,strength:"Combinación brutal de cámara + rendimiento",weakness:"Precio elevado",note:"Las mediciones disponibles de AnTuTu v11 rondan los 4,23 millones, aunque otras bases muestran cifras diferentes; conviene guardar fuente y fecha."},
+"iQOO 15":{charge:"100 W",gaming:5,cooling:5,strength:"Rendimiento/gaming",weakness:"Disponibilidad internacional",note:"El AnTuTu ronda 3,8–4,3 millones según la prueba."},
+"POCO F8 Ultra":{charge:"100 W cableada / 50 W inalámbrica",front:"32 MP",gaming:5,strength:"Relación rendimiento/precio",weakness:"Puede calentarse bajo cargas largas",note:"TechRadar confirma 6.500 mAh, Snapdragon 8 Elite Gen 5, 12/16 GB y triple cámara de 50 MP; una medición de AnTuTu v11 registra 3.797.111."},
+"OnePlus 15":{charge:"80 W",gaming:5,strength:"Rendimiento + batería",weakness:"Disponibilidad según mercado",note:"91mobiles registra 3.615.565 en AnTuTu, mientras otras bases muestran resultados superiores; no conviene mezclar ambas cifras."},
+"Xiaomi 17 Ultra":{charge:"90 W cableada / 50 W inalámbrica",gaming:5,camera:5,strength:"Cámaras",weakness:"Tamaño/precio",note:"Xiaomi confirma Snapdragon 8 Elite Gen 5 y el sistema de cámara con teleobjetivo de 200 MP."},
+"Galaxy S26 Ultra":{gaming:5,camera:5,strength:"Equilibrio general",weakness:"Precio",note:"Samsung confirma configuraciones de hasta 16 GB + 1 TB. Una medición reciente registra 4.027.702 en AnTuTu v11."},
+"vivo X300 Pro":{charge:"90 W",front:"50 MP",gaming:4,camera:5,strength:"Fotografía/teleobjetivo",weakness:"No es tan gaming-focused",note:"Una base actual registra 3.646.540 en AnTuTu v11 con Dimensity 9500; otras pruebas del X300 Pro han dado valores diferentes."},
+"OPPO Find X9 Pro":{charge:"100 W",gaming:4,camera:5,strength:"Cámara + batería",weakness:"Precio",note:"Hay una medición de 3.449.108 en Kimovil y una prueba inicial publicada de 4.045.997; conviene usar una única metodología."},
+"Xiaomi 17":{charge:"100 W / 50 W inalámbrica",front:"50 MP",strength:"Potencia en formato compacto",weakness:"Menos batería que algunos rivales gigantes",note:"Xiaomi confirma 6.330 mAh, 100 W y 50 W inalámbrica."},
+"ASUS ROG Phone 10":{pendingNote:"ASUS todavía no da una ficha oficial clara del ROG Phone 10; incluso algunas fuentes lo marcan como rumoreado. Las cifras que circulan (Snapdragon 8 Elite Gen 5, 12/16 GB, 256/512 GB, ~6.000 mAh, 80 W, ~6,8″, triple cámara, gaming ⭐⭐⭐⭐⭐) son referencias no confirmadas — se dejan como datos por confirmar hasta tener fuente oficial."},
+"Honor Magic8 Pro":{charge:"100 W",front:"50 MP",gaming:5,strength:"Batería + cámara + rendimiento",weakness:"Peso",note:"HONOR confirma Snapdragon 8 Elite Gen 5 y las configuraciones 12/512 y 16/1 TB."},
+"Realme GT8 Pro":{gaming:5,strength:"Rendimiento",weakness:"Disponibilidad según mercado",note:"realme publica oficialmente una referencia de 4 millones+ en AnTuTu y Snapdragon 8 Elite Gen 5."},
+"Sony Xperia 1 VII":{charge:"30 W",gaming:4,strength:"Multimedia",weakness:"Carga relativamente lenta",note:"Sony confirma Snapdragon 8 Elite, batería de 5.000 mAh y 256 GB."},
+"Huawei Mate 80 Pro":{charge:"100 W",gaming:4,strength:"Pantalla + cámara + ecosistema Huawei",weakness:"Rendimiento y compatibilidad de apps frente a algunos rivales",note:"Huawei confirma 6,75″, LTPO OLED 1–120 Hz y configuración 16/512 GB en su ficha oficial."},
+"OnePlus 13":{charge:"100 W",gaming:5,strength:"Rendimiento/precio",weakness:"Generación anterior",note:"Kimovil registra 2.643.566 en AnTuTu v11."},
+"Samsung Galaxy Z Fold7":{gaming:4,strength:"Productividad + pantalla plegable",weakness:"Precio y batería frente a teléfonos tradicionales",note:"La media disponible de AnTuTu v11 es 3.065.623."},
+"Apple iPhone 17 Pro Max":{gaming:5,camera:5,strength:"Rendimiento + vídeo + ecosistema",weakness:"Precio",note:"Geekbench registra 3.166 en single-core y 8.790 en multi-core para el Apple A19 Pro."},
+"Nothing Phone (3)":{charge:"65 W",gaming:4,strength:"Diseño + software",weakness:"Rendimiento inferior a los flagship principales",note:"Las mediciones disponibles rondan 2,3–2,37 millones en AnTuTu v11."},
+"Google Pixel 10 Pro XL":{charge:"45 W / 25 W inalámbrica Qi2",front:"42 MP",ai:5,strength:"Fotografía + IA",weakness:"Rendimiento bruto inferior a los Snapdragon/Apple de gama alta",note:"Google confirma el enfoque fotográfico y Pro Zoom de hasta 100x; las especificaciones disponibles indican 16 GB y 5.200 mAh."},
+"Realme GT 7 Pro":{charge:"120 W",gaming:5,strength:"Rendimiento/precio + batería",weakness:"Generación anterior",note:"realme confirma Snapdragon 8 Elite, 6.500 mAh y pantalla de 120 Hz; Kimovil registra 2.545.046 en AnTuTu v11."},
+"vivo X200 Pro":{charge:"90 W",front:"32 MP",gaming:4,camera:5,strength:"Fotografía",weakness:"Ya pertenece a una generación anterior",note:"vivo confirma Dimensity 9400, 6.000 mAh, 6,78″, 16 GB/512 GB y hasta 90 W."},
+"POCO X7 Pro":{charge:"90 W",front:"20 MP",gaming:4,strength:"Rendimiento/precio",weakness:"Cámaras secundarias"}
+};
+function stars(n){if(!n)return null;return "⭐".repeat(n)+"☆".repeat(5-n)}
+function datapackCard(p){
+const info=datapackInfo[p.name]||{};
+if(p.pending){
+return `<article class="datapack-card pending">
+<div class="datapack-top"><h3>#${p.rank} ${escapeHTML(p.name)}</h3><span class="datapack-rank-badge" style="color:#ffd66b;border-color:rgba(255,214,107,.3);background:rgba(255,214,107,.08)">🕒 DATOS POR CONFIRMAR</span></div>
+<div class="datapack-pending-note">⚠️ ${escapeHTML(info.pendingNote||"Todavía no hay ficha oficial confirmada para este modelo.")}</div>
+</article>`;
+}
+const specs=[["🧠 Procesador",p.cpu],["💾 RAM",p.ram],["💽 Almacenamiento",p.storage],["🔋 Batería",p.battery]];
+if(info.charge)specs.push(["⚡ Carga",info.charge]);
+specs.push(["🖥️ Pantalla",p.screen]);
+specs.push(["📸 Cámara principal",p.camera]);
+if(info.front)specs.push(["🤳 Frontal",info.front]);
+specs.push(["📊 AnTuTu v11",fmt(p.antutu)]);
+const ratings=[];
+if(info.gaming)ratings.push(["🎮 Gaming",stars(info.gaming)]);
+if(info.cooling)ratings.push(["🧊 Refrigeración",stars(info.cooling)]);
+if(info.camera)ratings.push(["📸 Cámara",stars(info.camera)]);
+if(info.ai)ratings.push(["🤖 IA",stars(info.ai)]);
+const medal=p.rank===1?"🥇 ":p.rank===2?"🥈 ":p.rank===3?"🥉 ":"";
+return `<article class="datapack-card">
+<div class="datapack-top"><h3>${medal}#${p.rank} ${escapeHTML(p.name)}</h3><span class="datapack-rank-badge">${phoneverseScore(p)}/100 PHONEVERSE</span></div>
+<div class="datapack-specs">${specs.map(s=>`<div class="datapack-spec">${s[0]}<b>${escapeHTML(String(s[1]))}</b></div>`).join("")}</div>
+${ratings.length?`<div class="datapack-ratings">${ratings.map(r=>`<div class="datapack-rating">${r[0]}<b>${r[1]}</b></div>`).join("")}</div>`:""}
+${(info.strength||info.weakness)?`<div class="datapack-strengths">${info.strength?`<div class="datapack-strong">🏆 <b>Punto fuerte:</b> ${escapeHTML(info.strength)}</div>`:""}${info.weakness?`<div class="datapack-weak">⚠️ <b>Punto débil:</b> ${escapeHTML(info.weakness)}</div>`:""}</div>`:""}
+${info.note?`<div class="datapack-note">ℹ️ ${escapeHTML(info.note)}</div>`:""}
+</article>`;
+}
+function renderDatapack(){
+document.getElementById("datapackList").innerHTML=phones.map(datapackCard).join("");
+}
+
 /* ---- Comparador + radar + duelo + historial ---- */
 let lastComparison=null;
 let radarChart=null;
@@ -906,7 +998,7 @@ newsStatus.innerHTML="🔴 No se pudo conectar con las fuentes de noticias.";
 }
 
 /* ---- Navegación por pestañas ---- */
-const TAB_IDS=["ranking","comparar","finder","datapack","noticias","info"];
+const TAB_IDS=["ranking","comparar","finder","datapack","tabla","noticias","info"];
 function showTab(id,updateHash){
 if(!TAB_IDS.includes(id))id="ranking";
 document.querySelectorAll(".tab-view").forEach(el=>el.classList.toggle("active",el.id===id));
@@ -931,7 +1023,7 @@ const initial=window.location.hash.replace("#","");
 showTab(TAB_IDS.includes(initial)?initial:"ranking",false);
 }
 
-initTabs();initTheme();loadFromURL();populateDatalist();render();loadSelectors();initTableSorting();renderHistory();populateNewsBrandFilter();loadNews();
+initTabs();initTheme();loadFromURL();populateDatalist();render();loadSelectors();initTableSorting();renderHistory();populateNewsBrandFilter();loadNews();renderDatapack();
 
 const menuToggle=document.getElementById("menuToggle"),navLinks=document.getElementById("navLinks");
 function setMenuOpen(open){

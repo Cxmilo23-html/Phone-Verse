@@ -23,17 +23,32 @@ html{scroll-behavior:smooth}
 body{font-family:Inter,Arial,sans-serif;background:#0c0707;color:#f5f7ff;overflow-x:hidden;transition:background .3s ease,color .3s ease}
 body:before{content:"";position:fixed;inset:0;z-index:-3;background:radial-gradient(circle at 15% 10%,rgba(255,45,74,.15),transparent 28%),radial-gradient(circle at 85% 20%,rgba(255,122,26,.18),transparent 30%),radial-gradient(circle at 50% 90%,rgba(255,140,20,.08),transparent 30%);transition:background .3s ease}
 body:after{content:"";position:fixed;inset:0;z-index:-2;opacity:.15;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:45px 45px}
+body{padding-top:78px}
 
 header{min-height:650px;padding:30px 7% 80px;display:flex;flex-direction:column}
-nav{display:flex;justify-content:space-between;align-items:center;position:relative;gap:10px}
+nav{display:flex;justify-content:space-between;align-items:center;position:fixed;top:0;left:0;right:0;z-index:1000;gap:14px;min-height:78px;padding:10px 7%;background:rgba(12,7,7,.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid #3d211e;transition:background .3s ease,border-color .3s ease}
+body.light nav{background:rgba(255,255,255,.85);border-bottom-color:#dde2f0}
 .nav-right{display:flex;align-items:center;gap:10px}
 .menu-toggle{display:none;background:none;border:1px solid #3d211e;border-radius:10px;width:42px;height:42px;color:#f5f7ff;font-size:20px;cursor:pointer;transition:.3s;position:relative;z-index:11}
 .menu-toggle.open{transform:rotate(90deg);border-color:#ff2d4a;color:#ff2d4a}
-.nav-links{display:flex}
+.nav-links{display:flex;align-items:center;gap:4px}
 .nav-links.open{display:flex}
 .logo{font-size:24px;font-weight:900;letter-spacing:2px}.logo span{color:#ff2d4a}
 nav a{color:#b9c0d5;text-decoration:none;margin-left:20px;font-size:13px;transition:.2s}
 nav a:hover{color:#ff2d4a}
+nav a.nav-icon{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;margin-left:0;padding:8px 14px;border-radius:14px;position:relative;color:#8791aa}
+nav a.nav-icon svg{width:20px;height:20px;stroke:currentColor;transition:filter .2s ease}
+nav a.nav-icon span{font-size:10px;font-weight:800;letter-spacing:.2px;white-space:nowrap}
+nav a.nav-icon:hover{color:#f5f7ff;background:rgba(255,255,255,.07)}
+body.light nav a.nav-icon:hover{color:#131a2c;background:rgba(19,26,44,.06)}
+nav a.nav-icon.active-tab{color:#ff2d4a}
+body.light nav a.nav-icon.active-tab{color:#c81628}
+nav a.nav-icon.active-tab svg{filter:drop-shadow(0 0 7px rgba(255,45,74,.55))}
+nav a.nav-icon.active-tab:after{content:"";position:absolute;bottom:-2px;left:22%;right:22%;height:3px;border-radius:3px 3px 0 0;background:linear-gradient(90deg,#ff2d4a,#ff7a1a)}
+@media(max-width:1150px) and (min-width:801px){
+nav a.nav-icon{padding:8px 9px}
+nav a.nav-icon span{display:none}
+}
 .theme-toggle{background:#150d0c;border:1px solid #3d211e;border-radius:10px;width:42px;height:42px;display:grid;place-items:center;cursor:pointer;font-size:18px;transition:.25s;flex:none}
 .theme-toggle:hover{border-color:#ff2d4a;transform:translateY(-2px)}
 .hero{max-width:1000px;margin:auto;text-align:center}
@@ -228,6 +243,8 @@ header{min-height:600px;padding-left:5%;padding-right:5%}
 .nav-links{display:flex;position:absolute;top:56px;right:0;flex-direction:column;background:#150d0c;border:1px solid #3d211e;border-radius:14px;padding:10px;gap:2px;min-width:160px;z-index:10;opacity:0;transform:translateY(-10px) scale(.96);pointer-events:none;visibility:hidden;transition:opacity .25s ease,transform .25s ease,visibility .25s}
 .nav-links.open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto;visibility:visible}
 .nav-links a{margin:0;padding:10px 12px;border-radius:8px;transition:.2s}
+.nav-links a.nav-icon{flex-direction:row;justify-content:flex-start;gap:10px;width:100%;padding:10px 12px}
+.nav-links a.nav-icon span{font-size:13px}
 .nav-links a:hover{background:#1d1210;padding-left:16px}
 .grid{grid-template-columns:1fr}.feature{grid-column:auto}
 .compare-selects{grid-template-columns:1fr}.vs{text-align:center}.battle-grid{grid-template-columns:1fr}.news-grid{grid-template-columns:1fr}.specs{grid-template-columns:1fr}
@@ -272,7 +289,34 @@ body.light .datapack-rating{color:#6b7593}
 <nav>
 <div class="logo">PHONE<span>VERSE</span> ⚡</div>
 <div class="nav-links" id="navLinks">
-<a href="#ranking">Ranking</a><a href="#comparar">Comparar</a><a href="#finder">Finder</a><a href="#datapack">Data Pack</a><a href="#tabla">Tabla</a><a href="#noticias">Noticias</a><a href="#info">Info</a>
+<a href="#ranking" class="nav-icon" title="Ranking">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0V4Z"/><path d="M7 5H4a1 1 0 0 0-1 1v1a3 3 0 0 0 3 3h1"/><path d="M17 5h3a1 1 0 0 1 1 1v1a3 3 0 0 1-3 3h-1"/></svg>
+<span>Ranking</span>
+</a>
+<a href="#comparar" class="nav-icon" title="Comparar">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v18"/><path d="M17 3v18"/><path d="M3 8l4-4 4 4"/><path d="M21 16l-4 4-4-4"/></svg>
+<span>Comparar</span>
+</a>
+<a href="#finder" class="nav-icon" title="Finder">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.4"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3"/></svg>
+<span>Finder</span>
+</a>
+<a href="#datapack" class="nav-icon" title="Data Pack">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8l9 5 9-5Z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>
+<span>Data Pack</span>
+</a>
+<a href="#tabla" class="nav-icon" title="Tabla">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 10h18"/><path d="M9.5 4v16"/></svg>
+<span>Tabla</span>
+</a>
+<a href="#noticias" class="nav-icon" title="Noticias">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h12v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4Z"/><path d="M16 8h4v10a2 2 0 0 1-2 2h-2"/><path d="M7 8h6M7 12h6M7 16h4"/></svg>
+<span>Noticias</span>
+</a>
+<a href="#info" class="nav-icon" title="Info">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01"/><path d="M11 11.5h1.2v5H13"/></svg>
+<span>Info</span>
+</a>
 </div>
 <div class="nav-right">
 <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema" title="Cambiar tema">🌙</button>
@@ -1002,7 +1046,7 @@ const TAB_IDS=["ranking","comparar","finder","datapack","tabla","noticias","info
 function showTab(id,updateHash){
 if(!TAB_IDS.includes(id))id="ranking";
 document.querySelectorAll(".tab-view").forEach(el=>el.classList.toggle("active",el.id===id));
-document.querySelectorAll('nav a[href^="#"]').forEach(link=>{
+document.querySelectorAll('a[href^="#"]').forEach(link=>{
 link.classList.toggle("active-tab",link.getAttribute("href")==="#"+id);
 });
 if(updateHash!==false){
